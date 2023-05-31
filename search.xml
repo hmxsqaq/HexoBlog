@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>My Todo List</title>
-    <url>/posts/46511/</url>
-    <content><![CDATA[<h1 id="卷！"><a href="#卷！" class="headerlink" title="卷！"></a>卷！</h1><ul>
-<li><input checked="" disabled="" type="checkbox"> <del>《线性代数的本质》</del> - <a href="https://www.bilibili.com/video/BV1ys411472E/">https://www.bilibili.com/video/BV1ys411472E/</a></li>
-</ul>
-<p><em>笔记：<a href="https://hmxs.games/posts/17021/">https://hmxs.games/posts/17021/</a></em></p>
-<ul>
-<li><input disabled="" type="checkbox"> 《游戏编程模式》学习</li>
-<li><input disabled="" type="checkbox"> 数据结构与算法整理与复习</li>
-<li><input disabled="" type="checkbox"> Lua - 《Lua程序设计》</li>
-<li><input disabled="" type="checkbox"> Unity Shader - 《Unity Shader入门精要》</li>
-<li><input disabled="" type="checkbox"> <strong>C++ - TheCherno（学习中）</strong></li>
-</ul>
-<p><em>笔记：<a href="https://hmxs.games/posts/2726/">https://hmxs.games/posts/2726/</a></em></p>
-<ul>
-<li><input disabled="" type="checkbox"> OpenGL - TheCherno</li>
-<li><input disabled="" type="checkbox"> 图形学入门 - GAMES101</li>
-<li><input disabled="" type="checkbox"> 3D数学基础 - 《3D数学基础：图形与游戏开发》</li>
-<li><input disabled="" type="checkbox"> GameEngine - TheCherno、GAMES104</li>
-<li><input disabled="" type="checkbox"> Unity2D角色移动优化</li>
-<li><input disabled="" type="checkbox"> Unity数据表的导入（Python？EPPlus？）</li>
-<li><input disabled="" type="checkbox"> Unity粒子系统、导航系统学习</li>
-<li><input disabled="" type="checkbox"> A*寻路算法学习</li>
-<li><input disabled="" type="checkbox"> GameFramework学习</li>
-</ul>
-<hr>
-<h1 id="最近在玩的"><a href="#最近在玩的" class="headerlink" title="最近在玩的"></a>最近在玩的</h1><ul>
-<li><input disabled="" type="checkbox"> 塞尔达传说：王国之泪</li>
-<li><input disabled="" type="checkbox"> 异度之刃3</li>
-</ul>
-]]></content>
-      <categories>
-        <category>About Me</category>
-      </categories>
-      <tags>
-        <tag>Todo List</tag>
-        <tag>学习计划</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>针对《异度神剑2》的批判看法与改造意见</title>
     <url>/posts/17116/</url>
     <content><![CDATA[<h1 id="针对《异度神剑2》的批判看法与改造意见"><a href="#针对《异度神剑2》的批判看法与改造意见" class="headerlink" title="针对《异度神剑2》的批判看法与改造意见"></a>针对《异度神剑2》的批判看法与改造意见</h1><p>​	<code>《异度神剑2》</code>是一款发售于Switch上的任天堂第一方JRPG。作为一名对JRPG充满兴趣的玩家，久闻异度系列的大名，之前却因听闻其不太友好的上手难度与地图引导而对其望而却步。而在系列新作异度神剑3发售后，我终于下定决心入手了这部作品，开始了自己的幽界之旅。在经过了超过100小时的旅程之后，我的心中却是五味杂陈的。<code>《异度神剑2》</code>无疑是一个好游戏，其人设、演出、音乐、地图设计、战斗系统之优秀足以令我心悦诚服，但其缺点却也是无比突出，下面我将从<strong>地图与战斗系统引导</strong>、<strong>异刃与抽卡系统</strong>、<strong>场景技能与锁钥设计</strong>3个方面谈谈我对<code>《异度神剑2》</code>的批评看法与改造意见。</p>
@@ -67,58 +27,6 @@
         <tag>Games</tag>
         <tag>异度神剑系列</tag>
         <tag>Comment</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C#中的泛型约束与其应用</title>
-    <url>/posts/17194/</url>
-    <content><![CDATA[<h1 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h1><blockquote>
-<p>泛型约束：对泛型类型参数施加限制，用于限制可以传递到该类型参数的类型种类，共有6种</p>
-</blockquote>
-<p><strong>基本语法</strong>：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">struct</span>/<span class="keyword">class</span>/<span class="title">new</span>()/&lt;<span class="title">base</span> <span class="title">class</span> <span class="title">name</span>&gt;/&lt;<span class="title">interface</span> <span class="title">name</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="结构约束-where-T-struct"><a href="#结构约束-where-T-struct" class="headerlink" title="结构约束 where T : struct"></a>结构约束 <code>where T : struct</code></h2><p>T必须是<strong>值类型</strong>，可以指定除 Nullable 以外的任何值类型</p>
-<p>（值类型有int、float、char、bool、struct、enum、byte等，值类型声明后被直接分配内存）</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">struct</span> &#123; &#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyGeneric&lt;<span class="built_in">int</span>&gt; myGenericint = <span class="keyword">new</span> MyGeneric&lt;<span class="built_in">int</span>&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="类关键词约束-where-T-class"><a href="#类关键词约束-where-T-class" class="headerlink" title="类关键词约束 where T : class"></a>类关键词约束 <code>where T : class</code></h2><p>T必须是<strong>引用类型</strong>，包括任何类、接口、委托或数组类型</p>
-<p>（引用类型有string和class，引用类型被声明时只在栈中分配一小片内存用于容纳一个地址，其实例被创建时，才会为其在堆中分配内存，并将堆中被分配的内存地址保存到栈中）</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="keyword">class</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyGeneric&lt;<span class="built_in">string</span>&gt; myGenericstring = <span class="keyword">new</span> MyGeneric&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="接口名约束-where-T-lt-interface-name-gt"><a href="#接口名约束-where-T-lt-interface-name-gt" class="headerlink" title="接口名约束 where T : &lt;interface name&gt;"></a>接口名约束 <code>where T : &lt;interface name&gt;</code></h2><p>T必须<strong>继承所给名称的指定接口</strong>，并实现其中的所有方法</p>
-<p>可以指定多个接口约束</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IMyInterface</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">int</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a,<span class="built_in">int</span> b</span>)</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Show</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">A</span> : <span class="title">IMyInterface</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a,<span class="built_in">int</span> b</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Show</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(<span class="string">&quot;This is a test.&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">IMyInterface</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyGeneric&lt;A&gt; myGenericA = <span class="keyword">new</span> MyGeneric&lt;A&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="类名约束-where-T-lt-base-class-name-gt"><a href="#类名约束-where-T-lt-base-class-name-gt" class="headerlink" title="类名约束 where T : &lt;base class name&gt;"></a>类名约束 <code>where T : &lt;base class name&gt;</code></h2><p>T必须<strong>是该类本身或是该类的子类</strong></p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">A</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">B</span> : <span class="title">A</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">A</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span>&#123;</span><br><span class="line">    MyGeneric&lt;A&gt; myGenericA = <span class="keyword">new</span> MyGeneric&lt;A&gt;();</span><br><span class="line">    MyGeneric&lt;B&gt; myGenericB = <span class="keyword">new</span> MyGeneric&lt;B&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="构造约束-where-T-new"><a href="#构造约束-where-T-new" class="headerlink" title="构造约束 where T : new()"></a>构造约束 <code>where T : new()</code></h2><p>T必须具<strong>有无参数的公共构造函数</strong></p>
-<p>当与其他约束一起使用时，new() 约束必须最后指定</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">A</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">A</span>,<span class="title">new</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span>&#123;</span><br><span class="line">    MyGeneric&lt;A&gt; myGenericA = <span class="keyword">new</span> MyGeneric&lt;A&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="泛型约束的应用"><a href="#泛型约束的应用" class="headerlink" title="泛型约束的应用"></a>泛型约束的应用</h1><h2 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyBaseGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; &#123; &#125;</span><br></pre></td></tr></table></figure>
-
-<p>采用了<strong>“类名约束”</strong></p>
-<p>根据定义：T必须是该类本身或是该类的子类，即T必须是MyBaseGeneric<T>本身或是MyBaseGeneric<T>的子类</p>
-<p>故当有其他类MyGeneric想要继承MyBaseGeneric<T>时，T便只能为MyGeneric本身或其他已经继承了MyBaseGeneric<T>的类</p>
-<p>写法为：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span> : <span class="title">MyBaseGeneric</span>&lt;<span class="title">MyGeneric</span>&gt; &#123; &#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样便通过类名泛型约束限制了泛型T</p>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>C#学习</tag>
-        <tag>Generic</tag>
       </tags>
   </entry>
   <entry>
@@ -182,6 +90,46 @@
       <tags>
         <tag>C#学习</tag>
         <tag>Reflection</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>My Todo List</title>
+    <url>/posts/46511/</url>
+    <content><![CDATA[<h1 id="卷！"><a href="#卷！" class="headerlink" title="卷！"></a>卷！</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> <del>《线性代数的本质》</del> - <a href="https://www.bilibili.com/video/BV1ys411472E/">https://www.bilibili.com/video/BV1ys411472E/</a></li>
+</ul>
+<p><em>笔记：<a href="https://hmxs.games/posts/17021/">https://hmxs.games/posts/17021/</a></em></p>
+<ul>
+<li><input disabled="" type="checkbox"> 《游戏编程模式》学习</li>
+<li><input disabled="" type="checkbox"> 数据结构与算法整理与复习</li>
+<li><input disabled="" type="checkbox"> Lua - 《Lua程序设计》</li>
+<li><input disabled="" type="checkbox"> Unity Shader - 《Unity Shader入门精要》</li>
+<li><input disabled="" type="checkbox"> <strong>C++ - TheCherno（学习中）</strong></li>
+</ul>
+<p><em>笔记：<a href="https://hmxs.games/posts/2726/">https://hmxs.games/posts/2726/</a></em></p>
+<ul>
+<li><input disabled="" type="checkbox"> OpenGL - TheCherno</li>
+<li><input disabled="" type="checkbox"> 图形学入门 - GAMES101</li>
+<li><input disabled="" type="checkbox"> 3D数学基础 - 《3D数学基础：图形与游戏开发》</li>
+<li><input disabled="" type="checkbox"> GameEngine - TheCherno、GAMES104</li>
+<li><input disabled="" type="checkbox"> Unity2D角色移动优化</li>
+<li><input disabled="" type="checkbox"> Unity数据表的导入（Python？EPPlus？）</li>
+<li><input disabled="" type="checkbox"> Unity粒子系统、导航系统学习</li>
+<li><input disabled="" type="checkbox"> A*寻路算法学习</li>
+<li><input disabled="" type="checkbox"> GameFramework学习</li>
+</ul>
+<hr>
+<h1 id="最近在玩的"><a href="#最近在玩的" class="headerlink" title="最近在玩的"></a>最近在玩的</h1><ul>
+<li><input disabled="" type="checkbox"> 塞尔达传说：王国之泪</li>
+<li><input disabled="" type="checkbox"> 异度之刃3</li>
+</ul>
+]]></content>
+      <categories>
+        <category>About Me</category>
+      </categories>
+      <tags>
+        <tag>Todo List</tag>
+        <tag>学习计划</tag>
       </tags>
   </entry>
   <entry>
@@ -481,6 +429,58 @@
       </tags>
   </entry>
   <entry>
+    <title>C#中的泛型约束与其应用</title>
+    <url>/posts/17194/</url>
+    <content><![CDATA[<h1 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h1><blockquote>
+<p>泛型约束：对泛型类型参数施加限制，用于限制可以传递到该类型参数的类型种类，共有6种</p>
+</blockquote>
+<p><strong>基本语法</strong>：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">struct</span>/<span class="keyword">class</span>/<span class="title">new</span>()/&lt;<span class="title">base</span> <span class="title">class</span> <span class="title">name</span>&gt;/&lt;<span class="title">interface</span> <span class="title">name</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="结构约束-where-T-struct"><a href="#结构约束-where-T-struct" class="headerlink" title="结构约束 where T : struct"></a>结构约束 <code>where T : struct</code></h2><p>T必须是<strong>值类型</strong>，可以指定除 Nullable 以外的任何值类型</p>
+<p>（值类型有int、float、char、bool、struct、enum、byte等，值类型声明后被直接分配内存）</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">struct</span> &#123; &#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyGeneric&lt;<span class="built_in">int</span>&gt; myGenericint = <span class="keyword">new</span> MyGeneric&lt;<span class="built_in">int</span>&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="类关键词约束-where-T-class"><a href="#类关键词约束-where-T-class" class="headerlink" title="类关键词约束 where T : class"></a>类关键词约束 <code>where T : class</code></h2><p>T必须是<strong>引用类型</strong>，包括任何类、接口、委托或数组类型</p>
+<p>（引用类型有string和class，引用类型被声明时只在栈中分配一小片内存用于容纳一个地址，其实例被创建时，才会为其在堆中分配内存，并将堆中被分配的内存地址保存到栈中）</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="keyword">class</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyGeneric&lt;<span class="built_in">string</span>&gt; myGenericstring = <span class="keyword">new</span> MyGeneric&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="接口名约束-where-T-lt-interface-name-gt"><a href="#接口名约束-where-T-lt-interface-name-gt" class="headerlink" title="接口名约束 where T : &lt;interface name&gt;"></a>接口名约束 <code>where T : &lt;interface name&gt;</code></h2><p>T必须<strong>继承所给名称的指定接口</strong>，并实现其中的所有方法</p>
+<p>可以指定多个接口约束</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IMyInterface</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">int</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a,<span class="built_in">int</span> b</span>)</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Show</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">A</span> : <span class="title">IMyInterface</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a,<span class="built_in">int</span> b</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Show</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(<span class="string">&quot;This is a test.&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">IMyInterface</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyGeneric&lt;A&gt; myGenericA = <span class="keyword">new</span> MyGeneric&lt;A&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="类名约束-where-T-lt-base-class-name-gt"><a href="#类名约束-where-T-lt-base-class-name-gt" class="headerlink" title="类名约束 where T : &lt;base class name&gt;"></a>类名约束 <code>where T : &lt;base class name&gt;</code></h2><p>T必须<strong>是该类本身或是该类的子类</strong></p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">A</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">B</span> : <span class="title">A</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">A</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span>&#123;</span><br><span class="line">    MyGeneric&lt;A&gt; myGenericA = <span class="keyword">new</span> MyGeneric&lt;A&gt;();</span><br><span class="line">    MyGeneric&lt;B&gt; myGenericB = <span class="keyword">new</span> MyGeneric&lt;B&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="构造约束-where-T-new"><a href="#构造约束-where-T-new" class="headerlink" title="构造约束 where T : new()"></a>构造约束 <code>where T : new()</code></h2><p>T必须具<strong>有无参数的公共构造函数</strong></p>
+<p>当与其他约束一起使用时，new() 约束必须最后指定</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">A</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">A</span>,<span class="title">new</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span>&#123;</span><br><span class="line">    MyGeneric&lt;A&gt; myGenericA = <span class="keyword">new</span> MyGeneric&lt;A&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="泛型约束的应用"><a href="#泛型约束的应用" class="headerlink" title="泛型约束的应用"></a>泛型约束的应用</h1><h2 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyBaseGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; &#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>采用了<strong>“类名约束”</strong></p>
+<p>根据定义：T必须是该类本身或是该类的子类，即T必须是MyBaseGeneric<T>本身或是MyBaseGeneric<T>的子类</p>
+<p>故当有其他类MyGeneric想要继承MyBaseGeneric<T>时，T便只能为MyGeneric本身或其他已经继承了MyBaseGeneric<T>的类</p>
+<p>写法为：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span> : <span class="title">MyBaseGeneric</span>&lt;<span class="title">MyGeneric</span>&gt; &#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样便通过类名泛型约束限制了泛型T</p>
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>C#学习</tag>
+        <tag>Generic</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Cyberpsychosis-AI Game Jam</title>
     <url>/posts/35484/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261558559.png" alt="qN0WZOY3ZLuswAaY2CB4RM3NRHPgpBfQE9G2VaSz"></p>
@@ -604,7 +604,142 @@
       </tags>
   </entry>
   <entry>
-    <title>《游戏编程模式》读书笔记2</title>
+    <title>《游戏编程模式》读书笔记-前言</title>
+    <url>/posts/56336/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305311339429.jpeg" alt="img"></p>
+<blockquote>
+<p>《游戏编程模式》-Bob Nystrom</p>
+<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
+</blockquote>
+<hr>
+<p>《游戏编程模式》是一本介绍游戏开发中常用设计模式的书籍，它涵盖了许多常见的游戏编程问题，并提供了解决方案。这本书可以帮助游戏开发者更加高效地开发游戏，并提高代码的可重用性和可维护性</p>
+<p>以下是我学习《游戏编程模式》一书的一些读书笔记</p>
+<table>
+<thead>
+<tr>
+<th align="center">Notes</th>
+<th align="center">Introduction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><a href="https://hmxs.games/posts/7377/">《游戏编程模式》读书笔记 1</a></td>
+<td align="center">序章：架构、性能与游戏</td>
+</tr>
+<tr>
+<td align="center"><a href="https://hmxs.games/posts/7569/">《游戏编程模式》读书笔记 2</a></td>
+<td align="center">重访设计模式：命令模式</td>
+</tr>
+<tr>
+<td align="center"><a href="https://hmxs.games/posts/56656/">《游戏编程模式》读书笔记 3</a></td>
+<td align="center">重访设计模式：享元模式、观察者模式</td>
+</tr>
+<tr>
+<td align="center"><a href="https://hmxs.games/posts/7953/">《游戏编程模式》读书笔记 4</a></td>
+<td align="center">重访设计模式：原型模式、单例模式</td>
+</tr>
+<tr>
+<td align="center"><a href="https://hmxs.games/posts/57296/">《游戏编程模式》读书笔记 5</a></td>
+<td align="center">重访设计模式：状态模式</td>
+</tr>
+<tr>
+<td align="center"><a href="https://hmxs.games/posts/12389/">《游戏编程模式》读书笔记 6（更新中）</a></td>
+<td align="center">序列模式</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>《游戏编程模式》</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《游戏编程模式》读书笔记一</title>
+    <url>/posts/7377/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301905867.jpeg" alt="img"></p>
+<blockquote>
+<p>《游戏编程模式》-Bob Nystrom</p>
+<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
+</blockquote>
+<hr>
+<h1 id="架构、性能与游戏"><a href="#架构、性能与游戏" class="headerlink" title="架构、性能与游戏"></a>架构、性能与游戏</h1><p><strong>软件架构</strong>：架构是代码的构建模式、每个程序不论好坏都有其架构</p>
+<p><strong>好的软件架构</strong>：架构是关于改动的—评价架构设计的好坏就是评价它应对改动有多么轻松</p>
+<p><strong>处理代码改动</strong>：</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301750097.png" alt="image-20230330175013047"></p>
+<p><strong>解耦</strong>：最小化在编写代码前需要了解的信息，最小化更改一块代码时对其他部分的影响</p>
+<p><strong>代价</strong>：抽象、模块化、设计模式和软件架构让程序的编写、拓展更有效率，让人可以行云流水的编写代码，但是需要注意的是，这也会带来更大的维护与管理成本，同时大幅提高代码的复杂度。<strong>不要沉迷在代码中，而忘记了我们到底在写什么！</strong>很多时候，You aren’t gonna need it！</p>
+<ul>
+<li><p>抽象和解耦让扩展代码更快更容易，但除非确信需要灵活性，否则不要在这上面浪费时间。</p>
+</li>
+<li><p>在整个开发周期中为性能考虑并做好设计，但是尽可能推迟那些底层的，基于假设的优化，那会锁死代码。</p>
+</li>
+<li><p>快速地探索游戏的设计空间，但不要跑得太快，在身后留下烂摊子。毕竟你总得回来打扫。</p>
+</li>
+<li><p>如果打算抛弃这段代码，就不要尝试将其写完美。摇滚明星将旅店房间弄得一团糟，因为他们知道明天就走人了。</p>
+</li>
+<li><p>但最重要的是，<strong>如果你想要做出让人享受的东西，那就享受做它的过程。</strong></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>《游戏编程模式》</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《游戏编程模式》读书笔记三</title>
+    <url>/posts/56656/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304032232057.jpeg" alt="img"></p>
+<blockquote>
+<p>《游戏编程模式》-Bob Nystrom</p>
+<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
+</blockquote>
+<hr>
+<h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><h2 id="基本定义与概念"><a href="#基本定义与概念" class="headerlink" title="基本定义与概念"></a>基本定义与概念</h2><p>享元模式(FlyweightPattern)是以效率为核心的设计模式，当我们有大量类似对象需要进行实例化时，如果直接一个一个类的进行创建，那其将占用大量的内存空间。而享元模式将其对象的数据分为两部分—共享部分(如材质、模型)与其他部分(如大小、坐标)分别储存，共享部分只声明一片固定空间，所有对象持有对该空间的引用，这样生成对象时便只需要关心其他部分的数据即可。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304032355080.png" alt="一行树，每棵都有自己的网格、纹理、树叶，调节参数和位置朝向。" style="zoom: 67%;" />
+
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304032355211.png" alt="一行树，每个都有自己的参数和位置朝向，指向另一个有网格、纹理、树叶的树模型。" style="zoom:67%;" />
+
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>有大量相同相似对象需要实例化</li>
+<li>这些对象存在数据可以共享</li>
+</ul>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>节省内存开销，提高效率</li>
+<li>在大量创建实例时更方便管理</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>如果需要实例化的对象不够多，享元模式的引入反而会增加代码管理成本</li>
+<li>创建对象的过程可能更加繁琐</li>
+</ul>
+<h2 id="Unity简单实现"><a href="#Unity简单实现" class="headerlink" title="Unity简单实现"></a>Unity简单实现</h2><p>Unity中的预制体、材质球等本身便是应用享元模式进行开发的，如多个物体共用一个材质球等</p>
+<p>享元的核心其实便是共享一部分不变的数据来节省空间，在Unity中通过ScriptableObject,静态类等都可以实现共享数据这一功能，同时其与建造者模式、工厂模式都有着不错的相性</p>
+<p>以下为一些简单的实现：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">FlyweightPattern</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 共享数据类(使用Struct应该也行)</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 在具体对象中持有该类的引用即可</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FlyweightClass</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 共享数据</span></span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> Hp;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">float</span> Speed;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构造函数</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">FlyweightClass</span>(<span class="params"><span class="built_in">int</span> hp, <span class="built_in">float</span> speed</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Hp = hp;</span><br><span class="line">            Speed = speed;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 共享数据SO</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 在菜单中右键创建SO文件或使用ScriptableObject.CreateInstance方法创建SO实例</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 在具体对象中持有SO文件的引用即可</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">CreateAssetMenu(fileName = <span class="string">&quot;Data&quot;</span>,menuName = <span class="string">&quot;SO/Flyweight&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FlyweightSO</span> : <span class="title">ScriptableObject</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> hp;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">float</span> speed;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><h2 id="基本定义与概念-1"><a href="#基本定义与概念-1" class="headerlink" title="基本定义与概念"></a>基本定义与概念</h2><p>观察者模式(ObserverPattern)是一种可以将代码的调用与对于调用的响应分离的设计模式，这是一种极重要的设计模式，C#中的event系统便是基于观察者模式实现的。在观察者模式中，观察者拥有具体的需要执行的代码，被观察者则仅需要负责发出通知，观察者监听到了对应的通知就会执行对应的代码。当我们编写被观察者的其他代码时，便无需关心奇怪的耦合问题，只需要专注于被观察者本身，在需要触发对应事件的时候发出通知即可。</p>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>当一个事件会触发一个或多个分属于不同系统的行为时</li>
+<li>当程序耦合严重时，观察者模式可以解除观察者与被观察者之间的依赖</li>
+</ul>
+<h3 id="Unity简单实现-1"><a href="#Unity简单实现-1" class="headerlink" title="Unity简单实现"></a>Unity简单实现</h3><p>*此处我直接实现了事件中心，这也是观察者模式的一种体现，引入了事件中心类作为第三方管理者统一订阅与触发事件</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">ObserverPattern</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">EventCenter</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Dictionary&lt;<span class="built_in">string</span>, Action&gt; Events = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, Action&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddListener</span>(<span class="params"><span class="built_in">string</span> key, Action action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Events.Add(key,action);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key] += action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RemoveListener</span>(<span class="params"><span class="built_in">string</span> key, Action action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogError(<span class="string">$&quot;EventCenter:can&#x27;t find <span class="subst">&#123;key&#125;</span> when remove&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key] -= action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Trigger</span>(<span class="params"><span class="built_in">string</span> key</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogError(<span class="string">$&quot;EventCenter:can&#x27;t find <span class="subst">&#123;key&#125;</span> when trigger&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key]();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>《游戏编程模式》</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《游戏编程模式》读书笔记二</title>
     <url>/posts/7569/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301905867.jpeg" alt="img"></p>
 <blockquote>
@@ -660,177 +795,7 @@
       </tags>
   </entry>
   <entry>
-    <title>《游戏编程模式》读书笔记-前言</title>
-    <url>/posts/56336/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305311339429.jpeg" alt="img"></p>
-<blockquote>
-<p>《游戏编程模式》-Bob Nystrom</p>
-<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
-</blockquote>
-<hr>
-<p>《游戏编程模式》是一本介绍游戏开发中常用设计模式的书籍，它涵盖了许多常见的游戏编程问题，并提供了解决方案。这本书可以帮助游戏开发者更加高效地开发游戏，并提高代码的可重用性和可维护性</p>
-<p>以下是我学习《游戏编程模式》一书的一些读书笔记</p>
-<table>
-<thead>
-<tr>
-<th align="center">Notes</th>
-<th align="center">Introduction</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><a href="https://hmxs.games/posts/7377/">《游戏编程模式》读书笔记 1</a></td>
-<td align="center">序章：架构、性能与游戏</td>
-</tr>
-<tr>
-<td align="center"><a href="https://hmxs.games/posts/7569/">《游戏编程模式》读书笔记 2</a></td>
-<td align="center">重访设计模式：命令模式</td>
-</tr>
-<tr>
-<td align="center"><a href="https://hmxs.games/posts/56656/">《游戏编程模式》读书笔记 3</a></td>
-<td align="center">重访设计模式：享元模式、观察者模式</td>
-</tr>
-<tr>
-<td align="center"><a href="https://hmxs.games/posts/7953/">《游戏编程模式》读书笔记 4</a></td>
-<td align="center">重访设计模式：原型模式、单例模式</td>
-</tr>
-<tr>
-<td align="center"><a href="https://hmxs.games/posts/57296/">《游戏编程模式》读书笔记 5</a></td>
-<td align="center">重访设计模式：状态模式</td>
-</tr>
-<tr>
-<td align="center"><a href="https://hmxs.games/posts/12389/">《游戏编程模式》读书笔记 6（更新中）</a></td>
-<td align="center">序列模式</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>《游戏编程模式》</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《游戏编程模式》读书笔记1</title>
-    <url>/posts/7377/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301905867.jpeg" alt="img"></p>
-<blockquote>
-<p>《游戏编程模式》-Bob Nystrom</p>
-<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
-</blockquote>
-<hr>
-<h1 id="架构、性能与游戏"><a href="#架构、性能与游戏" class="headerlink" title="架构、性能与游戏"></a>架构、性能与游戏</h1><p><strong>软件架构</strong>：架构是代码的构建模式、每个程序不论好坏都有其架构</p>
-<p><strong>好的软件架构</strong>：架构是关于改动的—评价架构设计的好坏就是评价它应对改动有多么轻松</p>
-<p><strong>处理代码改动</strong>：</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301750097.png" alt="image-20230330175013047"></p>
-<p><strong>解耦</strong>：最小化在编写代码前需要了解的信息，最小化更改一块代码时对其他部分的影响</p>
-<p><strong>代价</strong>：抽象、模块化、设计模式和软件架构让程序的编写、拓展更有效率，让人可以行云流水的编写代码，但是需要注意的是，这也会带来更大的维护与管理成本，同时大幅提高代码的复杂度。<strong>不要沉迷在代码中，而忘记了我们到底在写什么！</strong>很多时候，You aren’t gonna need it！</p>
-<ul>
-<li><p>抽象和解耦让扩展代码更快更容易，但除非确信需要灵活性，否则不要在这上面浪费时间。</p>
-</li>
-<li><p>在整个开发周期中为性能考虑并做好设计，但是尽可能推迟那些底层的，基于假设的优化，那会锁死代码。</p>
-</li>
-<li><p>快速地探索游戏的设计空间，但不要跑得太快，在身后留下烂摊子。毕竟你总得回来打扫。</p>
-</li>
-<li><p>如果打算抛弃这段代码，就不要尝试将其写完美。摇滚明星将旅店房间弄得一团糟，因为他们知道明天就走人了。</p>
-</li>
-<li><p>但最重要的是，<strong>如果你想要做出让人享受的东西，那就享受做它的过程。</strong></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>《游戏编程模式》</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《游戏编程模式》读书笔记4</title>
-    <url>/posts/7953/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304060426139.jpeg" alt="img"></p>
-<blockquote>
-<p>《游戏编程模式》-Bob Nystrom</p>
-<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
-</blockquote>
-<hr>
-<h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304061710457.png" alt="一个生产者包含一个对怪物应用的原型字段。 他调用原型的clone()方法来产生新的怪物。"></p>
-<h2 id="基本定义与概念"><a href="#基本定义与概念" class="headerlink" title="基本定义与概念"></a>基本定义与概念</h2><p>原型模式(PrototypePattern)是一种创建型设计模式，设计之初是为了解决”重复创建类似对象”这一问题，其提倡通过预先创建一个”原型对象”，再通过对原型进行克隆的方式创建对象。虽然在今时今日原始的原型模式实现方式已经有些过时，很多语言已经将原型模式纳入了其语言特性中(如Unity中的Instantiate方法)，但其思想仍然有值得学习借鉴的地方，如在我们通过JSON配置对象数据时，我们便可以将一部分相同的数据作为原型部分来提高效率。</p>
-<hr>
-<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h2 id="基本定义与概念-1"><a href="#基本定义与概念-1" class="headerlink" title="基本定义与概念"></a>基本定义与概念</h2><p>单例模式(Singleton)是最易于使用，同时也存在着许多争议的一种设计模式。其理念是:<strong>保证一个类只有一个实例，并且提供访问该实例的全局访问点。</strong>从另一个角度来说，单例模式是一种将全局状态封装为类的模式。其有着鲜明的优缺点，它是一种方便好用的设计模式，但是它也有着很多缺陷，依据本书作者的话来说，使用它更接近一种“饮鸩止渴”的状态。</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>使用懒汉式单例时，惰性加载可以一定程度上节省内存，没人调用它时，其便不会被创建</li>
-<li>与静态&#x2F;全局状态相比，其在运行时进行实例化，这让其初始化变得方便，不必担心引用问题</li>
-<li>因其可以被全局访问，调用它非常轻松惬意</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>全局访问的特性，让理解代码变得困难，同时并不安全，因为所有人都能访问到，也让并行开发变得困难</li>
-<li>使用懒汉式单例时，惰性加载让准确控制其加载时机变得困难，无法手动控制其内存</li>
-<li>饿汉式单例随没有惰性加载的问题，但其相比静态类很难突出其优势</li>
-</ul>
-<h2 id="Unity简单实现"><a href="#Unity简单实现" class="headerlink" title="Unity简单实现"></a>Unity简单实现</h2><p>Singleton懒汉式泛型基类实现：分为不继承Mono与继承Mono两个版本</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">SingletonPattern</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt;, <span class="title">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    _instance = <span class="keyword">new</span> T();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonMono</span>&lt;<span class="title">T</span>&gt; : <span class="title">MonoBehaviour</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonMono</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> T _instance;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">public</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    GameObject obj = <span class="keyword">new</span> GameObject</span><br><span class="line">                    &#123;</span><br><span class="line">                        name = <span class="keyword">typeof</span>(T).ToString()</span><br><span class="line">                    &#125;;</span><br><span class="line">                    DontDestroyOnLoad(obj);</span><br><span class="line">                    _instance = obj.AddComponent&lt;T&gt;();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>《游戏编程模式》</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《游戏编程模式》读书笔记3</title>
-    <url>/posts/56656/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304032232057.jpeg" alt="img"></p>
-<blockquote>
-<p>《游戏编程模式》-Bob Nystrom</p>
-<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
-</blockquote>
-<hr>
-<h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><h2 id="基本定义与概念"><a href="#基本定义与概念" class="headerlink" title="基本定义与概念"></a>基本定义与概念</h2><p>享元模式(FlyweightPattern)是以效率为核心的设计模式，当我们有大量类似对象需要进行实例化时，如果直接一个一个类的进行创建，那其将占用大量的内存空间。而享元模式将其对象的数据分为两部分—共享部分(如材质、模型)与其他部分(如大小、坐标)分别储存，共享部分只声明一片固定空间，所有对象持有对该空间的引用，这样生成对象时便只需要关心其他部分的数据即可。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304032355080.png" alt="一行树，每棵都有自己的网格、纹理、树叶，调节参数和位置朝向。" style="zoom: 67%;" />
-
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304032355211.png" alt="一行树，每个都有自己的参数和位置朝向，指向另一个有网格、纹理、树叶的树模型。" style="zoom:67%;" />
-
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
-<li>有大量相同相似对象需要实例化</li>
-<li>这些对象存在数据可以共享</li>
-</ul>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>节省内存开销，提高效率</li>
-<li>在大量创建实例时更方便管理</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>如果需要实例化的对象不够多，享元模式的引入反而会增加代码管理成本</li>
-<li>创建对象的过程可能更加繁琐</li>
-</ul>
-<h2 id="Unity简单实现"><a href="#Unity简单实现" class="headerlink" title="Unity简单实现"></a>Unity简单实现</h2><p>Unity中的预制体、材质球等本身便是应用享元模式进行开发的，如多个物体共用一个材质球等</p>
-<p>享元的核心其实便是共享一部分不变的数据来节省空间，在Unity中通过ScriptableObject,静态类等都可以实现共享数据这一功能，同时其与建造者模式、工厂模式都有着不错的相性</p>
-<p>以下为一些简单的实现：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">FlyweightPattern</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 共享数据类(使用Struct应该也行)</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 在具体对象中持有该类的引用即可</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FlyweightClass</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 共享数据</span></span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> Hp;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">float</span> Speed;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构造函数</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">FlyweightClass</span>(<span class="params"><span class="built_in">int</span> hp, <span class="built_in">float</span> speed</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Hp = hp;</span><br><span class="line">            Speed = speed;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 共享数据SO</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 在菜单中右键创建SO文件或使用ScriptableObject.CreateInstance方法创建SO实例</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 在具体对象中持有SO文件的引用即可</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">CreateAssetMenu(fileName = <span class="string">&quot;Data&quot;</span>,menuName = <span class="string">&quot;SO/Flyweight&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FlyweightSO</span> : <span class="title">ScriptableObject</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> hp;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">float</span> speed;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><h2 id="基本定义与概念-1"><a href="#基本定义与概念-1" class="headerlink" title="基本定义与概念"></a>基本定义与概念</h2><p>观察者模式(ObserverPattern)是一种可以将代码的调用与对于调用的响应分离的设计模式，这是一种极重要的设计模式，C#中的event系统便是基于观察者模式实现的。在观察者模式中，观察者拥有具体的需要执行的代码，被观察者则仅需要负责发出通知，观察者监听到了对应的通知就会执行对应的代码。当我们编写被观察者的其他代码时，便无需关心奇怪的耦合问题，只需要专注于被观察者本身，在需要触发对应事件的时候发出通知即可。</p>
-<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
-<li>当一个事件会触发一个或多个分属于不同系统的行为时</li>
-<li>当程序耦合严重时，观察者模式可以解除观察者与被观察者之间的依赖</li>
-</ul>
-<h3 id="Unity简单实现-1"><a href="#Unity简单实现-1" class="headerlink" title="Unity简单实现"></a>Unity简单实现</h3><p>*此处我直接实现了事件中心，这也是观察者模式的一种体现，引入了事件中心类作为第三方管理者统一订阅与触发事件</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">ObserverPattern</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">EventCenter</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Dictionary&lt;<span class="built_in">string</span>, Action&gt; Events = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, Action&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddListener</span>(<span class="params"><span class="built_in">string</span> key, Action action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Events.Add(key,action);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key] += action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RemoveListener</span>(<span class="params"><span class="built_in">string</span> key, Action action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogError(<span class="string">$&quot;EventCenter:can&#x27;t find <span class="subst">&#123;key&#125;</span> when remove&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key] -= action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Trigger</span>(<span class="params"><span class="built_in">string</span> key</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogError(<span class="string">$&quot;EventCenter:can&#x27;t find <span class="subst">&#123;key&#125;</span> when trigger&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key]();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>《游戏编程模式》</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《游戏编程模式》读书笔记5</title>
+    <title>《游戏编程模式》读书笔记五</title>
     <url>/posts/57296/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304070014396.jpeg" alt="img"></p>
 <blockquote>
@@ -876,7 +841,7 @@
       </tags>
   </entry>
   <entry>
-    <title>《游戏编程模式》读书笔记6（更新中）</title>
+    <title>《游戏编程模式》读书笔记六（更新中）</title>
     <url>/posts/12389/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304070014396.jpeg" alt="img"></p>
 <blockquote>
@@ -899,7 +864,42 @@
       </tags>
   </entry>
   <entry>
-    <title>【The Cherno】C++学习笔记（1-33）</title>
+    <title>《游戏编程模式》读书笔记四</title>
+    <url>/posts/7953/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304060426139.jpeg" alt="img"></p>
+<blockquote>
+<p>《游戏编程模式》-Bob Nystrom</p>
+<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
+</blockquote>
+<hr>
+<h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304061710457.png" alt="一个生产者包含一个对怪物应用的原型字段。 他调用原型的clone()方法来产生新的怪物。"></p>
+<h2 id="基本定义与概念"><a href="#基本定义与概念" class="headerlink" title="基本定义与概念"></a>基本定义与概念</h2><p>原型模式(PrototypePattern)是一种创建型设计模式，设计之初是为了解决”重复创建类似对象”这一问题，其提倡通过预先创建一个”原型对象”，再通过对原型进行克隆的方式创建对象。虽然在今时今日原始的原型模式实现方式已经有些过时，很多语言已经将原型模式纳入了其语言特性中(如Unity中的Instantiate方法)，但其思想仍然有值得学习借鉴的地方，如在我们通过JSON配置对象数据时，我们便可以将一部分相同的数据作为原型部分来提高效率。</p>
+<hr>
+<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h2 id="基本定义与概念-1"><a href="#基本定义与概念-1" class="headerlink" title="基本定义与概念"></a>基本定义与概念</h2><p>单例模式(Singleton)是最易于使用，同时也存在着许多争议的一种设计模式。其理念是:<strong>保证一个类只有一个实例，并且提供访问该实例的全局访问点。</strong>从另一个角度来说，单例模式是一种将全局状态封装为类的模式。其有着鲜明的优缺点，它是一种方便好用的设计模式，但是它也有着很多缺陷，依据本书作者的话来说，使用它更接近一种“饮鸩止渴”的状态。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>使用懒汉式单例时，惰性加载可以一定程度上节省内存，没人调用它时，其便不会被创建</li>
+<li>与静态&#x2F;全局状态相比，其在运行时进行实例化，这让其初始化变得方便，不必担心引用问题</li>
+<li>因其可以被全局访问，调用它非常轻松惬意</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>全局访问的特性，让理解代码变得困难，同时并不安全，因为所有人都能访问到，也让并行开发变得困难</li>
+<li>使用懒汉式单例时，惰性加载让准确控制其加载时机变得困难，无法手动控制其内存</li>
+<li>饿汉式单例随没有惰性加载的问题，但其相比静态类很难突出其优势</li>
+</ul>
+<h2 id="Unity简单实现"><a href="#Unity简单实现" class="headerlink" title="Unity简单实现"></a>Unity简单实现</h2><p>Singleton懒汉式泛型基类实现：分为不继承Mono与继承Mono两个版本</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">SingletonPattern</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt;, <span class="title">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    _instance = <span class="keyword">new</span> T();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonMono</span>&lt;<span class="title">T</span>&gt; : <span class="title">MonoBehaviour</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonMono</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> T _instance;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">public</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    GameObject obj = <span class="keyword">new</span> GameObject</span><br><span class="line">                    &#123;</span><br><span class="line">                        name = <span class="keyword">typeof</span>(T).ToString()</span><br><span class="line">                    &#125;;</span><br><span class="line">                    DontDestroyOnLoad(obj);</span><br><span class="line">                    _instance = obj.AddComponent&lt;T&gt;();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>《游戏编程模式》</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【The Cherno】C++学习笔记一（1-33）</title>
     <url>/posts/2726/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304182344099.jpg" alt="cherno"></p>
 <blockquote>
@@ -1285,7 +1285,7 @@
       </tags>
   </entry>
   <entry>
-    <title>【The Cherno】C++学习笔记（更新中）</title>
+    <title>【The Cherno】C++学习笔记二（更新中）</title>
     <url>/posts/2727/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202306010145167.jpeg" alt="cherno"></p>
 <blockquote>
@@ -1297,7 +1297,40 @@
 <p>第一章（1-33）：<a href="https://hmxs.games/posts/2726/">https://hmxs.games/posts/2726/</a></p>
 <p><strong>第二章（更新中）</strong>：<a href="https://hmxs.games/posts/2727/">https://hmxs.games/posts/2727/</a></p>
 <hr>
-]]></content>
+<h2 id="C-中的const（34）"><a href="#C-中的const（34）" class="headerlink" title="C++中的const（34）"></a>C++中的const（34）</h2><p><code>const</code>在改变生成的代码方面做不了什么，其有点类似类&#x2F;结构体中的可见性</p>
+<blockquote>
+<p><strong><code>const</code>是一个可以让我们的代码变得更干净的机制，是对开发人员编写代码的强制特定的规则，被<code>const</code>修饰的东西被承诺不会被改变</strong>（但实际上，这个“承诺”是可以违背的，anyway，it just a promise.🤐）</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> a = <span class="number">1</span>;</span><br><span class="line">a = <span class="number">2</span>; <span class="comment">// 这行代码会报错</span></span><br></pre></td></tr></table></figure>
+
+<p>如上面的代码所示，被const修饰的变量的值无法被改变，如果我们希望定义一个在程序中永远不变的量，那么<code>const</code>便可以出场了</p>
+<p><code>const</code>是一种声明变量的方式，而我们可以通过强制转换绕过<code>const</code>的限制</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAX_AGE = <span class="number">90</span>;</span><br><span class="line"><span class="type">int</span>* a = <span class="keyword">new</span> <span class="type">int</span>;</span><br><span class="line">a = (<span class="type">int</span>*)&amp;MAX_AGE;</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的代码，我们让指针<code>a</code>指向了<code>const</code>的<code>MAX_AGE</code>,这样便绕过了<code>const</code>，但如果我们尝试通过逆向引用<code>a</code>来写入<code>MAX_AGE</code>便很可能导致程序崩溃，所以最好还是别这么干</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span>* a = <span class="keyword">new</span> <span class="type">int</span>;</span><br><span class="line"><span class="type">int</span> <span class="type">const</span>* b = <span class="keyword">new</span> <span class="type">int</span>;</span><br><span class="line"><span class="type">int</span>* <span class="type">const</span> c = <span class="keyword">new</span> <span class="type">int</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面是三种声明<code>const</code>指针的方式，其中a与b效果完全一样，而c与ab的效果相反</p>
+<p>在a与b中，修改ab本身是被允许的，而修改ab指向的内容是被禁止的，即<code>a = &amp;x</code>可行，而<code>*a = 2</code>不可行；而c的效果则与ab相反</p>
+<p>当然我们也可以通过<code>const int* const a = new int;</code>来让<code>a</code>与&#96;&#96;*a&#96;的值都无法改变</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">int</span> X;</span><br><span class="line">	<span class="keyword">mutable</span> <span class="type">int</span> MutableX;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">GetX</span><span class="params">()</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		MutableX = <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">return</span> X;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PrintX</span><span class="params">(<span class="type">const</span> Entity&amp; entity)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; entity.<span class="built_in">GetX</span>() &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码是<code>const</code>的最后一种用法，在类中修饰方法（只能在类中这样用）</p>
+<p>被<code>const</code>修饰的方法，只能对类中被<code>mutable</code>修饰的字段进行修改，如在上述<code>GetX()</code>方法中，若对<code>X</code>进行修改就会报错</p>
+<p><strong>这种<code>const</code>有什么用呢？</strong></p>
+<p>当我们以<code>const</code>传递类或类的引用时，只有类中的<code>const</code>方法才能被调用，因为<code>const</code>需要保证传入的引用的类无论如何都不会被更改，这种用法常常被用来修饰<code>getter</code>方法</p>
+<p>在上面的代码中，如果<code>GetX()</code>方法没有被<code>const</code>修饰，那么在<code>PrintX()</code>中其便无法被调用</p>
+<hr>
+<h2 id="C-中的mutable（35）"><a href="#C-中的mutable（35）" class="headerlink" title="C++中的mutable（35）"></a>C++中的mutable（35）</h2><p><code>mutable</code>关键字在C++中有着两种不同的用途</p>
+<p>一是和<code>const</code>一起使用，在上一章的最后有提到，类中被<code>const</code>修饰的方法，只能对类中被<code>mutable</code>修饰的字段进行修改，这种情况往往发生在我们需要调试程序时（这是一种近似于违背承诺的行为，最好还是别大量使用，这会破坏<code>const</code>的意义）</p>
+<p>二是用在<code>lambda</code>表达式中，<code>lambda</code>基本上就像一个一次性小函数，你可以写出来并赋值给一个变量</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">auto</span> f = [=]() <span class="keyword">mutable</span> </span><br><span class="line">&#123;</span><br><span class="line">	x++;</span><br><span class="line">	std::cout &lt;&lt; x &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">f</span>();</span><br><span class="line"><span class="comment">// x = 8</span></span><br></pre></td></tr></table></figure>
+
+<p>在上面的<code>lambda</code>表达式中，如果我们想以值传递的形式传入<code>x</code>，并更改它，那么我们就必须加上<code>mutable</code>关键字</p>
+<p>如果不使用<code>mutable</code>我们便需要创建一个局部变量来对<code>x</code>的值进行一次复制才能实现上面的效果</p>
+<p><em>（当然其实这种用法非常非常少见，The Cherno说他其实完全没见过这么用的🤣）</em></p>
+<hr>
+<h2 id="C-的成员初始化列表（36）"><a href="#C-的成员初始化列表（36）" class="headerlink" title="C++的成员初始化列表（36）"></a>C++的成员初始化列表（36）</h2>]]></content>
       <categories>
         <category>Notes</category>
       </categories>
@@ -1324,11 +1357,6 @@
         <tag>C#</tag>
         <tag>Python</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>分类</title>
-    <url>/categories/index.html</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>About Me</title>
@@ -1421,6 +1449,11 @@
 ]]></content>
   </entry>
   <entry>
+    <title>分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title></title>
     <url>/css/custom.css</url>
     <content><![CDATA[/* 页脚与头图透明 */
@@ -1450,11 +1483,6 @@
 [data-theme="dark"] #page-header::before {
     background: transparent !important;
 }]]></content>
-  </entry>
-  <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1660,6 +1688,11 @@
   <entry>
     <title>友链</title>
     <url>/link/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>标签</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
 </search>
