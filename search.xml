@@ -303,6 +303,64 @@
       </tags>
   </entry>
   <entry>
+    <title>Cyberpsychosis-AI Game Jam</title>
+    <url>/posts/35484/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261558559.png" alt="qN0WZOY3ZLuswAaY2CB4RM3NRHPgpBfQE9G2VaSz"></p>
+<blockquote>
+<p>游戏页面：<a href="https://gmhub.com/game/2005">https://gmhub.com/game/2005</a></p>
+<p>介绍视频：<a href="https://www.bilibili.com/video/BV1U44y1Z7oU/">https://www.bilibili.com/video/BV1U44y1Z7oU/</a></p>
+</blockquote>
+<h2 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h2><p><strong>定福庄AI小队：</strong></p>
+<p>策划：虚虚、TenGo</p>
+<p>程序：紫地丁、<strong>徽墨行深(伍泽华)</strong></p>
+<p>美术：范静云  </p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601861.jpg" alt="tjM0fNlKlAXcGfzvM1iy4WCGjKLP7xijILJWeR2j"></p>
+<h2 id="游戏简介："><a href="#游戏简介：" class="headerlink" title="游戏简介："></a>游戏简介：</h2><p>一款联合移动的推箱子游戏，由5名中国传媒大学的大一学生共同完成。</p>
+<p>本次Game Jam的主题是「和谐的缝合怪」，我们的创作思路是在一个经典简洁的游戏机制上，做一些小的调整和创新。游戏故事背景设定参照了「赛博朋克」，其中的人类进行进行大量机械植入又要保证人性不丧失，避免「赛博精神病」，我们想这种人性与机械的平衡正符合本次大赛的主题，因而游戏名也取作「Cyberpsychosis」。</p>
+<p>游戏女主因车祸而需要进行机械移植治疗，手术后检测报告显示她很大概率会因免疫排斥而出现双向情感障碍，而她不富裕的家境无法承担高额的免疫抑制剂费用。在医生的建议下，她通过控制虚拟游戏中分裂的两个自我（狂躁和抑郁），去协作完成游戏目标，来达到训练自我达到平衡的效果。</p>
+<p>游戏内背景、人物立绘、BGM都是由AI进行创作。（策划和美术都被AI驯服了）</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601694.png" alt="6dAGl1r5fzLbMt6RppK7lLODYiCtMPYapnhXBoud"></p>
+]]></content>
+      <categories>
+        <category>我参与的游戏</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>EscapeFromVirus-严肃游戏工坊作品</title>
+    <url>/posts/41160/</url>
+    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261533351.png" alt="logo" style="zoom: 50%;" />
+
+<blockquote>
+<p>项目介绍：<a href="https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA">https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA</a></p>
+</blockquote>
+<h2 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h2><p>策划-唐诗</p>
+<p>美术-王子彤 刘月映</p>
+<p>程序-<strong>伍泽华</strong></p>
+<p>测试-杨光平</p>
+<h2 id="游戏内容"><a href="#游戏内容" class="headerlink" title="游戏内容"></a>游戏内容</h2><p>这是一款竖版弹幕类、动作敏捷类平面游戏。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261547150.png" alt="640 (1)" style="zoom:50%;" />
+
+<h2 id="游戏机制"><a href="#游戏机制" class="headerlink" title="游戏机制"></a>游戏机制</h2><p>玩家需要扮演角色“阿尼”或“A喵”，在屏幕上躲避从屏幕四周袭来的象征冠状病毒的弹幕，期间尽可能收集口罩等防疫物品，获得有助于通关的增益效果。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548998.png" alt="640" style="zoom:50%;" />
+
+<h2 id="游戏介绍"><a href="#游戏介绍" class="headerlink" title="游戏介绍"></a>游戏介绍</h2><p>通过回答防疫相关问题，获取猫粮，尽可能长时间地生存下来，生存时间越长得分越高。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548606.png" alt="640 (2)" style="zoom:50%;" />
+
+<h2 id="创作立意"><a href="#创作立意" class="headerlink" title="创作立意"></a>创作立意</h2><p>希望通过制作这样的一款严肃游戏，能让玩家关注防疫政策的变化，学习到防范病毒的小知识，学会做自己健康第一责任人。</p>
+]]></content>
+      <categories>
+        <category>我参与的游戏</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【3B1B】《线性代数的本质》学习笔记</title>
     <url>/posts/17021/</url>
     <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100312370.png" alt="image-20230410031239217" style="zoom:50%;" />
@@ -474,90 +532,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Cyberpsychosis-AI Game Jam</title>
-    <url>/posts/35484/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261558559.png" alt="qN0WZOY3ZLuswAaY2CB4RM3NRHPgpBfQE9G2VaSz"></p>
-<blockquote>
-<p>游戏页面：<a href="https://gmhub.com/game/2005">https://gmhub.com/game/2005</a></p>
-<p>介绍视频：<a href="https://www.bilibili.com/video/BV1U44y1Z7oU/">https://www.bilibili.com/video/BV1U44y1Z7oU/</a></p>
-</blockquote>
-<h2 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h2><p><strong>定福庄AI小队：</strong></p>
-<p>策划：虚虚、TenGo</p>
-<p>程序：紫地丁、<strong>徽墨行深(伍泽华)</strong></p>
-<p>美术：范静云  </p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601861.jpg" alt="tjM0fNlKlAXcGfzvM1iy4WCGjKLP7xijILJWeR2j"></p>
-<h2 id="游戏简介："><a href="#游戏简介：" class="headerlink" title="游戏简介："></a>游戏简介：</h2><p>一款联合移动的推箱子游戏，由5名中国传媒大学的大一学生共同完成。</p>
-<p>本次Game Jam的主题是「和谐的缝合怪」，我们的创作思路是在一个经典简洁的游戏机制上，做一些小的调整和创新。游戏故事背景设定参照了「赛博朋克」，其中的人类进行进行大量机械植入又要保证人性不丧失，避免「赛博精神病」，我们想这种人性与机械的平衡正符合本次大赛的主题，因而游戏名也取作「Cyberpsychosis」。</p>
-<p>游戏女主因车祸而需要进行机械移植治疗，手术后检测报告显示她很大概率会因免疫排斥而出现双向情感障碍，而她不富裕的家境无法承担高额的免疫抑制剂费用。在医生的建议下，她通过控制虚拟游戏中分裂的两个自我（狂躁和抑郁），去协作完成游戏目标，来达到训练自我达到平衡的效果。</p>
-<p>游戏内背景、人物立绘、BGM都是由AI进行创作。（策划和美术都被AI驯服了）</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601694.png" alt="6dAGl1r5fzLbMt6RppK7lLODYiCtMPYapnhXBoud"></p>
-]]></content>
-      <categories>
-        <category>我参与的游戏</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EscapeFromVirus-严肃游戏工坊作品</title>
-    <url>/posts/41160/</url>
-    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261533351.png" alt="logo" style="zoom: 50%;" />
-
-<blockquote>
-<p>项目介绍：<a href="https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA">https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA</a></p>
-</blockquote>
-<h2 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h2><p>策划-唐诗</p>
-<p>美术-王子彤 刘月映</p>
-<p>程序-<strong>伍泽华</strong></p>
-<p>测试-杨光平</p>
-<h2 id="游戏内容"><a href="#游戏内容" class="headerlink" title="游戏内容"></a>游戏内容</h2><p>这是一款竖版弹幕类、动作敏捷类平面游戏。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261547150.png" alt="640 (1)" style="zoom:50%;" />
-
-<h2 id="游戏机制"><a href="#游戏机制" class="headerlink" title="游戏机制"></a>游戏机制</h2><p>玩家需要扮演角色“阿尼”或“A喵”，在屏幕上躲避从屏幕四周袭来的象征冠状病毒的弹幕，期间尽可能收集口罩等防疫物品，获得有助于通关的增益效果。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548998.png" alt="640" style="zoom:50%;" />
-
-<h2 id="游戏介绍"><a href="#游戏介绍" class="headerlink" title="游戏介绍"></a>游戏介绍</h2><p>通过回答防疫相关问题，获取猫粮，尽可能长时间地生存下来，生存时间越长得分越高。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548606.png" alt="640 (2)" style="zoom:50%;" />
-
-<h2 id="创作立意"><a href="#创作立意" class="headerlink" title="创作立意"></a>创作立意</h2><p>希望通过制作这样的一款严肃游戏，能让玩家关注防疫政策的变化，学习到防范病毒的小知识，学会做自己健康第一责任人。</p>
-]]></content>
-      <categories>
-        <category>我参与的游戏</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SCP-游创1 week3</title>
-    <url>/posts/57480/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221534305.jpg" alt="SCP"></p>
-<blockquote>
-<p>项目地址：<a href="https://github.com/hmxsqaq/Unity-SCP">https://github.com/hmxsqaq/Unity-SCP</a></p>
-</blockquote>
-<h2 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h2><p>策划：杜修臣</p>
-<p>程序：<strong>伍泽华</strong></p>
-<p>美术：魏可欣</p>
-<p>音效：高祎祎、王菲阳</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这是一款基于Unity的2D恐怖游戏，【游戏创作1】课程第三周的小组作业，围绕拍卖到的主题“SCP”进行展开</p>
-<p>故事发生在SCP收容失败的背景下，玩家可以通过W&#x2F;A&#x2F;S&#x2F;D控制侥幸存活的D级人员，与各类物品进行交互</p>
-<p>途中玩家会遇到各类SCP，运用你的知识与手段逃出去吧！</p>
-<h2 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h2><p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535994.png" alt="截图1"></p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535175.png" alt="截图2"></p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535877.png" alt="截图3"></p>
-]]></content>
-      <categories>
-        <category>我参与的游戏</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Revive-UE GameJam</title>
     <url>/posts/41772/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261605787.png" alt="Logo"></p>
@@ -594,6 +568,68 @@
       <tags>
         <tag>Unity</tag>
         <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SCP-游创1 week3</title>
+    <url>/posts/57480/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221534305.jpg" alt="SCP"></p>
+<blockquote>
+<p>项目地址：<a href="https://github.com/hmxsqaq/Unity-SCP">https://github.com/hmxsqaq/Unity-SCP</a></p>
+</blockquote>
+<h2 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h2><p>策划：杜修臣</p>
+<p>程序：<strong>伍泽华</strong></p>
+<p>美术：魏可欣</p>
+<p>音效：高祎祎、王菲阳</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这是一款基于Unity的2D恐怖游戏，【游戏创作1】课程第三周的小组作业，围绕拍卖到的主题“SCP”进行展开</p>
+<p>故事发生在SCP收容失败的背景下，玩家可以通过W&#x2F;A&#x2F;S&#x2F;D控制侥幸存活的D级人员，与各类物品进行交互</p>
+<p>途中玩家会遇到各类SCP，运用你的知识与手段逃出去吧！</p>
+<h2 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h2><p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535994.png" alt="截图1"></p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535175.png" alt="截图2"></p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535877.png" alt="截图3"></p>
+]]></content>
+      <categories>
+        <category>我参与的游戏</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《游戏编程模式》读书笔记一</title>
+    <url>/posts/7377/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301905867.jpeg" alt="img"></p>
+<blockquote>
+<p>《游戏编程模式》-Bob Nystrom</p>
+<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
+</blockquote>
+<hr>
+<h1 id="架构、性能与游戏"><a href="#架构、性能与游戏" class="headerlink" title="架构、性能与游戏"></a>架构、性能与游戏</h1><p><strong>软件架构</strong>：架构是代码的构建模式、每个程序不论好坏都有其架构</p>
+<p><strong>好的软件架构</strong>：架构是关于改动的—评价架构设计的好坏就是评价它应对改动有多么轻松</p>
+<p><strong>处理代码改动</strong>：</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301750097.png" alt="image-20230330175013047"></p>
+<p><strong>解耦</strong>：最小化在编写代码前需要了解的信息，最小化更改一块代码时对其他部分的影响</p>
+<p><strong>代价</strong>：抽象、模块化、设计模式和软件架构让程序的编写、拓展更有效率，让人可以行云流水的编写代码，但是需要注意的是，这也会带来更大的维护与管理成本，同时大幅提高代码的复杂度。<strong>不要沉迷在代码中，而忘记了我们到底在写什么！</strong>很多时候，You aren’t gonna need it！</p>
+<ul>
+<li><p>抽象和解耦让扩展代码更快更容易，但除非确信需要灵活性，否则不要在这上面浪费时间。</p>
+</li>
+<li><p>在整个开发周期中为性能考虑并做好设计，但是尽可能推迟那些底层的，基于假设的优化，那会锁死代码。</p>
+</li>
+<li><p>快速地探索游戏的设计空间，但不要跑得太快，在身后留下烂摊子。毕竟你总得回来打扫。</p>
+</li>
+<li><p>如果打算抛弃这段代码，就不要尝试将其写完美。摇滚明星将旅店房间弄得一团糟，因为他们知道明天就走人了。</p>
+</li>
+<li><p>但最重要的是，<strong>如果你想要做出让人享受的东西，那就享受做它的过程。</strong></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>《游戏编程模式》</tag>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
@@ -639,42 +675,6 @@
 <td align="center">序列模式</td>
 </tr>
 </tbody></table>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>《游戏编程模式》</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《游戏编程模式》读书笔记一</title>
-    <url>/posts/7377/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301905867.jpeg" alt="img"></p>
-<blockquote>
-<p>《游戏编程模式》-Bob Nystrom</p>
-<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
-</blockquote>
-<hr>
-<h1 id="架构、性能与游戏"><a href="#架构、性能与游戏" class="headerlink" title="架构、性能与游戏"></a>架构、性能与游戏</h1><p><strong>软件架构</strong>：架构是代码的构建模式、每个程序不论好坏都有其架构</p>
-<p><strong>好的软件架构</strong>：架构是关于改动的—评价架构设计的好坏就是评价它应对改动有多么轻松</p>
-<p><strong>处理代码改动</strong>：</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301750097.png" alt="image-20230330175013047"></p>
-<p><strong>解耦</strong>：最小化在编写代码前需要了解的信息，最小化更改一块代码时对其他部分的影响</p>
-<p><strong>代价</strong>：抽象、模块化、设计模式和软件架构让程序的编写、拓展更有效率，让人可以行云流水的编写代码，但是需要注意的是，这也会带来更大的维护与管理成本，同时大幅提高代码的复杂度。<strong>不要沉迷在代码中，而忘记了我们到底在写什么！</strong>很多时候，You aren’t gonna need it！</p>
-<ul>
-<li><p>抽象和解耦让扩展代码更快更容易，但除非确信需要灵活性，否则不要在这上面浪费时间。</p>
-</li>
-<li><p>在整个开发周期中为性能考虑并做好设计，但是尽可能推迟那些底层的，基于假设的优化，那会锁死代码。</p>
-</li>
-<li><p>快速地探索游戏的设计空间，但不要跑得太快，在身后留下烂摊子。毕竟你总得回来打扫。</p>
-</li>
-<li><p>如果打算抛弃这段代码，就不要尝试将其写完美。摇滚明星将旅店房间弄得一团糟，因为他们知道明天就走人了。</p>
-</li>
-<li><p>但最重要的是，<strong>如果你想要做出让人享受的东西，那就享受做它的过程。</strong></p>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>Notes</category>
@@ -908,15 +908,15 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">Singleton</td>
+<td align="center"><a href="https://hmxs.games/posts/36395/">Singleton</a></td>
 <td align="center">泛型单例模块，包含了不继承&#x2F;继承Mono、线程安全&#x2F;不安全、SO单例等多种泛型基类</td>
 </tr>
 <tr>
-<td align="center">Events</td>
+<td align="center"><a href="https://hmxs.games/posts/42997/">EventCenter</a></td>
 <td align="center">事件中心模块，观察者模式的实现，可以帮助解耦</td>
 </tr>
 <tr>
-<td align="center">Guests</td>
+<td align="center">GuestSystem</td>
 <td align="center">任务系统，一个基于ScriptableObject的较为通用的任务系统，包含了数据持久化的内容</td>
 </tr>
 </tbody></table>
@@ -927,92 +927,6 @@
       <tags>
         <tag>Unity</tag>
         <tag>Toolkit</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Unity-HmxsToolkit】二-事件中心</title>
-    <url>/posts/42997/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
-</blockquote>
-<hr>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>Toolkit</tag>
-        <tag>EventCenter</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Unity-HmxsToolkit】一-泛型单例基类</title>
-    <url>/posts/36395/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
-</blockquote>
-<hr>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>关于单例模式的概念与优缺点，在我的<a href="https://hmxs.games/posts/7953/">这篇笔记</a>中已经有过介绍，这边不再赘述</p>
-<p>单例模式有着这样那样的缺点，但是无论如何，它在小型项目的使用中仍然极其方便而高效，不得不品</p>
-<p>而Unity中，由于MonoBehaviour的存在，成为“脚本”被挂载的类会自动地进行实例化，这让Unity中的单例有多种多样的实现方式，其效果也不尽相同</p>
-<p>在我的Toolkit的Singleton模块中，我实现了5种饿汉式的泛型单例基类</p>
-<p><em>关于懒汉式与饿汉式：</em></p>
-<p><em>单例本身存在懒汉式与饿汉式两种实现方式，具体这俩有什么区别可以自行百度，至于我为啥不用懒汉式，虽然其实现简单，我总觉得当Unity中的单例失去了懒加载这一特性后，其相比静态类便没什么特别的优势了，而静态类不用每次都使用烦人的<code>.Instance</code>，所以我为啥不直接写个静态类呢？可能你会有不同的看法，但是总之我不喜欢饿汉式，that’s all</em></p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="不继承Mono的普通单例"><a href="#不继承Mono的普通单例" class="headerlink" title="不继承Mono的普通单例"></a>不继承Mono的普通单例</h3><p>最简单实用的单例，在多线程时可能会出问题</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-不继承Mono（非线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>继承该类的类名<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt;, <span class="title">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                _instance ??= <span class="keyword">new</span> T();</span><br><span class="line">                _instance.OnInstanceCreate();</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 单例被第一次调用时调用该方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="不继承Mono的普通单例-线程安全"><a href="#不继承Mono的普通单例-线程安全" class="headerlink" title="不继承Mono的普通单例-线程安全"></a>不继承Mono的普通单例-线程安全</h3><p>和上个单例的实现没有本质区别，但是使用了<code>Lazy</code>对单例进行实例化，保证了线程安全</p>
-<p><code>Lazy</code>是<code>System</code>命名空间中提供的方法，效果为延迟初始化，其天生线程安全</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-不继承Mono（线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>继承该类的类名<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonSafe</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonSafe</span>&lt;<span class="title">T</span>&gt;, <span class="title">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                _instance ??= <span class="keyword">new</span> Lazy&lt;T&gt;(<span class="literal">true</span>).Value;</span><br><span class="line">                _instance.OnInstanceCreate();</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 单例被第一次调用时调用该方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="继承Mono的单例"><a href="#继承Mono的单例" class="headerlink" title="继承Mono的单例"></a>继承Mono的单例</h3><p>这是继承了Mono的单例基类，其不需要手动挂载</p>
-<p>当其被第一次调用时，会自动在场景中根据类名创建空物体，并自动将自己挂载在空物体上，同时添加不会随场景切换而销毁的特性</p>
-<p>但其并没有保证线程安全</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-继承Mono（非线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 不会因切换场景被销毁</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span><span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonMono</span>&lt;<span class="title">T</span>&gt; : <span class="title">MonoBehaviour</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonMono</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    GameObject obj = <span class="keyword">new</span> GameObject</span><br><span class="line">                    &#123;</span><br><span class="line">                        name = <span class="keyword">typeof</span>(T).ToString()</span><br><span class="line">                    &#125;;</span><br><span class="line">                    DontDestroyOnLoad(obj);</span><br><span class="line">                    _instance = obj.AddComponent&lt;T&gt;();</span><br><span class="line">                    _instance.OnInstanceCreate();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="继承Mono的单例-线程安全"><a href="#继承Mono的单例-线程安全" class="headerlink" title="继承Mono的单例-线程安全"></a>继承Mono的单例-线程安全</h3><p>与上个单例类似，但同样通过<code>Lazy</code>保证了线程安全</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-继承Mono（线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 不会因切换场景被销毁</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span><span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonMonoSafe</span>&lt;<span class="title">T</span>&gt; : <span class="title">MonoBehaviour</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonMonoSafe</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    GameObject obj = <span class="keyword">new</span> Lazy&lt;GameObject&gt;(<span class="keyword">new</span> GameObject</span><br><span class="line">                    &#123;</span><br><span class="line">                        name = <span class="keyword">typeof</span>(T).ToString()</span><br><span class="line">                    &#125;).Value;</span><br><span class="line">                    DontDestroyOnLoad(obj);</span><br><span class="line">                    _instance = obj.AddComponent&lt;T&gt;();</span><br><span class="line">                    _instance.OnInstanceCreate();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123; &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Awake</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(_instance != <span class="literal">null</span>) Destroy(gameObject);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="ScriptableObject单例"><a href="#ScriptableObject单例" class="headerlink" title="ScriptableObject单例"></a>ScriptableObject单例</h3><p>这是一个特殊的<code>ScriptableObject</code>单例，其确保的是某一<code>ScriptableObjectAsset</code>的唯一</p>
-<p>在第一次被调用时，其会在<code>Resources</code>文件夹中寻找对应<code>T</code>类型的<code>ScriptableObjectAsset</code>，并返回找到的所有<code>asset</code>，如果没找到则会报错，找到了多个则会弹出警告</p>
-<p>其非常时候用来制作配置文件</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-继承SO</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>继承该类的类名<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonSO</span>&lt;<span class="title">T</span>&gt; : <span class="title">ScriptableObject</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonSO</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    T[] assets = Resources.LoadAll&lt;T&gt;(<span class="string">$&quot;&quot;</span>);</span><br><span class="line">                    <span class="keyword">if</span> (assets == <span class="literal">null</span> || assets.Length &lt; <span class="number">1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> System.Exception(<span class="string">$&quot;SingletonSO: Null <span class="subst">&#123;<span class="keyword">typeof</span>(T)&#125;</span> SO instance in Resources directory&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (assets.Length &gt; <span class="number">1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Debug.LogWarning(<span class="string">$&quot;SingletonSO: Multiple <span class="subst">&#123;<span class="keyword">typeof</span>(T)&#125;</span> SO instance in Resources directory&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    _instance = assets[<span class="number">0</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>单例基类的应用都大同小异，让想要成为单例的类继承对应基类即可</p>
-<p>如果你不清楚基类中的<code>where T : Singleton&lt;T&gt;</code>代表什么，可以参考<a href="https://hmxs.games/posts/17194/">这篇笔记</a>，这是一种泛型约束的形式</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">A</span> : <span class="title">Singleton</span>&lt;<span class="title">A</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Debug</span>()</span> &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>想要调用单例则更加简单，因为单例的实例都是<code>static</code>的，可以在全局任意位置访问，直接在任意类中调用即可</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Test</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        A.Debug();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>唯一较为特殊的是SO单例，其在继承完成后需要在<code>Resources</code>文件夹中创建唯一的SO asset才能使用</p>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>Toolkit</tag>
-        <tag>Singleton</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2048</title>
-    <url>/posts/42265/</url>
-    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251612203.png" alt="2048" style="zoom: 25%;" />
-
-<blockquote>
-<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/Unity-2048-New">https://github.com/hmxsqaq/Unity-2048-New</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>经典小游戏复刻</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
       </tags>
   </entry>
   <entry>
@@ -1144,26 +1058,6 @@
       </categories>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FlappyBird</title>
-    <url>/posts/16350/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251606418.png" alt="FlappyBird"></p>
-<blockquote>
-<p><strong>项目地址：</strong></p>
-<p>Unity: <a href="https://github.com/hmxsqaq/Unity-FlappyBird">https://github.com/hmxsqaq/Unity-FlappyBird</a></p>
-<p>Pygame: <a href="https://github.com/hmxsqaq/Pygame-FlappyBird">https://github.com/hmxsqaq/Pygame-FlappyBird</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>经典小游戏复刻</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1535,6 +1429,113 @@
       </tags>
   </entry>
   <entry>
+    <title>【Unity-HmxsToolkit】一-泛型单例基类</title>
+    <url>/posts/36395/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
+</blockquote>
+<hr>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>关于单例模式的概念与优缺点，在我的<a href="https://hmxs.games/posts/7953/">这篇笔记</a>中已经有过介绍，这边不再赘述</p>
+<p>单例模式有着这样那样的缺点，但是无论如何，它在小型项目的使用中仍然极其方便而高效，不得不品</p>
+<p>而Unity中，由于MonoBehaviour的存在，成为“脚本”被挂载的类会自动地进行实例化，这让Unity中的单例有多种多样的实现方式，其效果也不尽相同</p>
+<p>在我的Toolkit的Singleton模块中，我实现了5种饿汉式的泛型单例基类</p>
+<p><em>关于懒汉式与饿汉式：</em></p>
+<p><em>单例本身存在懒汉式与饿汉式两种实现方式，具体这俩有什么区别可以自行百度，至于我为啥不用懒汉式，虽然其实现简单，我总觉得当Unity中的单例失去了懒加载这一特性后，其相比静态类便没什么特别的优势了，而静态类不用每次都使用烦人的<code>.Instance</code>，所以我为啥不直接写个静态类呢？可能你会有不同的看法，但是总之我不喜欢饿汉式，that’s all</em></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="不继承Mono的普通单例"><a href="#不继承Mono的普通单例" class="headerlink" title="不继承Mono的普通单例"></a>不继承Mono的普通单例</h3><p>最简单实用的单例，通过私有字段<code>_instance</code>储存唯一实例，通过公开只能<code>get</code>的属性<code>Instance</code>获取实例</p>
+<p>在第一次获取实例时创建实例并赋值给<code>_instance</code>，之后便只返回<code>_instance</code>，以此确保实例的唯一；在多线程时可能会出问题</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-不继承Mono（非线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>继承该类的类名<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt;, <span class="title">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                _instance ??= <span class="keyword">new</span> T();</span><br><span class="line">                _instance.OnInstanceCreate();</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 单例被第一次调用时调用该方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="不继承Mono的普通单例-线程安全"><a href="#不继承Mono的普通单例-线程安全" class="headerlink" title="不继承Mono的普通单例-线程安全"></a>不继承Mono的普通单例-线程安全</h3><p>和上个单例的实现没有本质区别，但是使用了<code>Lazy</code>对单例进行实例化，保证了线程安全</p>
+<p><code>Lazy</code>是<code>System</code>命名空间中提供的方法，效果为延迟初始化，其天生线程安全</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-不继承Mono（线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>继承该类的类名<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonSafe</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonSafe</span>&lt;<span class="title">T</span>&gt;, <span class="title">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                _instance ??= <span class="keyword">new</span> Lazy&lt;T&gt;(<span class="literal">true</span>).Value;</span><br><span class="line">                _instance.OnInstanceCreate();</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 单例被第一次调用时调用该方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="继承Mono的单例"><a href="#继承Mono的单例" class="headerlink" title="继承Mono的单例"></a>继承Mono的单例</h3><p>这是继承了Mono的单例基类，其不需要手动挂载</p>
+<p>当其被第一次调用时，会自动在场景中根据类名创建空物体，并自动将自己挂载在空物体上，同时添加不会随场景切换而销毁的特性</p>
+<p>但其并没有保证线程安全</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-继承Mono（非线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 不会因切换场景被销毁</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span><span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonMono</span>&lt;<span class="title">T</span>&gt; : <span class="title">MonoBehaviour</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonMono</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    GameObject obj = <span class="keyword">new</span> GameObject</span><br><span class="line">                    &#123;</span><br><span class="line">                        name = <span class="keyword">typeof</span>(T).ToString()</span><br><span class="line">                    &#125;;</span><br><span class="line">                    DontDestroyOnLoad(obj);</span><br><span class="line">                    _instance = obj.AddComponent&lt;T&gt;();</span><br><span class="line">                    _instance.OnInstanceCreate();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="继承Mono的单例-线程安全"><a href="#继承Mono的单例-线程安全" class="headerlink" title="继承Mono的单例-线程安全"></a>继承Mono的单例-线程安全</h3><p>与上个单例类似，但同样通过<code>Lazy</code>保证了线程安全</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-继承Mono（线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 不会因切换场景被销毁</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span><span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonMonoSafe</span>&lt;<span class="title">T</span>&gt; : <span class="title">MonoBehaviour</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonMonoSafe</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    GameObject obj = <span class="keyword">new</span> Lazy&lt;GameObject&gt;(<span class="keyword">new</span> GameObject</span><br><span class="line">                    &#123;</span><br><span class="line">                        name = <span class="keyword">typeof</span>(T).ToString()</span><br><span class="line">                    &#125;).Value;</span><br><span class="line">                    DontDestroyOnLoad(obj);</span><br><span class="line">                    _instance = obj.AddComponent&lt;T&gt;();</span><br><span class="line">                    _instance.OnInstanceCreate();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123; &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Awake</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(_instance != <span class="literal">null</span>) Destroy(gameObject);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ScriptableObject单例"><a href="#ScriptableObject单例" class="headerlink" title="ScriptableObject单例"></a>ScriptableObject单例</h3><p>这是一个特殊的<code>ScriptableObject</code>单例，其确保的是某一<code>ScriptableObjectAsset</code>的唯一</p>
+<p>在第一次被调用时，其会在<code>Resources</code>文件夹中寻找对应<code>T</code>类型的<code>ScriptableObjectAsset</code>，并返回找到的所有<code>asset</code>，如果没找到则会报错，找到了多个则会弹出警告</p>
+<p>其非常时候用来制作配置文件</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-继承SO</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>继承该类的类名<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonSO</span>&lt;<span class="title">T</span>&gt; : <span class="title">ScriptableObject</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonSO</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    T[] assets = Resources.LoadAll&lt;T&gt;(<span class="string">$&quot;&quot;</span>);</span><br><span class="line">                    <span class="keyword">if</span> (assets == <span class="literal">null</span> || assets.Length &lt; <span class="number">1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> System.Exception(<span class="string">$&quot;SingletonSO: Null <span class="subst">&#123;<span class="keyword">typeof</span>(T)&#125;</span> SO instance in Resources directory&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (assets.Length &gt; <span class="number">1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Debug.LogWarning(<span class="string">$&quot;SingletonSO: Multiple <span class="subst">&#123;<span class="keyword">typeof</span>(T)&#125;</span> SO instance in Resources directory&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    _instance = assets[<span class="number">0</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>单例基类的应用都大同小异，让想要成为单例的类继承对应基类即可</p>
+<p>如果你不清楚基类中的<code>where T : Singleton&lt;T&gt;</code>代表什么，可以参考<a href="https://hmxs.games/posts/17194/">这篇笔记</a>，这是一种泛型约束的形式</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">A</span> : <span class="title">Singleton</span>&lt;<span class="title">A</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Debug</span>()</span> &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>想要调用单例则更加简单，因为单例的实例都是<code>static</code>的，可以在全局任意位置访问，直接在任意类中调用即可</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Test</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        A.Instance.Debug();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>唯一较为特殊的是SO单例，其在继承完成后需要在<code>Resources</code>文件夹中创建唯一的SO asset才能使用</p>
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>Toolkit</tag>
+        <tag>Singleton</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Unity-HmxsToolkit】二-事件中心</title>
+    <url>/posts/42997/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
+</blockquote>
+<hr>
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>Toolkit</tag>
+        <tag>EventCenter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FlappyBird</title>
+    <url>/posts/16350/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251606418.png" alt="FlappyBird"></p>
+<blockquote>
+<p><strong>项目地址：</strong></p>
+<p>Unity: <a href="https://github.com/hmxsqaq/Unity-FlappyBird">https://github.com/hmxsqaq/Unity-FlappyBird</a></p>
+<p>Pygame: <a href="https://github.com/hmxsqaq/Pygame-FlappyBird">https://github.com/hmxsqaq/Pygame-FlappyBird</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>经典小游戏复刻</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2048</title>
+    <url>/posts/42265/</url>
+    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251612203.png" alt="2048" style="zoom: 25%;" />
+
+<blockquote>
+<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/Unity-2048-New">https://github.com/hmxsqaq/Unity-2048-New</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>经典小游戏复刻</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>About Me</title>
     <url>/about/index.html</url>
     <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303231227575.jpg" style="zoom: 33%;" />
@@ -1625,6 +1626,16 @@
 ]]></content>
   </entry>
   <entry>
+    <title>分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>标签</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title></title>
     <url>/css/custom.css</url>
     <content><![CDATA[/* 页脚与头图透明 */
@@ -1654,16 +1665,6 @@
 [data-theme="dark"] #page-header::before {
     background: transparent !important;
 }]]></content>
-  </entry>
-  <entry>
-    <title>分类</title>
-    <url>/categories/index.html</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>友链</title>
