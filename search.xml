@@ -5,12 +5,13 @@
     <url>/posts/46511/</url>
     <content><![CDATA[<h1 id="卷！"><a href="#卷！" class="headerlink" title="卷！"></a>卷！</h1><ul>
 <li><input checked="" disabled="" type="checkbox"> <del>《线性代数的本质》</del>- <code>笔记：https://hmxs.games/posts/17021/</code></li>
-<li><input disabled="" type="checkbox"> 《游戏编程模式》</li>
+<li><input disabled="" type="checkbox"> <strong>HmxsToolkit - 进行中</strong> <code>笔记：https://hmxs.games/posts/23946/</code></li>
+<li><input disabled="" type="checkbox"> 《游戏编程模式》 - <code>笔记：https://hmxs.games/posts/56336/</code></li>
 <li><input disabled="" type="checkbox"> 数据结构与算法整理与复习</li>
 <li><input disabled="" type="checkbox"> 《Lua程序设计》</li>
 <li><input disabled="" type="checkbox"> 《Unity Shader入门精要》</li>
 <li><input disabled="" type="checkbox"> A*寻路算法学习</li>
-<li><input disabled="" type="checkbox"> <strong>C++ - TheCherno（学习中）</strong>- <code>笔记：https://hmxs.games/posts/2726/</code></li>
+<li><input disabled="" type="checkbox"> <strong>C++ - TheCherno - 学习中</strong> <code>笔记：https://hmxs.games/posts/2726/</code></li>
 <li><input disabled="" type="checkbox"> OpenGL - TheCherno</li>
 <li><input disabled="" type="checkbox"> 图形学入门 - GAMES101</li>
 <li><input disabled="" type="checkbox"> GameEngine - TheCherno、GAMES104</li>
@@ -175,6 +176,177 @@
       <tags>
         <tag>C#</tag>
         <tag>Generic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【3B1B】《线性代数的本质》学习笔记</title>
+    <url>/posts/17021/</url>
+    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100312370.png" alt="image-20230410031239217" style="zoom:50%;" />
+
+<blockquote>
+<p>视频地址: <a href="https://www.bilibili.com/video/BV1ys411472E">https://www.bilibili.com/video/BV1ys411472E</a></p>
+</blockquote>
+<hr>
+<h1 id="线性代数的本质"><a href="#线性代数的本质" class="headerlink" title="线性代数的本质"></a>线性代数的本质</h1><h2 id="向量是什么"><a href="#向量是什么" class="headerlink" title="向量是什么"></a>向量是什么</h2><h3 id="向量的三种理解"><a href="#向量的三种理解" class="headerlink" title="向量的三种理解"></a>向量的三种理解</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100320590.png" alt="image-20230410032014523" style="zoom: 33%;" />
+
+<ul>
+<li>物理: 向量是空间中的箭头，决定一个向量的是它的长度与所指的方向</li>
+<li>计算机: 向量是有序的数字列表</li>
+<li>数学: A Vector can be anything! 只要保证两个向量相加&#x2F;数乘有意义即可</li>
+</ul>
+<h3 id="线性代数中的向量"><a href="#线性代数中的向量" class="headerlink" title="线性代数中的向量"></a>线性代数中的向量</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100328975.png" alt="image-20230410032831917" style="zoom:33%;" />
+
+<p>从几何直观的角度出发，线代中的向量是位于坐标系中且始终出发于原点的箭头，其坐标代表了其距离坐标轴的距离</p>
+<p>(因为绝大部分情况下，向量的起点都是原点，所以有时我们也可以将向量看做坐标系中的一个点来进行理解)</p>
+<h3 id="向量的基本运算"><a href="#向量的基本运算" class="headerlink" title="向量的基本运算"></a>向量的基本运算</h3><ul>
+<li>加法: 三角形法则—描述了两个向量运动的叠加</li>
+<li>数乘: 对于向量的拉伸、压缩、翻转</li>
+</ul>
+<hr>
+<h2 id="线性组合、张成空间与基向量"><a href="#线性组合、张成空间与基向量" class="headerlink" title="线性组合、张成空间与基向量"></a>线性组合、张成空间与基向量</h2><h3 id="线性组合"><a href="#线性组合" class="headerlink" title="线性组合"></a>线性组合</h3><p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100335051.png" alt="image-20230410033539016"></p>
+<p>两个数乘向量的和被称为这两个向量的线性组合</p>
+<p>“线性”的一种理解: 在向量的组合中，如果固定其中一个标量，让另一个标量自由变化，所产生的向量的终点会描出一条直线</p>
+<p>线性组合存在不同情况: 大部分情况下，v和w的线性组合可以到达二维空间中的任意点，而少部分情况下(共线&#x2F;都是零向量)时，它们只能到达一条直线&#x2F;原点</p>
+<h3 id="张成空间-span"><a href="#张成空间-span" class="headerlink" title="张成空间(span)"></a>张成空间(span)</h3><p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100338169.png" alt="image-20230410033843131"></p>
+<p>所有可以表示为给定向量线性组合的向量的集合被称为给定向量张成的空间</p>
+<h3 id="线性相关与线性无关"><a href="#线性相关与线性无关" class="headerlink" title="线性相关与线性无关"></a>线性相关与线性无关</h3><ul>
+<li>线性相关:</li>
+</ul>
+<p>​	当我们有多个向量，并且可以移除其中的一个而不减小张成的空间，则这些向量“线性相关”</p>
+<p>​	另一种表述，其中一个向量可以表示为其它向量的线性组合</p>
+<ul>
+<li>线性相关:</li>
+</ul>
+<p>​	如果所有的向量都给张成的空间增加了新的维度，则称这些向量“线性无关”</p>
+<h3 id="基向量"><a href="#基向量" class="headerlink" title="基向量"></a>基向量</h3><p>向量空间的一组基是张成该空间的一个线性无关的向量集</p>
+<hr>
+<h2 id="矩阵与线性变换"><a href="#矩阵与线性变换" class="headerlink" title="矩阵与线性变换"></a>矩阵与线性变换</h2><h3 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100357189.png" alt="image-20230410035722134" style="zoom:50%;" />
+
+<p>“线性变换”中“变换”一词的本质便是函数，其接受输入并输出对应结果。</p>
+<p>采用“变换”一词来描述，着重突出了其带有的“运动属性”，即并不是单纯的由a得b，而是由a运动到b，这对于向量有着非常好的几何直观</p>
+<p>而线性代数中的变换，便是将向量空间中的所有点移动到另一个位置上</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100402034.png" alt="image-20230410040256993" style="zoom:33%;" />
+
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100403770.png" alt="image-20230410040341704" style="zoom:33%;" />
+
+<p>而线性变换便是一种特殊的变换，其有着两条性质:</p>
+<ul>
+<li>直线在变换后仍为直线</li>
+<li>原点不能移动</li>
+</ul>
+<p>线性变换是让网格线保持平行且等距分布的变换，并保持原点不动</p>
+<p><strong>只需要记录变换前后的一组基向量，即可用其的线性组合描述空间中任意向量的对应变换</strong></p>
+<h3 id="矩阵乘法的几何意义"><a href="#矩阵乘法的几何意义" class="headerlink" title="矩阵乘法的几何意义"></a>矩阵乘法的几何意义</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100410685.webp" alt="img" style="zoom: 67%;" />
+
+<p>方阵的每一列都是一个基向量变换后的值，用方阵乘以(x,y)向量即可得(x,y)经过对应线性变换后的值</p>
+<p>每当看到矩阵时，我们都可以把它理解为对空间的一种特定变换</p>
+<hr>
+<h2 id="矩阵乘法与线性变换的复合"><a href="#矩阵乘法与线性变换的复合" class="headerlink" title="矩阵乘法与线性变换的复合"></a>矩阵乘法与线性变换的复合</h2><p>线性变换可以复合，即多次独立的线性变换可以形成一个新的线性变换，这个变换被称为“复合变换”</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130148780.png" alt="image-20230413014833701" style="zoom:50%;" />
+
+<p>而复合变换的变换矩阵即为之前的独立线性变换矩阵的积，根据变换顺序，从右往左相乘</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130151133.png" alt="image-20230413015109095" style="zoom:50%;" />
+
+<p>同时需要注意的是，矩阵乘法不具有交换律，反映到几何直观上，同样两次独立的线性变换，改变变换的先后顺序会使最后的复合变换改变</p>
+<hr>
+<h2 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h2><h3 id="行列式的几何意义"><a href="#行列式的几何意义" class="headerlink" title="行列式的几何意义"></a>行列式的几何意义</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130156166.png" alt="image-20230413015615112" style="zoom:50%;" />
+
+<p>线性变换改变空间面积的比例，成为变换的行列式</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130157043.png" alt="image-20230413015704985" style="zoom:50%;" />
+
+<p>当行列式为0时，这意味着这次变换将一个平面压缩到了一条线&#x2F;一个点上，将空间压缩到了更小的维度上</p>
+<p>这对变换来说是一个非常有用重要的性质，这意味着这次变换是“线性相关”的</p>
+<h3 id="行列式的负数情况"><a href="#行列式的负数情况" class="headerlink" title="行列式的负数情况"></a>行列式的负数情况</h3><p>根据行列式的几何意义，其代表空间改变的比例，但这无法解释为什么行列式存在负数</p>
+<p>而这其实是由于空间的翻转导致的，有时变换会导致空间发生翻转，使得空间的定向(Orientation)发生改变，而行列式的负号表明了这点，此时行列式的绝对值仍然代表着空间的改变比例</p>
+<p>三维空间的行列式的负数含义：由右手系变为左手系</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130205801.png" alt="image-20230413020509744" style="zoom:50%;" />
+
+<hr>
+<h2 id="逆矩阵、列空间与零空间"><a href="#逆矩阵、列空间与零空间" class="headerlink" title="逆矩阵、列空间与零空间"></a>逆矩阵、列空间与零空间</h2><h3 id="利用线性代数求解方程组"><a href="#利用线性代数求解方程组" class="headerlink" title="利用线性代数求解方程组"></a>利用线性代数求解方程组</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130208815.png" alt="image-20230413020806766" style="zoom:50%;" />
+
+<p>线性代数的一大应用便是其可以帮助我们求解线性方程组，我们可以将线性方程组抽象为一种将未知向量变为已知向量的特定的变换，赋予了方程组几何意义</p>
+<ul>
+<li>当A变换行列式不为0时：</li>
+</ul>
+<p>这代表着变换不会缩小空间的维度，意味着我们永远可以找到满足方程组的变换，之后只需要通过逆变换回溯变换就可以求出位置向量</p>
+<ul>
+<li>当A变换行列式为0时：</li>
+</ul>
+<p>这代表着变换会将空间压缩到更低的维度上，这种情况下逆变换将不存在，如果恰好目标向量正好仍在空间中，则可以求解，否则无解</p>
+<p>对空间维度的压缩意味着会有多个输入对应一个输出</p>
+<h3 id="秩-Rank"><a href="#秩-Rank" class="headerlink" title="秩(Rank)"></a>秩(Rank)</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130218890.png" alt="image-20230413021856846" style="zoom:50%;" />
+
+<p>秩意味着变换后空间的维数</p>
+<p>更准确的来说: 列空间的维数被称为秩</p>
+<h3 id="列空间"><a href="#列空间" class="headerlink" title="列空间"></a>列空间</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130220425.png" alt="image-20230413022023369" style="zoom:50%;" />
+
+<p>某一变换所有可能的输出向量的集合，被称为此向量的列空间</p>
+<p>矩阵的列告诉你基向量变换后的位置，这些变换后的基向量张成的空间就是所有可能的变换结果</p>
+<p>列空间就是矩阵的列所张成的空间</p>
+<p>需要注意的是，因为线性变换规定原点不可变，故零向量一定会被包含在列空间中</p>
+<h3 id="零空间"><a href="#零空间" class="headerlink" title="零空间"></a>零空间</h3><p>一些向量在变换后会落在零向量&#x2F;原点上，这些向量的集合被称为零空间</p>
+<p>对于满秩的变换来说，零空间就是原点自身</p>
+<p>而对于一个非满秩的变换来说，因为其对空间的压缩，会有某个面&#x2F;某条线成为零空间</p>
+<hr>
+<h2 id="点积与对偶性"><a href="#点积与对偶性" class="headerlink" title="点积与对偶性"></a>点积与对偶性</h2><h3 id="点积的标准解释"><a href="#点积的标准解释" class="headerlink" title="点积的标准解释"></a>点积的标准解释</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130230312.png" alt="image-20230413023002271" style="zoom:50%;" />
+
+<p>两个维数相同的向量，将对应坐标配对相乘后相加</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130231015.png" alt="image-20230413023128940" style="zoom:50%;" />
+
+<p>几何理解: 某一向量在另一向量上的投影长度与另一向量模长的乘积</p>
+<h3 id="线性代数视角中的点积"><a href="#线性代数视角中的点积" class="headerlink" title="线性代数视角中的点积"></a>线性代数视角中的点积</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130239670.png" alt="image-20230413023939605" style="zoom:50%;" />
+
+<p>将点积中的某一向量看做一种由<strong>二维向一维的变换</strong></p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130244388.png" alt="image-20230413024445329" style="zoom:50%;" />
+
+<p><strong>通过对称性，可以发现这种二维向一维的变换矩阵就是这一向量的x，y坐标，这太酷了！！！！！！！！！</strong></p>
+<hr>
+<h2 id="叉积"><a href="#叉积" class="headerlink" title="叉积"></a>叉积</h2><h3 id="叉积的标准解释"><a href="#叉积的标准解释" class="headerlink" title="叉积的标准解释"></a>叉积的标准解释</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304131755993.png" alt="image-20230413175520918" style="zoom:50%;" />
+
+<p>模长为两个向量通过平移形成的平行四边形的面积</p>
+<p>方向为VW向量的相对位置</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150406598.png" alt="image-20230415040637504" style="zoom:50%;" />
+
+<p>对于三维向量，其几何意义是依据右手系导出一个同时垂直于v、w的向量，且其模长为v、w形成的平行四边形的面积，计算公式如上</p>
+<h3 id="以线性代数的眼光看待叉积"><a href="#以线性代数的眼光看待叉积" class="headerlink" title="以线性代数的眼光看待叉积"></a>以线性代数的眼光看待叉积</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150411093.png" alt="image-20230415041158985" style="zoom: 33%;" />
+
+<hr>
+<h2 id="基变换"><a href="#基变换" class="headerlink" title="基变换"></a>基变换</h2><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150430127.png" alt="image-20230415043031077" style="zoom:50%;" />
+
+<p>发生在向量与一组数之间的任意一种转化，都被称为一个坐标系</p>
+<p>而坐标系的基向量规定了这种转化，采用不同的基向量，坐标系的映射关系便会发生改变</p>
+<p>而通过变换矩阵可以实现基向量的变换</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150435050.png" alt="image-20230415043533994" style="zoom:33%;" />
+
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150436557.png" alt="image-20230415043651504" style="zoom: 50%;" />
+
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150439622.png" alt="image-20230415043900570" style="zoom:50%;" />
+
+<hr>
+<h2 id="特征向量与特征值"><a href="#特征向量与特征值" class="headerlink" title="特征向量与特征值"></a>特征向量与特征值</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150443258.png" alt="image-20230415044306169" style="zoom:50%;" />
+
+<p>特征向量：在变换中张成方向保持不变的向量</p>
+<p>特征值：特征向量被拉伸&#x2F;压缩比例的系数</p>
+<h3 id="计算思想"><a href="#计算思想" class="headerlink" title="计算思想"></a>计算思想</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150446401.png" alt="image-20230415044635353" style="zoom:50%;" />
+
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150451537.png" alt="image-20230415045155504" style="zoom:50%;" />
+
+<h3 id="特征基"><a href="#特征基" class="headerlink" title="特征基"></a>特征基</h3><p>以特征向量为基向量会使许多计算变得简单</p>
+<hr>
+<h2 id="抽象向量空间"><a href="#抽象向量空间" class="headerlink" title="抽象向量空间"></a>抽象向量空间</h2><h3 id="线性的严格定义"><a href="#线性的严格定义" class="headerlink" title="线性的严格定义"></a>线性的严格定义</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150501610.png" alt="image-20230415050157546" style="zoom:50%;" />
+
+<p>线性让一个线性变换可以通过它对基向量的作用来完全描述，这使得矩阵向量乘法成为可能</p>
+<p>(求导就是一种线性运算)</p>
+<h3 id="函数与向量"><a href="#函数与向量" class="headerlink" title="函数与向量"></a>函数与向量</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150507883.png" alt="image-20230415050754810" style="zoom:50%;" />
+
+<h3 id="向量空间"><a href="#向量空间" class="headerlink" title="向量空间"></a>向量空间</h3><p>向量空间是抽象出来的无形概念，任何满足公理的东西都可以被称为向量空间，并应用向量的性质</p>
+<h3 id="万物皆可向量！"><a href="#万物皆可向量！" class="headerlink" title="万物皆可向量！"></a>万物皆可向量！</h3>]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>线性代数</tag>
+        <tag>《线性代数的本质》</tag>
       </tags>
   </entry>
   <entry>
@@ -361,177 +533,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【3B1B】《线性代数的本质》学习笔记</title>
-    <url>/posts/17021/</url>
-    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100312370.png" alt="image-20230410031239217" style="zoom:50%;" />
-
-<blockquote>
-<p>视频地址: <a href="https://www.bilibili.com/video/BV1ys411472E">https://www.bilibili.com/video/BV1ys411472E</a></p>
-</blockquote>
-<hr>
-<h1 id="线性代数的本质"><a href="#线性代数的本质" class="headerlink" title="线性代数的本质"></a>线性代数的本质</h1><h2 id="向量是什么"><a href="#向量是什么" class="headerlink" title="向量是什么"></a>向量是什么</h2><h3 id="向量的三种理解"><a href="#向量的三种理解" class="headerlink" title="向量的三种理解"></a>向量的三种理解</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100320590.png" alt="image-20230410032014523" style="zoom: 33%;" />
-
-<ul>
-<li>物理: 向量是空间中的箭头，决定一个向量的是它的长度与所指的方向</li>
-<li>计算机: 向量是有序的数字列表</li>
-<li>数学: A Vector can be anything! 只要保证两个向量相加&#x2F;数乘有意义即可</li>
-</ul>
-<h3 id="线性代数中的向量"><a href="#线性代数中的向量" class="headerlink" title="线性代数中的向量"></a>线性代数中的向量</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100328975.png" alt="image-20230410032831917" style="zoom:33%;" />
-
-<p>从几何直观的角度出发，线代中的向量是位于坐标系中且始终出发于原点的箭头，其坐标代表了其距离坐标轴的距离</p>
-<p>(因为绝大部分情况下，向量的起点都是原点，所以有时我们也可以将向量看做坐标系中的一个点来进行理解)</p>
-<h3 id="向量的基本运算"><a href="#向量的基本运算" class="headerlink" title="向量的基本运算"></a>向量的基本运算</h3><ul>
-<li>加法: 三角形法则—描述了两个向量运动的叠加</li>
-<li>数乘: 对于向量的拉伸、压缩、翻转</li>
-</ul>
-<hr>
-<h2 id="线性组合、张成空间与基向量"><a href="#线性组合、张成空间与基向量" class="headerlink" title="线性组合、张成空间与基向量"></a>线性组合、张成空间与基向量</h2><h3 id="线性组合"><a href="#线性组合" class="headerlink" title="线性组合"></a>线性组合</h3><p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100335051.png" alt="image-20230410033539016"></p>
-<p>两个数乘向量的和被称为这两个向量的线性组合</p>
-<p>“线性”的一种理解: 在向量的组合中，如果固定其中一个标量，让另一个标量自由变化，所产生的向量的终点会描出一条直线</p>
-<p>线性组合存在不同情况: 大部分情况下，v和w的线性组合可以到达二维空间中的任意点，而少部分情况下(共线&#x2F;都是零向量)时，它们只能到达一条直线&#x2F;原点</p>
-<h3 id="张成空间-span"><a href="#张成空间-span" class="headerlink" title="张成空间(span)"></a>张成空间(span)</h3><p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100338169.png" alt="image-20230410033843131"></p>
-<p>所有可以表示为给定向量线性组合的向量的集合被称为给定向量张成的空间</p>
-<h3 id="线性相关与线性无关"><a href="#线性相关与线性无关" class="headerlink" title="线性相关与线性无关"></a>线性相关与线性无关</h3><ul>
-<li>线性相关:</li>
-</ul>
-<p>​	当我们有多个向量，并且可以移除其中的一个而不减小张成的空间，则这些向量“线性相关”</p>
-<p>​	另一种表述，其中一个向量可以表示为其它向量的线性组合</p>
-<ul>
-<li>线性相关:</li>
-</ul>
-<p>​	如果所有的向量都给张成的空间增加了新的维度，则称这些向量“线性无关”</p>
-<h3 id="基向量"><a href="#基向量" class="headerlink" title="基向量"></a>基向量</h3><p>向量空间的一组基是张成该空间的一个线性无关的向量集</p>
-<hr>
-<h2 id="矩阵与线性变换"><a href="#矩阵与线性变换" class="headerlink" title="矩阵与线性变换"></a>矩阵与线性变换</h2><h3 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100357189.png" alt="image-20230410035722134" style="zoom:50%;" />
-
-<p>“线性变换”中“变换”一词的本质便是函数，其接受输入并输出对应结果。</p>
-<p>采用“变换”一词来描述，着重突出了其带有的“运动属性”，即并不是单纯的由a得b，而是由a运动到b，这对于向量有着非常好的几何直观</p>
-<p>而线性代数中的变换，便是将向量空间中的所有点移动到另一个位置上</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100402034.png" alt="image-20230410040256993" style="zoom:33%;" />
-
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100403770.png" alt="image-20230410040341704" style="zoom:33%;" />
-
-<p>而线性变换便是一种特殊的变换，其有着两条性质:</p>
-<ul>
-<li>直线在变换后仍为直线</li>
-<li>原点不能移动</li>
-</ul>
-<p>线性变换是让网格线保持平行且等距分布的变换，并保持原点不动</p>
-<p><strong>只需要记录变换前后的一组基向量，即可用其的线性组合描述空间中任意向量的对应变换</strong></p>
-<h3 id="矩阵乘法的几何意义"><a href="#矩阵乘法的几何意义" class="headerlink" title="矩阵乘法的几何意义"></a>矩阵乘法的几何意义</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100410685.webp" alt="img" style="zoom: 67%;" />
-
-<p>方阵的每一列都是一个基向量变换后的值，用方阵乘以(x,y)向量即可得(x,y)经过对应线性变换后的值</p>
-<p>每当看到矩阵时，我们都可以把它理解为对空间的一种特定变换</p>
-<hr>
-<h2 id="矩阵乘法与线性变换的复合"><a href="#矩阵乘法与线性变换的复合" class="headerlink" title="矩阵乘法与线性变换的复合"></a>矩阵乘法与线性变换的复合</h2><p>线性变换可以复合，即多次独立的线性变换可以形成一个新的线性变换，这个变换被称为“复合变换”</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130148780.png" alt="image-20230413014833701" style="zoom:50%;" />
-
-<p>而复合变换的变换矩阵即为之前的独立线性变换矩阵的积，根据变换顺序，从右往左相乘</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130151133.png" alt="image-20230413015109095" style="zoom:50%;" />
-
-<p>同时需要注意的是，矩阵乘法不具有交换律，反映到几何直观上，同样两次独立的线性变换，改变变换的先后顺序会使最后的复合变换改变</p>
-<hr>
-<h2 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h2><h3 id="行列式的几何意义"><a href="#行列式的几何意义" class="headerlink" title="行列式的几何意义"></a>行列式的几何意义</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130156166.png" alt="image-20230413015615112" style="zoom:50%;" />
-
-<p>线性变换改变空间面积的比例，成为变换的行列式</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130157043.png" alt="image-20230413015704985" style="zoom:50%;" />
-
-<p>当行列式为0时，这意味着这次变换将一个平面压缩到了一条线&#x2F;一个点上，将空间压缩到了更小的维度上</p>
-<p>这对变换来说是一个非常有用重要的性质，这意味着这次变换是“线性相关”的</p>
-<h3 id="行列式的负数情况"><a href="#行列式的负数情况" class="headerlink" title="行列式的负数情况"></a>行列式的负数情况</h3><p>根据行列式的几何意义，其代表空间改变的比例，但这无法解释为什么行列式存在负数</p>
-<p>而这其实是由于空间的翻转导致的，有时变换会导致空间发生翻转，使得空间的定向(Orientation)发生改变，而行列式的负号表明了这点，此时行列式的绝对值仍然代表着空间的改变比例</p>
-<p>三维空间的行列式的负数含义：由右手系变为左手系</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130205801.png" alt="image-20230413020509744" style="zoom:50%;" />
-
-<hr>
-<h2 id="逆矩阵、列空间与零空间"><a href="#逆矩阵、列空间与零空间" class="headerlink" title="逆矩阵、列空间与零空间"></a>逆矩阵、列空间与零空间</h2><h3 id="利用线性代数求解方程组"><a href="#利用线性代数求解方程组" class="headerlink" title="利用线性代数求解方程组"></a>利用线性代数求解方程组</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130208815.png" alt="image-20230413020806766" style="zoom:50%;" />
-
-<p>线性代数的一大应用便是其可以帮助我们求解线性方程组，我们可以将线性方程组抽象为一种将未知向量变为已知向量的特定的变换，赋予了方程组几何意义</p>
-<ul>
-<li>当A变换行列式不为0时：</li>
-</ul>
-<p>这代表着变换不会缩小空间的维度，意味着我们永远可以找到满足方程组的变换，之后只需要通过逆变换回溯变换就可以求出位置向量</p>
-<ul>
-<li>当A变换行列式为0时：</li>
-</ul>
-<p>这代表着变换会将空间压缩到更低的维度上，这种情况下逆变换将不存在，如果恰好目标向量正好仍在空间中，则可以求解，否则无解</p>
-<p>对空间维度的压缩意味着会有多个输入对应一个输出</p>
-<h3 id="秩-Rank"><a href="#秩-Rank" class="headerlink" title="秩(Rank)"></a>秩(Rank)</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130218890.png" alt="image-20230413021856846" style="zoom:50%;" />
-
-<p>秩意味着变换后空间的维数</p>
-<p>更准确的来说: 列空间的维数被称为秩</p>
-<h3 id="列空间"><a href="#列空间" class="headerlink" title="列空间"></a>列空间</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130220425.png" alt="image-20230413022023369" style="zoom:50%;" />
-
-<p>某一变换所有可能的输出向量的集合，被称为此向量的列空间</p>
-<p>矩阵的列告诉你基向量变换后的位置，这些变换后的基向量张成的空间就是所有可能的变换结果</p>
-<p>列空间就是矩阵的列所张成的空间</p>
-<p>需要注意的是，因为线性变换规定原点不可变，故零向量一定会被包含在列空间中</p>
-<h3 id="零空间"><a href="#零空间" class="headerlink" title="零空间"></a>零空间</h3><p>一些向量在变换后会落在零向量&#x2F;原点上，这些向量的集合被称为零空间</p>
-<p>对于满秩的变换来说，零空间就是原点自身</p>
-<p>而对于一个非满秩的变换来说，因为其对空间的压缩，会有某个面&#x2F;某条线成为零空间</p>
-<hr>
-<h2 id="点积与对偶性"><a href="#点积与对偶性" class="headerlink" title="点积与对偶性"></a>点积与对偶性</h2><h3 id="点积的标准解释"><a href="#点积的标准解释" class="headerlink" title="点积的标准解释"></a>点积的标准解释</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130230312.png" alt="image-20230413023002271" style="zoom:50%;" />
-
-<p>两个维数相同的向量，将对应坐标配对相乘后相加</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130231015.png" alt="image-20230413023128940" style="zoom:50%;" />
-
-<p>几何理解: 某一向量在另一向量上的投影长度与另一向量模长的乘积</p>
-<h3 id="线性代数视角中的点积"><a href="#线性代数视角中的点积" class="headerlink" title="线性代数视角中的点积"></a>线性代数视角中的点积</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130239670.png" alt="image-20230413023939605" style="zoom:50%;" />
-
-<p>将点积中的某一向量看做一种由<strong>二维向一维的变换</strong></p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130244388.png" alt="image-20230413024445329" style="zoom:50%;" />
-
-<p><strong>通过对称性，可以发现这种二维向一维的变换矩阵就是这一向量的x，y坐标，这太酷了！！！！！！！！！</strong></p>
-<hr>
-<h2 id="叉积"><a href="#叉积" class="headerlink" title="叉积"></a>叉积</h2><h3 id="叉积的标准解释"><a href="#叉积的标准解释" class="headerlink" title="叉积的标准解释"></a>叉积的标准解释</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304131755993.png" alt="image-20230413175520918" style="zoom:50%;" />
-
-<p>模长为两个向量通过平移形成的平行四边形的面积</p>
-<p>方向为VW向量的相对位置</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150406598.png" alt="image-20230415040637504" style="zoom:50%;" />
-
-<p>对于三维向量，其几何意义是依据右手系导出一个同时垂直于v、w的向量，且其模长为v、w形成的平行四边形的面积，计算公式如上</p>
-<h3 id="以线性代数的眼光看待叉积"><a href="#以线性代数的眼光看待叉积" class="headerlink" title="以线性代数的眼光看待叉积"></a>以线性代数的眼光看待叉积</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150411093.png" alt="image-20230415041158985" style="zoom: 33%;" />
-
-<hr>
-<h2 id="基变换"><a href="#基变换" class="headerlink" title="基变换"></a>基变换</h2><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150430127.png" alt="image-20230415043031077" style="zoom:50%;" />
-
-<p>发生在向量与一组数之间的任意一种转化，都被称为一个坐标系</p>
-<p>而坐标系的基向量规定了这种转化，采用不同的基向量，坐标系的映射关系便会发生改变</p>
-<p>而通过变换矩阵可以实现基向量的变换</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150435050.png" alt="image-20230415043533994" style="zoom:33%;" />
-
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150436557.png" alt="image-20230415043651504" style="zoom: 50%;" />
-
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150439622.png" alt="image-20230415043900570" style="zoom:50%;" />
-
-<hr>
-<h2 id="特征向量与特征值"><a href="#特征向量与特征值" class="headerlink" title="特征向量与特征值"></a>特征向量与特征值</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150443258.png" alt="image-20230415044306169" style="zoom:50%;" />
-
-<p>特征向量：在变换中张成方向保持不变的向量</p>
-<p>特征值：特征向量被拉伸&#x2F;压缩比例的系数</p>
-<h3 id="计算思想"><a href="#计算思想" class="headerlink" title="计算思想"></a>计算思想</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150446401.png" alt="image-20230415044635353" style="zoom:50%;" />
-
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150451537.png" alt="image-20230415045155504" style="zoom:50%;" />
-
-<h3 id="特征基"><a href="#特征基" class="headerlink" title="特征基"></a>特征基</h3><p>以特征向量为基向量会使许多计算变得简单</p>
-<hr>
-<h2 id="抽象向量空间"><a href="#抽象向量空间" class="headerlink" title="抽象向量空间"></a>抽象向量空间</h2><h3 id="线性的严格定义"><a href="#线性的严格定义" class="headerlink" title="线性的严格定义"></a>线性的严格定义</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150501610.png" alt="image-20230415050157546" style="zoom:50%;" />
-
-<p>线性让一个线性变换可以通过它对基向量的作用来完全描述，这使得矩阵向量乘法成为可能</p>
-<p>(求导就是一种线性运算)</p>
-<h3 id="函数与向量"><a href="#函数与向量" class="headerlink" title="函数与向量"></a>函数与向量</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150507883.png" alt="image-20230415050754810" style="zoom:50%;" />
-
-<h3 id="向量空间"><a href="#向量空间" class="headerlink" title="向量空间"></a>向量空间</h3><p>向量空间是抽象出来的无形概念，任何满足公理的东西都可以被称为向量空间，并应用向量的性质</p>
-<h3 id="万物皆可向量！"><a href="#万物皆可向量！" class="headerlink" title="万物皆可向量！"></a>万物皆可向量！</h3>]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>线性代数</tag>
-        <tag>《线性代数的本质》</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Revive-UE GameJam</title>
     <url>/posts/41772/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261605787.png" alt="Logo"></p>
@@ -597,42 +598,6 @@
       </tags>
   </entry>
   <entry>
-    <title>《游戏编程模式》读书笔记一</title>
-    <url>/posts/7377/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301905867.jpeg" alt="img"></p>
-<blockquote>
-<p>《游戏编程模式》-Bob Nystrom</p>
-<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
-</blockquote>
-<hr>
-<h1 id="架构、性能与游戏"><a href="#架构、性能与游戏" class="headerlink" title="架构、性能与游戏"></a>架构、性能与游戏</h1><p><strong>软件架构</strong>：架构是代码的构建模式、每个程序不论好坏都有其架构</p>
-<p><strong>好的软件架构</strong>：架构是关于改动的—评价架构设计的好坏就是评价它应对改动有多么轻松</p>
-<p><strong>处理代码改动</strong>：</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301750097.png" alt="image-20230330175013047"></p>
-<p><strong>解耦</strong>：最小化在编写代码前需要了解的信息，最小化更改一块代码时对其他部分的影响</p>
-<p><strong>代价</strong>：抽象、模块化、设计模式和软件架构让程序的编写、拓展更有效率，让人可以行云流水的编写代码，但是需要注意的是，这也会带来更大的维护与管理成本，同时大幅提高代码的复杂度。<strong>不要沉迷在代码中，而忘记了我们到底在写什么！</strong>很多时候，You aren’t gonna need it！</p>
-<ul>
-<li><p>抽象和解耦让扩展代码更快更容易，但除非确信需要灵活性，否则不要在这上面浪费时间。</p>
-</li>
-<li><p>在整个开发周期中为性能考虑并做好设计，但是尽可能推迟那些底层的，基于假设的优化，那会锁死代码。</p>
-</li>
-<li><p>快速地探索游戏的设计空间，但不要跑得太快，在身后留下烂摊子。毕竟你总得回来打扫。</p>
-</li>
-<li><p>如果打算抛弃这段代码，就不要尝试将其写完美。摇滚明星将旅店房间弄得一团糟，因为他们知道明天就走人了。</p>
-</li>
-<li><p>但最重要的是，<strong>如果你想要做出让人享受的东西，那就享受做它的过程。</strong></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>《游戏编程模式》</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《游戏编程模式》读书笔记零-前言</title>
     <url>/posts/56336/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305311339429.jpeg" alt="img"></p>
@@ -677,7 +642,43 @@
 </tbody></table>
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>《游戏编程模式》笔记</category>
+      </categories>
+      <tags>
+        <tag>《游戏编程模式》</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《游戏编程模式》读书笔记一</title>
+    <url>/posts/7377/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301905867.jpeg" alt="img"></p>
+<blockquote>
+<p>《游戏编程模式》-Bob Nystrom</p>
+<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
+</blockquote>
+<hr>
+<h1 id="架构、性能与游戏"><a href="#架构、性能与游戏" class="headerlink" title="架构、性能与游戏"></a>架构、性能与游戏</h1><p><strong>软件架构</strong>：架构是代码的构建模式、每个程序不论好坏都有其架构</p>
+<p><strong>好的软件架构</strong>：架构是关于改动的—评价架构设计的好坏就是评价它应对改动有多么轻松</p>
+<p><strong>处理代码改动</strong>：</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301750097.png" alt="image-20230330175013047"></p>
+<p><strong>解耦</strong>：最小化在编写代码前需要了解的信息，最小化更改一块代码时对其他部分的影响</p>
+<p><strong>代价</strong>：抽象、模块化、设计模式和软件架构让程序的编写、拓展更有效率，让人可以行云流水的编写代码，但是需要注意的是，这也会带来更大的维护与管理成本，同时大幅提高代码的复杂度。<strong>不要沉迷在代码中，而忘记了我们到底在写什么！</strong>很多时候，You aren’t gonna need it！</p>
+<ul>
+<li><p>抽象和解耦让扩展代码更快更容易，但除非确信需要灵活性，否则不要在这上面浪费时间。</p>
+</li>
+<li><p>在整个开发周期中为性能考虑并做好设计，但是尽可能推迟那些底层的，基于假设的优化，那会锁死代码。</p>
+</li>
+<li><p>快速地探索游戏的设计空间，但不要跑得太快，在身后留下烂摊子。毕竟你总得回来打扫。</p>
+</li>
+<li><p>如果打算抛弃这段代码，就不要尝试将其写完美。摇滚明星将旅店房间弄得一团糟，因为他们知道明天就走人了。</p>
+</li>
+<li><p>但最重要的是，<strong>如果你想要做出让人享受的东西，那就享受做它的过程。</strong></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>《游戏编程模式》笔记</category>
       </categories>
       <tags>
         <tag>《游戏编程模式》</tag>
@@ -733,7 +734,7 @@
 
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>《游戏编程模式》笔记</category>
       </categories>
       <tags>
         <tag>《游戏编程模式》</tag>
@@ -780,7 +781,7 @@
 <h3 id="Unity简单实现-1"><a href="#Unity简单实现-1" class="headerlink" title="Unity简单实现"></a>Unity简单实现</h3><p>*此处我直接实现了事件中心，这也是观察者模式的一种体现，引入了事件中心类作为第三方管理者统一订阅与触发事件</p>
 <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">ObserverPattern</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">EventCenter</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Dictionary&lt;<span class="built_in">string</span>, Action&gt; Events = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, Action&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddListener</span>(<span class="params"><span class="built_in">string</span> key, Action action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Events.Add(key,action);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key] += action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RemoveListener</span>(<span class="params"><span class="built_in">string</span> key, Action action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogError(<span class="string">$&quot;EventCenter:can&#x27;t find <span class="subst">&#123;key&#125;</span> when remove&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key] -= action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Trigger</span>(<span class="params"><span class="built_in">string</span> key</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogError(<span class="string">$&quot;EventCenter:can&#x27;t find <span class="subst">&#123;key&#125;</span> when trigger&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key]();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Notes</category>
+        <category>《游戏编程模式》笔记</category>
       </categories>
       <tags>
         <tag>《游戏编程模式》</tag>
@@ -815,7 +816,7 @@
 
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>《游戏编程模式》笔记</category>
       </categories>
       <tags>
         <tag>《游戏编程模式》</tag>
@@ -861,7 +862,7 @@
 <h2 id="下推状态机"><a href="#下推状态机" class="headerlink" title="下推状态机"></a>下推状态机</h2><p>通过状态栈来管理状态，把新状态推入栈，当前状态为栈顶的状态，当我们不需要该状态时出栈即可，这样便可以实现记忆状态的目的。</p>
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>《游戏编程模式》笔记</category>
       </categories>
       <tags>
         <tag>《游戏编程模式》</tag>
@@ -884,7 +885,7 @@
 <hr>
 <h2 id="双缓冲模式"><a href="#双缓冲模式" class="headerlink" title="双缓冲模式"></a>双缓冲模式</h2>]]></content>
       <categories>
-        <category>Notes</category>
+        <category>《游戏编程模式》笔记</category>
       </categories>
       <tags>
         <tag>《游戏编程模式》</tag>
@@ -897,6 +898,7 @@
     <content><![CDATA[<blockquote>
 <p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
 </blockquote>
+<hr>
 <p>这是一个个人Toolkit项目，会记录一些自己写<del>Ctrl+C&#x2F;V</del>的Unity模块&#x2F;功能&#x2F;系统&#x2F;轮子</p>
 <p>开始这个项目的契机是翻到了之前自己写的一个小框架，现在看来非常不成熟，没有配套的文档，注释不走心，有些功能自己也不是很明白，总之非常不满意，所以借此开了一个新坑。我会从头开始实现一些模块，并且编写一些较为详细的文档，希望这个Toolkit能作为一种技术积累</p>
 <p>以下是一些已经实现的模块：</p>
@@ -922,7 +924,7 @@
 </tbody></table>
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>HmxsToolkit</category>
       </categories>
       <tags>
         <tag>Unity</tag>
@@ -930,134 +932,119 @@
       </tags>
   </entry>
   <entry>
-    <title>【The Cherno】C++学习笔记二（更新中）</title>
-    <url>/posts/2727/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202306010145167.jpeg" alt="cherno"></p>
-<blockquote>
-<p>B站up神经元猫翻译版：<a href="https://www.bilibili.com/video/BV1uy4y167h2">https://www.bilibili.com/video/BV1uy4y167h2</a></p>
+    <title>【Unity-HmxsToolkit】一-泛型单例基类</title>
+    <url>/posts/36395/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
 </blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>C++因为其优异的性能，是游戏开发中最为常用的语言之一，目前的Unity与Unreal两大商用引擎的内核都是采用C++进行编写，作为一个有志于成为游戏开发者的人，这种语言怎么能不学一学呢？</p>
-<p>本文基于油管著名博主，曾任职于EA的The Cherno的C++系列视频，The Cherno作为寒霜引擎的核心开发人员之一，对C++有着非常独到而深刻的理解</p>
-<p>这些笔记记录了我通过The Cherno的系列视频学习C++的一些知识点与理解，希望对你有帮助😉</p>
-<p>第一章（1-33）：<a href="https://hmxs.games/posts/2726/">https://hmxs.games/posts/2726/</a></p>
-<p><strong>第二章（更新中）</strong>：<a href="https://hmxs.games/posts/2727/">https://hmxs.games/posts/2727/</a></p>
 <hr>
-<h2 id="const关键字（34）"><a href="#const关键字（34）" class="headerlink" title="const关键字（34）"></a>const关键字（34）</h2><p><code>const</code>在改变生成的代码方面做不了什么，其有点类似类&#x2F;结构体中的可见性</p>
-<blockquote>
-<p><strong><code>const</code>是一个可以让我们的代码变得更干净的机制，是对开发人员编写代码的强制特定的规则，被<code>const</code>修饰的东西被承诺不会被改变</strong>（但实际上，这个“承诺”是可以违背的，anyway，it just a promise.🤐）</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> a = <span class="number">1</span>;</span><br><span class="line">a = <span class="number">2</span>; <span class="comment">// 这行代码会报错</span></span><br></pre></td></tr></table></figure>
+<h1 id="泛型单例基类"><a href="#泛型单例基类" class="headerlink" title="泛型单例基类"></a>泛型单例基类</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>关于单例模式的概念与优缺点，在我的<a href="https://hmxs.games/posts/7953/">这篇笔记</a>中已经有过介绍，这边不再赘述</p>
+<p>单例模式有着这样那样的缺点，但是无论如何，它在小型项目的使用中仍然极其方便而高效，不得不品</p>
+<p>而Unity中，由于MonoBehaviour的存在，成为“脚本”被挂载的类会自动地进行实例化，这让Unity中的单例有多种多样的实现方式，其效果也不尽相同</p>
+<p>在我的Toolkit的Singleton模块中，我实现了5种饿汉式的泛型单例基类</p>
+<p><em>关于懒汉式与饿汉式：</em></p>
+<p><em>单例本身存在懒汉式与饿汉式两种实现方式，具体这俩有什么区别可以自行百度，至于我为啥不用懒汉式，虽然其实现简单，我总觉得当Unity中的单例失去了懒加载这一特性后，其相比静态类便没什么特别的优势了，而静态类不用每次都使用烦人的<code>.Instance</code>，所以我为啥不直接写个静态类呢？可能你会有不同的看法，但是总之我不喜欢饿汉式，that’s all</em></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="不继承Mono的普通单例"><a href="#不继承Mono的普通单例" class="headerlink" title="不继承Mono的普通单例"></a>不继承Mono的普通单例</h3><p>最简单实用的单例，通过私有字段<code>_instance</code>储存唯一实例，通过公开只能<code>get</code>的属性<code>Instance</code>获取实例</p>
+<p>在第一次获取实例时创建实例并赋值给<code>_instance</code>，之后便只返回<code>_instance</code>，以此确保实例的唯一；在多线程时可能会出问题</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-不继承Mono（非线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>继承该类的类名<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt;, <span class="title">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                _instance ??= <span class="keyword">new</span> T();</span><br><span class="line">                _instance.OnInstanceCreate();</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 单例被第一次调用时调用该方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>如上面的代码所示，被const修饰的变量的值无法被改变，如果我们希望定义一个在程序中永远不变的量，那么<code>const</code>便可以出场了</p>
-<p><code>const</code>是一种声明变量的方式，而我们可以通过强制转换绕过<code>const</code>的限制</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAX_AGE = <span class="number">90</span>;</span><br><span class="line"><span class="type">int</span>* a = <span class="keyword">new</span> <span class="type">int</span>;</span><br><span class="line">a = (<span class="type">int</span>*)&amp;MAX_AGE;</span><br></pre></td></tr></table></figure>
+<h3 id="不继承Mono的普通单例-线程安全"><a href="#不继承Mono的普通单例-线程安全" class="headerlink" title="不继承Mono的普通单例-线程安全"></a>不继承Mono的普通单例-线程安全</h3><p>和上个单例的实现没有本质区别，但是使用了<code>Lazy</code>对单例进行实例化，保证了线程安全</p>
+<p><code>Lazy</code>是<code>System</code>命名空间中提供的方法，效果为延迟初始化，其天生线程安全</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-不继承Mono（线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>继承该类的类名<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonSafe</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonSafe</span>&lt;<span class="title">T</span>&gt;, <span class="title">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                _instance ??= <span class="keyword">new</span> Lazy&lt;T&gt;(<span class="literal">true</span>).Value;</span><br><span class="line">                _instance.OnInstanceCreate();</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 单例被第一次调用时调用该方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>通过上面的代码，我们让指针<code>a</code>指向了<code>const</code>的<code>MAX_AGE</code>,这样便绕过了<code>const</code>，但如果我们尝试通过逆向引用<code>a</code>来写入<code>MAX_AGE</code>便很可能导致程序崩溃，所以最好还是别这么干</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span>* a = <span class="keyword">new</span> <span class="type">int</span>;</span><br><span class="line"><span class="type">int</span> <span class="type">const</span>* b = <span class="keyword">new</span> <span class="type">int</span>;</span><br><span class="line"><span class="type">int</span>* <span class="type">const</span> c = <span class="keyword">new</span> <span class="type">int</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="继承Mono的单例"><a href="#继承Mono的单例" class="headerlink" title="继承Mono的单例"></a>继承Mono的单例</h3><p>这是继承了Mono的单例基类，其不需要手动挂载</p>
+<p>当其被第一次调用时，会自动在场景中根据类名创建空物体，并自动将自己挂载在空物体上，同时添加不会随场景切换而销毁的特性</p>
+<p>但其并没有保证线程安全</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-继承Mono（非线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 不会因切换场景被销毁</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span><span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonMono</span>&lt;<span class="title">T</span>&gt; : <span class="title">MonoBehaviour</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonMono</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    GameObject obj = <span class="keyword">new</span> GameObject</span><br><span class="line">                    &#123;</span><br><span class="line">                        name = <span class="keyword">typeof</span>(T).ToString()</span><br><span class="line">                    &#125;;</span><br><span class="line">                    DontDestroyOnLoad(obj);</span><br><span class="line">                    _instance = obj.AddComponent&lt;T&gt;();</span><br><span class="line">                    _instance.OnInstanceCreate();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>上面是三种声明<code>const</code>指针的方式，其中a与b效果完全一样，而c与ab的效果相反</p>
-<p>在a与b中，修改ab本身是被允许的，而修改ab指向的内容是被禁止的，即<code>a = &amp;x</code>可行，而<code>*a = 2</code>不可行；而c的效果则与ab相反</p>
-<p>当然我们也可以通过<code>const int* const a = new int;</code>来让<code>a</code>与&#96;&#96;*a&#96;的值都无法改变</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">int</span> x_;</span><br><span class="line">	<span class="keyword">mutable</span> <span class="type">int</span> mutableX_;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">GetX</span><span class="params">()</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		mutableX_ = <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">return</span> x_;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PrintX</span><span class="params">(<span class="type">const</span> Entity&amp; entity)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; entity.<span class="built_in">GetX</span>() &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="继承Mono的单例-线程安全"><a href="#继承Mono的单例-线程安全" class="headerlink" title="继承Mono的单例-线程安全"></a>继承Mono的单例-线程安全</h3><p>与上个单例类似，但同样通过<code>Lazy</code>保证了线程安全</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-继承Mono（线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 不会因切换场景被销毁</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span><span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonMonoSafe</span>&lt;<span class="title">T</span>&gt; : <span class="title">MonoBehaviour</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonMonoSafe</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    GameObject obj = <span class="keyword">new</span> Lazy&lt;GameObject&gt;(<span class="keyword">new</span> GameObject</span><br><span class="line">                    &#123;</span><br><span class="line">                        name = <span class="keyword">typeof</span>(T).ToString()</span><br><span class="line">                    &#125;).Value;</span><br><span class="line">                    DontDestroyOnLoad(obj);</span><br><span class="line">                    _instance = obj.AddComponent&lt;T&gt;();</span><br><span class="line">                    _instance.OnInstanceCreate();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123; &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Awake</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(_instance != <span class="literal">null</span>) Destroy(gameObject);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>上述代码是<code>const</code>的最后一种用法，在类中修饰方法（只能在类中这样用）</p>
-<p>被<code>const</code>修饰的方法，只能对类中被<code>mutable</code>修饰的字段进行修改，如在上述<code>GetX()</code>方法中，若对<code>X</code>进行修改就会报错</p>
-<p><strong>这种<code>const</code>有什么用呢？</strong></p>
-<p>当我们以<code>const</code>传递类或类的引用时，只有类中的<code>const</code>方法才能被调用，因为<code>const</code>需要保证传入的引用的类无论如何都不会被更改，这种用法常常被用来修饰<code>getter</code>方法</p>
-<p>在上面的代码中，如果<code>GetX()</code>方法没有被<code>const</code>修饰，那么在<code>PrintX()</code>中其便无法被调用</p>
-<hr>
-<h2 id="mutable关键字（35）"><a href="#mutable关键字（35）" class="headerlink" title="mutable关键字（35）"></a>mutable关键字（35）</h2><p><code>mutable</code>关键字在C++中有着两种不同的用途</p>
-<p>一是和<code>const</code>一起使用，在上一章的最后有提到，类中被<code>const</code>修饰的方法，只能对类中被<code>mutable</code>修饰的字段进行修改，这种情况往往发生在我们需要调试程序时（这是一种近似于违背承诺的行为，最好还是别大量使用，这会破坏<code>const</code>的意义）</p>
-<p>二是用在<code>lambda</code>表达式中，<code>lambda</code>基本上就像一个一次性小函数，你可以写出来并赋值给一个变量</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">auto</span> f = [=]() <span class="keyword">mutable</span> </span><br><span class="line">&#123;</span><br><span class="line">	x++;</span><br><span class="line">	std::cout &lt;&lt; x &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">f</span>();</span><br><span class="line"><span class="comment">// x = 8</span></span><br></pre></td></tr></table></figure>
+<h3 id="ScriptableObject单例"><a href="#ScriptableObject单例" class="headerlink" title="ScriptableObject单例"></a>ScriptableObject单例</h3><p>这是一个特殊的<code>ScriptableObject</code>单例，其确保的是某一<code>ScriptableObjectAsset</code>的唯一</p>
+<p>在第一次被调用时，其会在<code>Resources</code>文件夹中寻找对应<code>T</code>类型的<code>ScriptableObjectAsset</code>，并返回找到的所有<code>asset</code>，如果没找到则会报错，找到了多个则会弹出警告</p>
+<p>其非常时候用来制作配置文件</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-继承SO</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>继承该类的类名<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonSO</span>&lt;<span class="title">T</span>&gt; : <span class="title">ScriptableObject</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonSO</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    T[] assets = Resources.LoadAll&lt;T&gt;(<span class="string">$&quot;&quot;</span>);</span><br><span class="line">                    <span class="keyword">if</span> (assets == <span class="literal">null</span> || assets.Length &lt; <span class="number">1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> System.Exception(<span class="string">$&quot;SingletonSO: Null <span class="subst">&#123;<span class="keyword">typeof</span>(T)&#125;</span> SO instance in Resources directory&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (assets.Length &gt; <span class="number">1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Debug.LogWarning(<span class="string">$&quot;SingletonSO: Multiple <span class="subst">&#123;<span class="keyword">typeof</span>(T)&#125;</span> SO instance in Resources directory&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    _instance = assets[<span class="number">0</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>在上面的<code>lambda</code>表达式中，如果我们想以值传递的形式传入<code>x</code>，并更改它，那么我们就必须加上<code>mutable</code>关键字</p>
-<p>如果不使用<code>mutable</code>我们便需要创建一个局部变量来对<code>x</code>的值进行一次复制才能实现上面的效果</p>
-<p><em>（当然其实这种用法非常非常少见，The Cherno说他其实完全没见过这么用的🤣）</em></p>
-<hr>
-<h2 id="成员初始化列表（36）"><a href="#成员初始化列表（36）" class="headerlink" title="成员初始化列表（36）"></a>成员初始化列表（36）</h2><blockquote>
-<p><strong>构造函数初始化列表是我们在构造函数中初始化类成员的一种方式</strong></p>
-</blockquote>
-<p>当我们编写类时，通常需要通过构造函数对类的成员进行初始化</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	std::string name_;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Entity</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		name_ = <span class="string">&quot;Default&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">Entity</span>(<span class="type">const</span> std::string&amp; name)</span><br><span class="line">	&#123;</span><br><span class="line">		name_ = name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>单例基类的应用都大同小异，让想要成为单例的类继承对应基类即可</p>
+<p>如果你不清楚基类中的<code>where T : Singleton&lt;T&gt;</code>代表什么，可以参考<a href="https://hmxs.games/posts/17194/">这篇笔记</a>，这是一种泛型约束的形式</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">A</span> : <span class="title">Singleton</span>&lt;<span class="title">A</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Debug</span>()</span> &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>我们通常会这样来完成字段的初始化，而实际上C++还提供了另外一种语法来实现这件事</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	std::string name_;</span><br><span class="line">	<span class="type">int</span> age_;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Entity</span>()</span><br><span class="line">		: <span class="built_in">name_</span>(<span class="string">&quot;default&quot;</span>), <span class="built_in">age_</span>(<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>想要调用单例则更加简单，因为单例的实例都是<code>static</code>的，可以在全局任意位置访问，直接在任意类中调用即可</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Test</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        A.Instance.Debug();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>如上述代码所示，<code>构造函数() : 字段1(初始值1), 字段2(初始值2)</code>通过这样的语法便可实现字段的初始化</p>
-<p><em>需要注意的是，通过这种方法进行初始化时，初始化的顺序是由字段声明的顺序决定的，在上述代码中，即使我们写成<code>: age_(0), name_(&quot;default&quot;) </code>，运行时仍然会按照先<code>name_</code>再<code>age_</code>的顺序初始化，所以在编写初始化代码时，最好直接按照声明的顺序来</em></p>
-<p><strong>为什么我们需要这玩意呢？</strong></p>
-<ul>
-<li>把琐碎繁杂的初始化写在一起，让代码更加整洁易读</li>
-<li>在特定情况下，使用原先的初始化方式会造成性能&#x2F;内存的浪费，如下面这个例子</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Example</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Example</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;Create Example&quot;</span> &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">Example</span>(<span class="type">int</span> x)</span><br><span class="line">	&#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;Create Example&quot;</span> &lt;&lt; x &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	Example e_;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Entity</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		e_ = <span class="built_in">Example</span>(<span class="number">5</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Entity e;</span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们在<code>Entity</code>类中声明了<code>Example</code>类，并对其进行初始化，如果通过<code>e_ = Example(5)</code>的方式进行，那么<code>Example</code>的两个构造函数都会被运行，即<code>Create Example</code>与<code>Create Example5</code>都会被输出，其原因是在<code>Example e_</code>的创建中默认构造函数会先被调用，而使用初始化列表则不会有这个问题</p>
-<p><strong>综上，我们应该在任何类的成员初始化场景用初始化列表来实现，我们没有理由不使用他们</strong></p>
-<hr>
-<h2 id="三元运算符（37）"><a href="#三元运算符（37）" class="headerlink" title="三元运算符（37）"></a>三元运算符（37）</h2><blockquote>
-<p><strong>三元运算符是if else语法的语法糖，可以方便地根据特定条件给变量赋值</strong></p>
-<p><strong>语法：<code>变量名 = 条件判断 ? 为真时的值 : 为假时的值</code></strong></p>
-</blockquote>
-<p>三元运算符可以帮助我们清理我们的代码，增加代码的可读性</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">1</span>)</span><br><span class="line">	y = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	y = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">y = x &gt; <span class="number">1</span> ? <span class="number">1</span> : <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-
-<p>上面的两段代码的意思其实是完全相同的</p>
-<p>同时，如果我们需要赋的值是引用类型，那么三元运算符还能些许加快运算的速度</p>
-<p><strong>需要注意的是，虽然三元运算符可以嵌套，但大量嵌套的三元运算符可读性极差，和其初衷背道而驰，而且会很想让看你代码的人砍死你，所以最好还是别用</strong></p>
-<hr>
-<h2 id="对象的实例化（38）"><a href="#对象的实例化（38）" class="headerlink" title="对象的实例化（38）"></a>对象的实例化（38）</h2><p>当我们编写完成了一个类之后，除非其是完全静态的，我们都需要对其进行实例化，而基本上，我们有两个实例化方法的选择：<strong>在栈上创建&#x2F;在堆上创建</strong>，这两种方法的主要区别在于内存分配的位置</p>
-<p>栈对象，拥有一个自动的生命周期，这由它们被声明的地方作用域决定，只要超出作用域，其内存便会被自动释放</p>
-<p>而堆对象则不同，堆对象的内存需要我们进行手动释放</p>
-<ul>
-<li><strong>栈对象：</strong></li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Entity e;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">Entity e = <span class="built_in">Entity</span>();</span><br></pre></td></tr></table></figure>
-
-<p>这样便可简单实例化一个类对象</p>
-<p><em>与Jave&#x2F;C#不同的是C++的<code>Entity e</code>并不单指声明，其效果等于<code>Entity e = Entity()</code>，会调用类的默认构造函数</em></p>
-<p> <strong>几乎所有时候，只要我们可以这样创建对象，我们都应该这样创建，这是C++中最快也是最易管控的实例化对象的方法</strong></p>
-<ul>
-<li><strong>堆对象：</strong></li>
-</ul>
-<p>当我们需要显式控制类的生命周期时 或 我们需要实例化的类很大&#x2F;很多（栈的内存往往很小）时，我们便需要借助堆来实例化</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Entity* e = <span class="keyword">new</span> <span class="built_in">Entity</span>();</span><br></pre></td></tr></table></figure>
-
-<p>堆对象实例化的关键便是<code>new</code>关键字，当我们调用<code>new Entity</code>时，它在堆上为<code>Entity</code>类分配内存，并返回实例化的类在堆上被分配的内存地址</p>
-<p><em>这与C#&#x2F;Java中的语法相似，C#中的struct是在栈上的，而所有类都在堆上，而Java全在堆上</em></p>
-<p><strong>尽量使用栈而不是堆的理由</strong></p>
-<p>性能问题：在堆上分配内存要比栈花费更长的时间</p>
-<p>操作繁琐：堆需要手动释放内存（<code>delete</code>）</p>
-<hr>
-<h2 id="new关键字（39）"><a href="#new关键字（39）" class="headerlink" title="new关键字（39）"></a>new关键字（39）</h2><blockquote>
-<p><strong><code>new</code>是一个操作符，主要作用是在堆上分配内存，其会根据你指定的类型在堆上找到对应大小的内存空间，并返回该空间的地址，对类来说，new还会调用构造函数</strong></p>
-<p><strong>语法：<code>new 类型</code></strong></p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Entity* e = <span class="keyword">new</span> <span class="built_in">Entity</span>(); <span class="comment">// C++风格</span></span><br><span class="line">Entity* e = (Entity*)<span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(Entity)); <span class="comment">// C风格</span></span><br></pre></td></tr></table></figure>
-
-<p>上述两行代码的唯一区别便是<code>new</code>会调用构造函数，而<code>malloc</code>不会，大部分情况下<code>new</code>会调用<code>malloc</code>进行内存的分配</p>
-<p><code>delete</code>关键字会释放堆中的内存，如果是类，其还会调用析构函数，其也是借用C中的<code>free</code>函数实现的，这点与<code>new</code>类似</p>
-<p><strong><code>new</code>和<code>delete</code>总是应该成对出现，被<code>new</code>分配的内存只有在被<code>delete</code>释放后才能被再次使用</strong></p>
-<hr>
-<h2 id="隐式转换与explicit关键字（40）"><a href="#隐式转换与explicit关键字（40）" class="headerlink" title="隐式转换与explicit关键字（40）"></a>隐式转换与explicit关键字（40）</h2><blockquote>
-<p><strong>隐式代表不需要明确地告诉类要做什么，类似于自动，编译器会通过上下文自行推导构造函数</strong></p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span>  <span class="title class_">Entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	std::string name_;</span><br><span class="line">	<span class="type">int</span> age_;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Entity</span>(<span class="type">const</span> std::string&amp; name)</span><br><span class="line">		: <span class="built_in">name_</span>(name), <span class="built_in">age_</span>(<span class="number">-1</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">Entity</span>(<span class="type">int</span> age)</span><br><span class="line">		: <span class="built_in">name_</span>(<span class="string">&quot;Default&quot;</span>), <span class="built_in">age_</span>(age) &#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Entity e1 = <span class="string">&quot;Hmxs&quot;</span>; <span class="comment">// 隐式转换“Hmxs”-&gt;Entity(&quot;Hmxs&quot;)</span></span><br><span class="line">	Entity e2 = <span class="number">20</span>; <span class="comment">// 隐式转换20-&gt;Entity(20)</span></span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当构造函数限定条件足够多时，如类的构造函数只接受一个字符串为参数，而你又正好让类等于了一个字符串，那么编译器会为你自行推导，生成构造函数</p>
-<p>这很酷，可以简化代码，但清晰的代码才是最好的，还是少用吧</p>
-<blockquote>
-<p><strong><code>explicit</code>关键字则代表禁用该构造函数的隐式转换，如果你需要通过此构造函数进行类的实例化，那么你必须显式调用此构造函数</strong></p>
-</blockquote>
-<p><code>explicit</code>可以确保类型转换的安全，不会发生意外的隐式转换</p>
-<hr>
-<h2 id="运算符及其重载（41）"><a href="#运算符及其重载（41）" class="headerlink" title="运算符及其重载（41）"></a>运算符及其重载（41）</h2>]]></content>
+<p>唯一较为特殊的是SO单例，其在继承完成后需要在<code>Resources</code>文件夹中创建唯一的SO asset才能使用</p>
+]]></content>
       <categories>
-        <category>Notes</category>
+        <category>HmxsToolkit</category>
       </categories>
       <tags>
-        <tag>C++</tag>
+        <tag>Unity</tag>
+        <tag>Toolkit</tag>
+        <tag>Singleton</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Unity-HmxsToolkit】二-事件中心</title>
+    <url>/posts/42997/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
+</blockquote>
+<hr>
+<h1 id="事件中心"><a href="#事件中心" class="headerlink" title="事件中心"></a>事件中心</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>事件中心是设计模式中的观察者模式的一种实现，如果你不知道什么是观察者模式，可以参考我的<a href="https://hmxs.games/posts/56656/">这篇笔记</a>，引入事件中心作为第三方，可以很方便地实现各个模块之间的解耦</p>
+<p>事件中心中维护着一个事件字典，其保存着所有正在被监听的方法，key为用户自定义的事件名，value为一个委托</p>
+<p>在使用事件中心时，事件的监听者拥有具体需要触发的代码，但监听者不需要关系这些代码什么时候会被谁触发，其只需要通过AddListener方法将自定义的事件名（string）与需要触发的方法告知事件中心即可，事件中心接收到后会将其存入事件字典中</p>
+<p>而在事件的触发者同样不需要关心具体需要触发的代码在哪是什么，其只需要调用Trigger方法传入事件名给事件中心，事件中心会根据事件名在事件字典中找到对应需要触发的方法，通过C#的委托通知对应监听者进行触发</p>
+<hr>
+<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><p>下面是我的Toolkit中的事件中心的UML类图，其中<code>EventCenter</code>省略了部分函数的重载</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202306090208077.png" alt="EventCenter"></p>
+<hr>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><code>EventCenter</code>以静态类的形式存在，其基本功能由3个函数提供：</p>
+<ul>
+<li>**<code>AddListener(string eventName, Action action)</code>**：添加监听事件</li>
+<li>**<code>RemoveListener(string eventName, Action action)</code>**：移除监听事件</li>
+<li>**<code>Trigger(string eventName)</code>**：触发监听事件</li>
+</ul>
+<p><strong>带参数的事件中心：</strong></p>
+<p>但仅仅如此的话事件便不能存在参数，而因为<code>Dictionary</code>的<code>value</code>类型不允许使用泛型</p>
+<p>故为了实现带参数的事件，引入了<code>IEventInfo</code>空接口，其将作为<code>Dictionary</code>的<code>value</code>类型，储存在事件字典中</p>
+<p>声明多个带有不同泛型数量的<code>EventInfo</code>类继承<code>IEevntInfo</code>，各<code>EventInfo</code>中有着参数数量与<code>EventInfo</code>的泛型数量相同的<code>Action</code>，在使用时通过强制类型转换即可将<code>IEventInfo</code>转换为拥有不同参数数量的<code>EventInfo</code>，之后即可访问到各<code>EventInfo</code>中的<code>Action</code></p>
+<p>同时为三个基本函数实现对应不同参数数量的重载，即可实现带参数的事件中心</p>
+<p>需要几个参数的时间便声明带有对应泛型数量的EventInfo，并实现对应函数重载即可，在我的Toolkit中，支持了0-3个参数的事件</p>
+<p><strong>函数名索引：</strong></p>
+<p>在我的Toolkit中的事件中心中，事件名通过字符串进行传递，这比较灵活，但同时如果不做处理的话没有自动补全，并且一旦打错就会导致错误</p>
+<p>为了解决这个问题我引入了一个简单的<code>EventName</code>类以方便进行事件名的传递</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">EventName</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">const</span> <span class="built_in">string</span> TestNoParamEvent = <span class="string">&quot;TestNoParamEvent&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上述代码所示，这是一个极其简单的静态类，其中有着<code>const</code>的字符串变量，用户可以像<code>EventName.TestNoParamEvent</code>在自动补全的帮助下填写事件名，同时也不需要担心打错字符串</p>
+<p>之前我也尝试过使用枚举进行事件名的编辑，枚举相比常量字符串类使用更加方便，但其也有着一定的局限性，当项目中有许多模块，并且都要用到事件中心，使用枚举的话便不得不把所有事件名都挤在一个枚举中，而使用字符串便灵活很多，用户可以方便的自定义，只需创建同样的静态类包含常量字符串，如<code>PlayerEvent</code>，即可实现事件的划分</p>
+<hr>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Events</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 事件中心</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> (事件通过字符串进行索引，请尽量使用EventName类)</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">EventCenter</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Dictionary&lt;<span class="built_in">string</span>, IEventInfo&gt; EventInfos = <span class="keyword">new</span>();</span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="keyword">region</span> Internal interface/class</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">interface</span> <span class="title">IEventInfo</span> &#123; &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">class</span> <span class="title">EventInfo</span> : <span class="title">IEventInfo</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">public</span> Action Actions;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">class</span> <span class="title">EventInfo</span>&lt;<span class="title">T</span>&gt; : <span class="title">IEventInfo</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">public</span> Action&lt;T&gt; Actions;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">class</span> <span class="title">EventInfo</span>&lt;<span class="title">T0</span>, <span class="title">T1</span>&gt; : <span class="title">IEventInfo</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">public</span> Action&lt;T0, T1&gt; Action;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">class</span> <span class="title">EventInfo</span>&lt;<span class="title">T0</span>, <span class="title">T1</span>, <span class="title">T2</span>&gt; : <span class="title">IEventInfo</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">public</span> Action&lt;T0, T1, T2&gt; Action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="keyword">region</span> AddListener Methods</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 为事件添加监听</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> T 为参数类型</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddListener</span>(<span class="params"><span class="built_in">string</span> eventName, Action action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            EventInfos.TryAdd(eventName, <span class="keyword">new</span> EventInfo());</span><br><span class="line">            ((EventInfo)EventInfos[eventName]).Actions += action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddListener</span>&lt;<span class="title">T</span>&gt;(<span class="params"><span class="built_in">string</span> eventName, Action&lt;T&gt; action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            EventInfos.TryAdd(eventName, <span class="keyword">new</span> EventInfo&lt;T&gt;());</span><br><span class="line">            ((EventInfo&lt;T&gt;)EventInfos[eventName]).Actions += action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddListener</span>&lt;<span class="title">T0</span>, <span class="title">T1</span>&gt;(<span class="params"><span class="built_in">string</span> eventName, Action&lt;T0, T1&gt; action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            EventInfos.TryAdd(eventName, <span class="keyword">new</span> EventInfo&lt;T0, T1&gt;());</span><br><span class="line">            ((EventInfo&lt;T0, T1&gt;)EventInfos[eventName]).Action += action;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddListener</span>&lt;<span class="title">T0</span>, <span class="title">T1</span>, <span class="title">T2</span>&gt;(<span class="params"><span class="built_in">string</span> eventName, Action&lt;T0, T1, T2&gt; action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            EventInfos.TryAdd(eventName, <span class="keyword">new</span> EventInfo&lt;T0, T1, T2&gt;());</span><br><span class="line">            ((EventInfo&lt;T0, T1, T2&gt;)EventInfos[eventName]).Action += action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="keyword">region</span> RemoveListener Methods</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 为事件移除监听</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> T 为参数类型</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RemoveListener</span>(<span class="params"><span class="built_in">string</span> eventName, Action action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (EventInfos.TryGetValue(eventName, <span class="keyword">out</span> <span class="keyword">var</span> <span class="keyword">value</span>)) </span><br><span class="line">                ((EventInfo)<span class="keyword">value</span>).Actions -= action;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RemoveListener</span>&lt;<span class="title">T</span>&gt;(<span class="params"><span class="built_in">string</span> eventName, Action&lt;T&gt; action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (EventInfos.TryGetValue(eventName, <span class="keyword">out</span> <span class="keyword">var</span> <span class="keyword">value</span>)) </span><br><span class="line">                ((EventInfo&lt;T&gt;)<span class="keyword">value</span>).Actions -= action;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RemoveListener</span>&lt;<span class="title">T0</span>, <span class="title">T1</span>&gt;(<span class="params"><span class="built_in">string</span> eventName, Action&lt;T0, T1&gt; action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (EventInfos.TryGetValue(eventName, <span class="keyword">out</span> <span class="keyword">var</span> <span class="keyword">value</span>)) </span><br><span class="line">                ((EventInfo&lt;T0, T1&gt;)<span class="keyword">value</span>).Action -= action;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RemoveListener</span>&lt;<span class="title">T0</span>, <span class="title">T1</span>, <span class="title">T2</span>&gt;(<span class="params"><span class="built_in">string</span> eventName, Action&lt;T0, T1, T2&gt; action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (EventInfos.TryGetValue(eventName, <span class="keyword">out</span> <span class="keyword">var</span> <span class="keyword">value</span>)) </span><br><span class="line">                ((EventInfo&lt;T0, T1, T2&gt;)<span class="keyword">value</span>).Action -= action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="keyword">region</span> Trigger Methods</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 触发事件</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> T 为参数类型</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Trigger</span>(<span class="params"><span class="built_in">string</span> eventName</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (EventInfos.TryGetValue(eventName, <span class="keyword">out</span> <span class="keyword">var</span> <span class="keyword">value</span>)) </span><br><span class="line">                ((EventInfo)<span class="keyword">value</span>).Actions?.Invoke();</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                Debug.LogWarning(<span class="string">$&quot;EventCenter: Null <span class="subst">&#123;eventName&#125;</span> is listened&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Trigger</span>&lt;<span class="title">T</span>&gt;(<span class="params"><span class="built_in">string</span> eventName, T param</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (EventInfos.TryGetValue(eventName, <span class="keyword">out</span> <span class="keyword">var</span> <span class="keyword">value</span>)) </span><br><span class="line">                ((EventInfo&lt;T&gt;)<span class="keyword">value</span>).Actions?.Invoke(param);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                Debug.LogWarning(<span class="string">$&quot;EventCenter: Null <span class="subst">&#123;eventName&#125;</span> is listened&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Trigger</span>&lt;<span class="title">T0</span>, <span class="title">T1</span>&gt;(<span class="params"><span class="built_in">string</span> eventName, T0 param0, T1 param1</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (EventInfos.TryGetValue(eventName, <span class="keyword">out</span> <span class="keyword">var</span> <span class="keyword">value</span>)) </span><br><span class="line">                ((EventInfo&lt;T0, T1&gt;)<span class="keyword">value</span>).Action?.Invoke(param0, param1);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                Debug.LogWarning(<span class="string">$&quot;EventCenter: Null <span class="subst">&#123;eventName&#125;</span> is listened&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Trigger</span>&lt;<span class="title">T0</span>, <span class="title">T1</span>, <span class="title">T2</span>&gt;(<span class="params"><span class="built_in">string</span> eventName, T0 param0, T1 param1, T2 param2</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (EventInfos.TryGetValue(eventName, <span class="keyword">out</span> <span class="keyword">var</span> <span class="keyword">value</span>)) </span><br><span class="line">                ((EventInfo&lt;T0, T1, T2&gt;)<span class="keyword">value</span>).Action?.Invoke(param0, param1, param2);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                Debug.LogWarning(<span class="string">$&quot;EventCenter: Null <span class="subst">&#123;eventName&#125;</span> is listened&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="meta">#<span class="keyword">endregion</span></span></span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="keyword">region</span> Delete Event/Clear</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 删除某一事件</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">bool</span> <span class="title">DeleteEvent</span>(<span class="params"><span class="built_in">string</span> eventName</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> EventInfos.Remove(eventName);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 清空事件中心</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Clear</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            EventInfos.Clear();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">#<span class="keyword">endregion</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>HmxsToolkit</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>Toolkit</tag>
+        <tag>EventCenter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Unity-HmxsToolkit】二-事件中心</title>
+    <url>/posts/42998/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
+</blockquote>
+<hr>
+]]></content>
+      <categories>
+        <category>HmxsToolkit</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>Toolkit</tag>
+        <tag>QuestSystem</tag>
       </tags>
   </entry>
   <entry>
@@ -1422,79 +1409,159 @@
 <p>关于字符串字面量的内存：字符串字面量<strong>永远</strong>保存在内存的只读区域内</p>
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>TheChernoC++笔记</category>
       </categories>
       <tags>
         <tag>C++</tag>
       </tags>
   </entry>
   <entry>
-    <title>【Unity-HmxsToolkit】一-泛型单例基类</title>
-    <url>/posts/36395/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
+    <title>【The Cherno】C++学习笔记二（更新中）</title>
+    <url>/posts/2727/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202306010145167.jpeg" alt="cherno"></p>
+<blockquote>
+<p>B站up神经元猫翻译版：<a href="https://www.bilibili.com/video/BV1uy4y167h2">https://www.bilibili.com/video/BV1uy4y167h2</a></p>
 </blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>C++因为其优异的性能，是游戏开发中最为常用的语言之一，目前的Unity与Unreal两大商用引擎的内核都是采用C++进行编写，作为一个有志于成为游戏开发者的人，这种语言怎么能不学一学呢？</p>
+<p>本文基于油管著名博主，曾任职于EA的The Cherno的C++系列视频，The Cherno作为寒霜引擎的核心开发人员之一，对C++有着非常独到而深刻的理解</p>
+<p>这些笔记记录了我通过The Cherno的系列视频学习C++的一些知识点与理解，希望对你有帮助😉</p>
+<p>第一章（1-33）：<a href="https://hmxs.games/posts/2726/">https://hmxs.games/posts/2726/</a></p>
+<p><strong>第二章（更新中）</strong>：<a href="https://hmxs.games/posts/2727/">https://hmxs.games/posts/2727/</a></p>
 <hr>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>关于单例模式的概念与优缺点，在我的<a href="https://hmxs.games/posts/7953/">这篇笔记</a>中已经有过介绍，这边不再赘述</p>
-<p>单例模式有着这样那样的缺点，但是无论如何，它在小型项目的使用中仍然极其方便而高效，不得不品</p>
-<p>而Unity中，由于MonoBehaviour的存在，成为“脚本”被挂载的类会自动地进行实例化，这让Unity中的单例有多种多样的实现方式，其效果也不尽相同</p>
-<p>在我的Toolkit的Singleton模块中，我实现了5种饿汉式的泛型单例基类</p>
-<p><em>关于懒汉式与饿汉式：</em></p>
-<p><em>单例本身存在懒汉式与饿汉式两种实现方式，具体这俩有什么区别可以自行百度，至于我为啥不用懒汉式，虽然其实现简单，我总觉得当Unity中的单例失去了懒加载这一特性后，其相比静态类便没什么特别的优势了，而静态类不用每次都使用烦人的<code>.Instance</code>，所以我为啥不直接写个静态类呢？可能你会有不同的看法，但是总之我不喜欢饿汉式，that’s all</em></p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="不继承Mono的普通单例"><a href="#不继承Mono的普通单例" class="headerlink" title="不继承Mono的普通单例"></a>不继承Mono的普通单例</h3><p>最简单实用的单例，通过私有字段<code>_instance</code>储存唯一实例，通过公开只能<code>get</code>的属性<code>Instance</code>获取实例</p>
-<p>在第一次获取实例时创建实例并赋值给<code>_instance</code>，之后便只返回<code>_instance</code>，以此确保实例的唯一；在多线程时可能会出问题</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-不继承Mono（非线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>继承该类的类名<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt;, <span class="title">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                _instance ??= <span class="keyword">new</span> T();</span><br><span class="line">                _instance.OnInstanceCreate();</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 单例被第一次调用时调用该方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="const关键字（34）"><a href="#const关键字（34）" class="headerlink" title="const关键字（34）"></a>const关键字（34）</h2><p><code>const</code>在改变生成的代码方面做不了什么，其有点类似类&#x2F;结构体中的可见性</p>
+<blockquote>
+<p><strong><code>const</code>是一个可以让我们的代码变得更干净的机制，是对开发人员编写代码的强制特定的规则，被<code>const</code>修饰的东西被承诺不会被改变</strong>（但实际上，这个“承诺”是可以违背的，anyway，it just a promise.🤐）</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> a = <span class="number">1</span>;</span><br><span class="line">a = <span class="number">2</span>; <span class="comment">// 这行代码会报错</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="不继承Mono的普通单例-线程安全"><a href="#不继承Mono的普通单例-线程安全" class="headerlink" title="不继承Mono的普通单例-线程安全"></a>不继承Mono的普通单例-线程安全</h3><p>和上个单例的实现没有本质区别，但是使用了<code>Lazy</code>对单例进行实例化，保证了线程安全</p>
-<p><code>Lazy</code>是<code>System</code>命名空间中提供的方法，效果为延迟初始化，其天生线程安全</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-不继承Mono（线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>继承该类的类名<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonSafe</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonSafe</span>&lt;<span class="title">T</span>&gt;, <span class="title">new</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                _instance ??= <span class="keyword">new</span> Lazy&lt;T&gt;(<span class="literal">true</span>).Value;</span><br><span class="line">                _instance.OnInstanceCreate();</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 单例被第一次调用时调用该方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上面的代码所示，被const修饰的变量的值无法被改变，如果我们希望定义一个在程序中永远不变的量，那么<code>const</code>便可以出场了</p>
+<p><code>const</code>是一种声明变量的方式，而我们可以通过强制转换绕过<code>const</code>的限制</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAX_AGE = <span class="number">90</span>;</span><br><span class="line"><span class="type">int</span>* a = <span class="keyword">new</span> <span class="type">int</span>;</span><br><span class="line">a = (<span class="type">int</span>*)&amp;MAX_AGE;</span><br></pre></td></tr></table></figure>
 
-<h3 id="继承Mono的单例"><a href="#继承Mono的单例" class="headerlink" title="继承Mono的单例"></a>继承Mono的单例</h3><p>这是继承了Mono的单例基类，其不需要手动挂载</p>
-<p>当其被第一次调用时，会自动在场景中根据类名创建空物体，并自动将自己挂载在空物体上，同时添加不会随场景切换而销毁的特性</p>
-<p>但其并没有保证线程安全</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-继承Mono（非线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 不会因切换场景被销毁</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span><span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonMono</span>&lt;<span class="title">T</span>&gt; : <span class="title">MonoBehaviour</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonMono</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    GameObject obj = <span class="keyword">new</span> GameObject</span><br><span class="line">                    &#123;</span><br><span class="line">                        name = <span class="keyword">typeof</span>(T).ToString()</span><br><span class="line">                    &#125;;</span><br><span class="line">                    DontDestroyOnLoad(obj);</span><br><span class="line">                    _instance = obj.AddComponent&lt;T&gt;();</span><br><span class="line">                    _instance.OnInstanceCreate();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上面的代码，我们让指针<code>a</code>指向了<code>const</code>的<code>MAX_AGE</code>,这样便绕过了<code>const</code>，但如果我们尝试通过逆向引用<code>a</code>来写入<code>MAX_AGE</code>便很可能导致程序崩溃，所以最好还是别这么干</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span>* a = <span class="keyword">new</span> <span class="type">int</span>;</span><br><span class="line"><span class="type">int</span> <span class="type">const</span>* b = <span class="keyword">new</span> <span class="type">int</span>;</span><br><span class="line"><span class="type">int</span>* <span class="type">const</span> c = <span class="keyword">new</span> <span class="type">int</span>;</span><br></pre></td></tr></table></figure>
 
-<h3 id="继承Mono的单例-线程安全"><a href="#继承Mono的单例-线程安全" class="headerlink" title="继承Mono的单例-线程安全"></a>继承Mono的单例-线程安全</h3><p>与上个单例类似，但同样通过<code>Lazy</code>保证了线程安全</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-继承Mono（线程安全）</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 不会因切换场景被销毁</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span><span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonMonoSafe</span>&lt;<span class="title">T</span>&gt; : <span class="title">MonoBehaviour</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonMonoSafe</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    GameObject obj = <span class="keyword">new</span> Lazy&lt;GameObject&gt;(<span class="keyword">new</span> GameObject</span><br><span class="line">                    &#123;</span><br><span class="line">                        name = <span class="keyword">typeof</span>(T).ToString()</span><br><span class="line">                    &#125;).Value;</span><br><span class="line">                    DontDestroyOnLoad(obj);</span><br><span class="line">                    _instance = obj.AddComponent&lt;T&gt;();</span><br><span class="line">                    _instance.OnInstanceCreate();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnInstanceCreate</span>()</span> &#123; &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Awake</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(_instance != <span class="literal">null</span>) Destroy(gameObject);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面是三种声明<code>const</code>指针的方式，其中a与b效果完全一样，而c与ab的效果相反</p>
+<p>在a与b中，修改ab本身是被允许的，而修改ab指向的内容是被禁止的，即<code>a = &amp;x</code>可行，而<code>*a = 2</code>不可行；而c的效果则与ab相反</p>
+<p>当然我们也可以通过<code>const int* const a = new int;</code>来让<code>a</code>与&#96;&#96;*a&#96;的值都无法改变</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">int</span> x_;</span><br><span class="line">	<span class="keyword">mutable</span> <span class="type">int</span> mutableX_;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">GetX</span><span class="params">()</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		mutableX_ = <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">return</span> x_;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PrintX</span><span class="params">(<span class="type">const</span> Entity&amp; entity)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; entity.<span class="built_in">GetX</span>() &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="ScriptableObject单例"><a href="#ScriptableObject单例" class="headerlink" title="ScriptableObject单例"></a>ScriptableObject单例</h3><p>这是一个特殊的<code>ScriptableObject</code>单例，其确保的是某一<code>ScriptableObjectAsset</code>的唯一</p>
-<p>在第一次被调用时，其会在<code>Resources</code>文件夹中寻找对应<code>T</code>类型的<code>ScriptableObjectAsset</code>，并返回找到的所有<code>asset</code>，如果没找到则会报错，找到了多个则会弹出警告</p>
-<p>其非常时候用来制作配置文件</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Hmxs.Toolkit.Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 懒汉式泛型单例-继承SO</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;T&quot;&gt;</span>继承该类的类名<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SingletonSO</span>&lt;<span class="title">T</span>&gt; : <span class="title">ScriptableObject</span> <span class="keyword">where</span> <span class="title">T</span> : <span class="title">SingletonSO</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> T _instance;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> T Instance</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_instance == <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    T[] assets = Resources.LoadAll&lt;T&gt;(<span class="string">$&quot;&quot;</span>);</span><br><span class="line">                    <span class="keyword">if</span> (assets == <span class="literal">null</span> || assets.Length &lt; <span class="number">1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> System.Exception(<span class="string">$&quot;SingletonSO: Null <span class="subst">&#123;<span class="keyword">typeof</span>(T)&#125;</span> SO instance in Resources directory&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (assets.Length &gt; <span class="number">1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Debug.LogWarning(<span class="string">$&quot;SingletonSO: Multiple <span class="subst">&#123;<span class="keyword">typeof</span>(T)&#125;</span> SO instance in Resources directory&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    _instance = assets[<span class="number">0</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> _instance;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码是<code>const</code>的最后一种用法，在类中修饰方法（只能在类中这样用）</p>
+<p>被<code>const</code>修饰的方法，只能对类中被<code>mutable</code>修饰的字段进行修改，如在上述<code>GetX()</code>方法中，若对<code>X</code>进行修改就会报错</p>
+<p><strong>这种<code>const</code>有什么用呢？</strong></p>
+<p>当我们以<code>const</code>传递类或类的引用时，只有类中的<code>const</code>方法才能被调用，因为<code>const</code>需要保证传入的引用的类无论如何都不会被更改，这种用法常常被用来修饰<code>getter</code>方法</p>
+<p>在上面的代码中，如果<code>GetX()</code>方法没有被<code>const</code>修饰，那么在<code>PrintX()</code>中其便无法被调用</p>
+<hr>
+<h2 id="mutable关键字（35）"><a href="#mutable关键字（35）" class="headerlink" title="mutable关键字（35）"></a>mutable关键字（35）</h2><p><code>mutable</code>关键字在C++中有着两种不同的用途</p>
+<p>一是和<code>const</code>一起使用，在上一章的最后有提到，类中被<code>const</code>修饰的方法，只能对类中被<code>mutable</code>修饰的字段进行修改，这种情况往往发生在我们需要调试程序时（这是一种近似于违背承诺的行为，最好还是别大量使用，这会破坏<code>const</code>的意义）</p>
+<p>二是用在<code>lambda</code>表达式中，<code>lambda</code>基本上就像一个一次性小函数，你可以写出来并赋值给一个变量</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">auto</span> f = [=]() <span class="keyword">mutable</span> </span><br><span class="line">&#123;</span><br><span class="line">	x++;</span><br><span class="line">	std::cout &lt;&lt; x &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">f</span>();</span><br><span class="line"><span class="comment">// x = 8</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>单例基类的应用都大同小异，让想要成为单例的类继承对应基类即可</p>
-<p>如果你不清楚基类中的<code>where T : Singleton&lt;T&gt;</code>代表什么，可以参考<a href="https://hmxs.games/posts/17194/">这篇笔记</a>，这是一种泛型约束的形式</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">A</span> : <span class="title">Singleton</span>&lt;<span class="title">A</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Debug</span>()</span> &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的<code>lambda</code>表达式中，如果我们想以值传递的形式传入<code>x</code>，并更改它，那么我们就必须加上<code>mutable</code>关键字</p>
+<p>如果不使用<code>mutable</code>我们便需要创建一个局部变量来对<code>x</code>的值进行一次复制才能实现上面的效果</p>
+<p><em>（当然其实这种用法非常非常少见，The Cherno说他其实完全没见过这么用的🤣）</em></p>
+<hr>
+<h2 id="成员初始化列表（36）"><a href="#成员初始化列表（36）" class="headerlink" title="成员初始化列表（36）"></a>成员初始化列表（36）</h2><blockquote>
+<p><strong>构造函数初始化列表是我们在构造函数中初始化类成员的一种方式</strong></p>
+</blockquote>
+<p>当我们编写类时，通常需要通过构造函数对类的成员进行初始化</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	std::string name_;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Entity</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		name_ = <span class="string">&quot;Default&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">Entity</span>(<span class="type">const</span> std::string&amp; name)</span><br><span class="line">	&#123;</span><br><span class="line">		name_ = name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>想要调用单例则更加简单，因为单例的实例都是<code>static</code>的，可以在全局任意位置访问，直接在任意类中调用即可</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Test</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        A.Instance.Debug();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们通常会这样来完成字段的初始化，而实际上C++还提供了另外一种语法来实现这件事</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	std::string name_;</span><br><span class="line">	<span class="type">int</span> age_;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Entity</span>()</span><br><span class="line">		: <span class="built_in">name_</span>(<span class="string">&quot;default&quot;</span>), <span class="built_in">age_</span>(<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>唯一较为特殊的是SO单例，其在继承完成后需要在<code>Resources</code>文件夹中创建唯一的SO asset才能使用</p>
-]]></content>
+<p>如上述代码所示，<code>构造函数() : 字段1(初始值1), 字段2(初始值2)</code>通过这样的语法便可实现字段的初始化</p>
+<p><em>需要注意的是，通过这种方法进行初始化时，初始化的顺序是由字段声明的顺序决定的，在上述代码中，即使我们写成<code>: age_(0), name_(&quot;default&quot;) </code>，运行时仍然会按照先<code>name_</code>再<code>age_</code>的顺序初始化，所以在编写初始化代码时，最好直接按照声明的顺序来</em></p>
+<p><strong>为什么我们需要这玩意呢？</strong></p>
+<ul>
+<li>把琐碎繁杂的初始化写在一起，让代码更加整洁易读</li>
+<li>在特定情况下，使用原先的初始化方式会造成性能&#x2F;内存的浪费，如下面这个例子</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Example</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Example</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;Create Example&quot;</span> &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">Example</span>(<span class="type">int</span> x)</span><br><span class="line">	&#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;Create Example&quot;</span> &lt;&lt; x &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	Example e_;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Entity</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		e_ = <span class="built_in">Example</span>(<span class="number">5</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Entity e;</span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们在<code>Entity</code>类中声明了<code>Example</code>类，并对其进行初始化，如果通过<code>e_ = Example(5)</code>的方式进行，那么<code>Example</code>的两个构造函数都会被运行，即<code>Create Example</code>与<code>Create Example5</code>都会被输出，其原因是在<code>Example e_</code>的创建中默认构造函数会先被调用，而使用初始化列表则不会有这个问题</p>
+<p><strong>综上，我们应该在任何类的成员初始化场景用初始化列表来实现，我们没有理由不使用他们</strong></p>
+<hr>
+<h2 id="三元运算符（37）"><a href="#三元运算符（37）" class="headerlink" title="三元运算符（37）"></a>三元运算符（37）</h2><blockquote>
+<p><strong>三元运算符是if else语法的语法糖，可以方便地根据特定条件给变量赋值</strong></p>
+<p><strong>语法：<code>变量名 = 条件判断 ? 为真时的值 : 为假时的值</code></strong></p>
+</blockquote>
+<p>三元运算符可以帮助我们清理我们的代码，增加代码的可读性</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">1</span>)</span><br><span class="line">	y = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	y = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">y = x &gt; <span class="number">1</span> ? <span class="number">1</span> : <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面的两段代码的意思其实是完全相同的</p>
+<p>同时，如果我们需要赋的值是引用类型，那么三元运算符还能些许加快运算的速度</p>
+<p><strong>需要注意的是，虽然三元运算符可以嵌套，但大量嵌套的三元运算符可读性极差，和其初衷背道而驰，而且会很想让看你代码的人砍死你，所以最好还是别用</strong></p>
+<hr>
+<h2 id="对象的实例化（38）"><a href="#对象的实例化（38）" class="headerlink" title="对象的实例化（38）"></a>对象的实例化（38）</h2><p>当我们编写完成了一个类之后，除非其是完全静态的，我们都需要对其进行实例化，而基本上，我们有两个实例化方法的选择：<strong>在栈上创建&#x2F;在堆上创建</strong>，这两种方法的主要区别在于内存分配的位置</p>
+<p>栈对象，拥有一个自动的生命周期，这由它们被声明的地方作用域决定，只要超出作用域，其内存便会被自动释放</p>
+<p>而堆对象则不同，堆对象的内存需要我们进行手动释放</p>
+<ul>
+<li><strong>栈对象：</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Entity e;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">Entity e = <span class="built_in">Entity</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这样便可简单实例化一个类对象</p>
+<p><em>与Jave&#x2F;C#不同的是C++的<code>Entity e</code>并不单指声明，其效果等于<code>Entity e = Entity()</code>，会调用类的默认构造函数</em></p>
+<p> <strong>几乎所有时候，只要我们可以这样创建对象，我们都应该这样创建，这是C++中最快也是最易管控的实例化对象的方法</strong></p>
+<ul>
+<li><strong>堆对象：</strong></li>
+</ul>
+<p>当我们需要显式控制类的生命周期时 或 我们需要实例化的类很大&#x2F;很多（栈的内存往往很小）时，我们便需要借助堆来实例化</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Entity* e = <span class="keyword">new</span> <span class="built_in">Entity</span>();</span><br></pre></td></tr></table></figure>
+
+<p>堆对象实例化的关键便是<code>new</code>关键字，当我们调用<code>new Entity</code>时，它在堆上为<code>Entity</code>类分配内存，并返回实例化的类在堆上被分配的内存地址</p>
+<p><em>这与C#&#x2F;Java中的语法相似，C#中的struct是在栈上的，而所有类都在堆上，而Java全在堆上</em></p>
+<p><strong>尽量使用栈而不是堆的理由</strong></p>
+<p>性能问题：在堆上分配内存要比栈花费更长的时间</p>
+<p>操作繁琐：堆需要手动释放内存（<code>delete</code>）</p>
+<hr>
+<h2 id="new关键字（39）"><a href="#new关键字（39）" class="headerlink" title="new关键字（39）"></a>new关键字（39）</h2><blockquote>
+<p><strong><code>new</code>是一个操作符，主要作用是在堆上分配内存，其会根据你指定的类型在堆上找到对应大小的内存空间，并返回该空间的地址，对类来说，new还会调用构造函数</strong></p>
+<p><strong>语法：<code>new 类型</code></strong></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Entity* e = <span class="keyword">new</span> <span class="built_in">Entity</span>(); <span class="comment">// C++风格</span></span><br><span class="line">Entity* e = (Entity*)<span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(Entity)); <span class="comment">// C风格</span></span><br></pre></td></tr></table></figure>
+
+<p>上述两行代码的唯一区别便是<code>new</code>会调用构造函数，而<code>malloc</code>不会，大部分情况下<code>new</code>会调用<code>malloc</code>进行内存的分配</p>
+<p><code>delete</code>关键字会释放堆中的内存，如果是类，其还会调用析构函数，其也是借用C中的<code>free</code>函数实现的，这点与<code>new</code>类似</p>
+<p><strong><code>new</code>和<code>delete</code>总是应该成对出现，被<code>new</code>分配的内存只有在被<code>delete</code>释放后才能被再次使用</strong></p>
+<hr>
+<h2 id="隐式转换与explicit关键字（40）"><a href="#隐式转换与explicit关键字（40）" class="headerlink" title="隐式转换与explicit关键字（40）"></a>隐式转换与explicit关键字（40）</h2><blockquote>
+<p><strong>隐式代表不需要明确地告诉类要做什么，类似于自动，编译器会通过上下文自行推导构造函数</strong></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span>  <span class="title class_">Entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	std::string name_;</span><br><span class="line">	<span class="type">int</span> age_;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Entity</span>(<span class="type">const</span> std::string&amp; name)</span><br><span class="line">		: <span class="built_in">name_</span>(name), <span class="built_in">age_</span>(<span class="number">-1</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">Entity</span>(<span class="type">int</span> age)</span><br><span class="line">		: <span class="built_in">name_</span>(<span class="string">&quot;Default&quot;</span>), <span class="built_in">age_</span>(age) &#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Entity e1 = <span class="string">&quot;Hmxs&quot;</span>; <span class="comment">// 隐式转换“Hmxs”-&gt;Entity(&quot;Hmxs&quot;)</span></span><br><span class="line">	Entity e2 = <span class="number">20</span>; <span class="comment">// 隐式转换20-&gt;Entity(20)</span></span><br><span class="line">	std::cin.<span class="built_in">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当构造函数限定条件足够多时，如类的构造函数只接受一个字符串为参数，而你又正好让类等于了一个字符串，那么编译器会为你自行推导，生成构造函数</p>
+<p>这很酷，可以简化代码，但清晰的代码才是最好的，还是少用吧</p>
+<blockquote>
+<p><strong><code>explicit</code>关键字则代表禁用该构造函数的隐式转换，如果你需要通过此构造函数进行类的实例化，那么你必须显式调用此构造函数</strong></p>
+</blockquote>
+<p><code>explicit</code>可以确保类型转换的安全，不会发生意外的隐式转换</p>
+<hr>
+<h2 id="运算符及其重载（41）"><a href="#运算符及其重载（41）" class="headerlink" title="运算符及其重载（41）"></a>运算符及其重载（41）</h2>]]></content>
       <categories>
-        <category>Notes</category>
+        <category>TheChernoC++笔记</category>
       </categories>
       <tags>
-        <tag>Unity</tag>
-        <tag>Toolkit</tag>
-        <tag>Singleton</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
-    <title>【Unity-HmxsToolkit】二-事件中心</title>
-    <url>/posts/42997/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
+    <title>2048</title>
+    <url>/posts/42265/</url>
+    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251612203.png" alt="2048" style="zoom: 25%;" />
+
+<blockquote>
+<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/Unity-2048-New">https://github.com/hmxsqaq/Unity-2048-New</a></p>
 </blockquote>
-<hr>
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>经典小游戏复刻</category>
       </categories>
       <tags>
+        <tag>C#</tag>
         <tag>Unity</tag>
-        <tag>Toolkit</tag>
-        <tag>EventCenter</tag>
+        <tag>GameProject</tag>
       </tags>
   </entry>
   <entry>
@@ -1518,22 +1585,40 @@
       </tags>
   </entry>
   <entry>
-    <title>2048</title>
-    <url>/posts/42265/</url>
-    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251612203.png" alt="2048" style="zoom: 25%;" />
+    <title>分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/css/custom.css</url>
+    <content><![CDATA[/* 页脚与头图透明 */
+#web_bg{
+    filter: brightness(0.8);
+}
 
-<blockquote>
-<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/Unity-2048-New">https://github.com/hmxsqaq/Unity-2048-New</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>经典小游戏复刻</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
+#footer {
+    background: transparent !important;
+}
+#page-header {
+    background: transparent !important;
+}
+
+/* 白天模式遮罩透明 */
+#footer::before {
+    background: transparent !important;
+}
+#page-header::before {
+    background: transparent !important;
+}
+
+/* 夜间模式遮罩透明 */
+[data-theme="dark"] #footer::before {
+    background: transparent !important;
+}
+[data-theme="dark"] #page-header::before {
+    background: transparent !important;
+}]]></content>
   </entry>
   <entry>
     <title>About Me</title>
@@ -1624,47 +1709,6 @@
 <p>总之无论如何，虽然不会的东西越学越多，身边的大佬也越来越哈人，但是总是找到了一点点目标与梦想，至少现在能知道自己想干什么，能学什么</p>
 <p>如果你能看到这里的话，<strong>前路漫漫，与君共勉。</strong></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>分类</title>
-    <url>/categories/index.html</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/css/custom.css</url>
-    <content><![CDATA[/* 页脚与头图透明 */
-#web_bg{
-    filter: brightness(0.8);
-}
-
-#footer {
-    background: transparent !important;
-}
-#page-header {
-    background: transparent !important;
-}
-
-/* 白天模式遮罩透明 */
-#footer::before {
-    background: transparent !important;
-}
-#page-header::before {
-    background: transparent !important;
-}
-
-/* 夜间模式遮罩透明 */
-[data-theme="dark"] #footer::before {
-    background: transparent !important;
-}
-[data-theme="dark"] #page-header::before {
-    background: transparent !important;
-}]]></content>
   </entry>
   <entry>
     <title>友链</title>
@@ -1871,5 +1915,10 @@
 .pace.pace-inactive {
 	display: none;
 }]]></content>
+  </entry>
+  <entry>
+    <title>标签</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
