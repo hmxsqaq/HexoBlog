@@ -179,6 +179,189 @@
       </tags>
   </entry>
   <entry>
+    <title>Cyberpsychosis-AI Game Jam</title>
+    <url>/posts/35484/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261558559.png" alt="qN0WZOY3ZLuswAaY2CB4RM3NRHPgpBfQE9G2VaSz"></p>
+<blockquote>
+<p>游戏页面：<a href="https://gmhub.com/game/2005">https://gmhub.com/game/2005</a></p>
+<p>介绍视频：<a href="https://www.bilibili.com/video/BV1U44y1Z7oU/">https://www.bilibili.com/video/BV1U44y1Z7oU/</a></p>
+</blockquote>
+<h2 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h2><p><strong>定福庄AI小队：</strong></p>
+<p>策划：虚虚、TenGo</p>
+<p>程序：紫地丁、<strong>徽墨行深(伍泽华)</strong></p>
+<p>美术：范静云  </p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601861.jpg" alt="tjM0fNlKlAXcGfzvM1iy4WCGjKLP7xijILJWeR2j"></p>
+<h2 id="游戏简介："><a href="#游戏简介：" class="headerlink" title="游戏简介："></a>游戏简介：</h2><p>一款联合移动的推箱子游戏，由5名中国传媒大学的大一学生共同完成。</p>
+<p>本次Game Jam的主题是「和谐的缝合怪」，我们的创作思路是在一个经典简洁的游戏机制上，做一些小的调整和创新。游戏故事背景设定参照了「赛博朋克」，其中的人类进行进行大量机械植入又要保证人性不丧失，避免「赛博精神病」，我们想这种人性与机械的平衡正符合本次大赛的主题，因而游戏名也取作「Cyberpsychosis」。</p>
+<p>游戏女主因车祸而需要进行机械移植治疗，手术后检测报告显示她很大概率会因免疫排斥而出现双向情感障碍，而她不富裕的家境无法承担高额的免疫抑制剂费用。在医生的建议下，她通过控制虚拟游戏中分裂的两个自我（狂躁和抑郁），去协作完成游戏目标，来达到训练自我达到平衡的效果。</p>
+<p>游戏内背景、人物立绘、BGM都是由AI进行创作。（策划和美术都被AI驯服了）</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601694.png" alt="6dAGl1r5fzLbMt6RppK7lLODYiCtMPYapnhXBoud"></p>
+]]></content>
+      <categories>
+        <category>我参与的游戏</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unity Input System 学习笔记</title>
+    <url>/posts/18584/</url>
+    <content><![CDATA[<h1 id="Input-System-Unity新输入系统-学习笔记"><a href="#Input-System-Unity新输入系统-学习笔记" class="headerlink" title="Input System-Unity新输入系统 学习笔记"></a>Input System-Unity新输入系统 学习笔记</h1><blockquote>
+<p>官方文档：<a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/index.html">https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/index.html</a></p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Input System是Unity新推出的输入控制系统（好像也不是很新了），我之前对其的使用只能说是一知半解，本文是我根据网上的一些资料与官方文档对Input System的使用方法的学习笔记，希望对你有帮助。😉</p>
+<hr>
+<h2 id="Input-System的导入"><a href="#Input-System的导入" class="headerlink" title="Input System的导入"></a>Input System的导入</h2><p>于Unity自带的<code>Windows-&gt;Package Manager</code>安装即可，安装后需要重启项目</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303291955069.png" alt="image-20230329195514972" style="zoom:67%;" />
+
+<p>之后将<code>Project Settings-&gt;Player-&gt;Others-&gt;Configuration-&gt;Active Input Handling</code></p>
+<p>设置为<code>Both/Input System Package(New)</code>以启用Input System</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303291959502.png" alt="image-20230329195944467" style="zoom:67%;" />
+
+<hr>
+<h2 id="Action概述"><a href="#Action概述" class="headerlink" title="Action概述"></a>Action概述</h2><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303292017544.png" alt="image-20230329201723515" style="zoom:67%;" />
+
+<p><strong>Action</strong>可以说是Input System中最重要的新引入的概念之一</p>
+<p>Input System通过Action对用户的输入方式进行了映射，即一个Action可以关联多个输入，而原先的Input系统不同的是，与具体逻辑关联的也是Action，而非用户的具体输入</p>
+<p>相当于Action成为了输入与逻辑之间的中间商，用户输入-&gt;Action-&gt;具体逻辑</p>
+<p>Input System通过Action系统实现了输入与逻辑的分离，使得对于用户输入的管理与多端设备兼容更加容易</p>
+<p>如我们可以将多个不同设备的移动输入绑定到同一个Action上，这样无论我们在手柄上移动摇杆，还是按下键盘的WASD，Action都会为我们返回统一的返回值，我们在编写移动逻辑时，便只需要关心Action的返回值即可，而无需分平台分设备地单独编写逻辑</p>
+<hr>
+<h2 id="Action的创建"><a href="#Action的创建" class="headerlink" title="Action的创建"></a>Action的创建</h2><p>在Input System中存在着多种创建Action的方式，以下介绍通过序列化单独创建，与通过ActionMap统一创建管理两个方式：</p>
+<ol>
+<li><strong>通过序列化创建单一Action</strong></li>
+</ol>
+<p>可以通过在继承了<code>Monobehavior</code>的脚本中声明<code>InputAction</code>类型的变量(需要引入<code>UnityEngine.InputSystem</code>命名空间)</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.InputSystem;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> InputAction moveAction;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>挂载脚本后便可以在Inspector界面看到声明的<code>moveAction</code></p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303292039605.png" alt="image-20230329203921581"></p>
+<p>点击齿轮符号便可对<code>moveAction</code>进行编辑，设置Action的属性</p>
+<p>点击加减号可以为Action添加&#x2F;删除按键绑定，为Action绑定对应按键后，按下按键便可触发与Action相关联的方法</p>
+<ol start="2">
+<li><strong>通过ActionMap文件统一创建Action</strong></li>
+</ol>
+<p>成功安装Input System包之后，于Assets界面<code>右键-&gt;Create-&gt;Input Actions</code>便可创建Input Actions Asset文件</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303292046474.png" alt="image-20230329204610432" style="zoom: 50%;" />
+
+<p>双击创建出的InputActions即可于专门的界面中统一创建管理Actions</p>
+<p>其中ActionMaps可以理解为Action的集合，我们可以创建多个Map进行随时切换，如UI和Game</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303292049942.png" alt="image-20230329204920905" style="zoom: 50%;" />
+
+<hr>
+<h2 id="Action的属性"><a href="#Action的属性" class="headerlink" title="Action的属性"></a>Action的属性</h2><p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303292052522.png"></p>
+<p>一个Action有着多种属性，其影响着Action的触发方式、返回值等信息</p>
+<h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h3><p>Action共有三种默认的Type，<strong>其影响的是Action对于输入值的响应规则</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">Value</th>
+<th align="center">Button</th>
+<th align="center">Pass Through</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">phase.started</td>
+<td align="center">返回值从初始状态被改变时</td>
+<td align="center">按钮开始被按下，但尚未超过阈值</td>
+<td align="center">第一个控制器的返回值从初始状态被改变时</td>
+</tr>
+<tr>
+<td align="center">phase.performed</td>
+<td align="center">返回值改变时</td>
+<td align="center">按钮被按下超过阈值时</td>
+<td align="center">返回值改变时</td>
+</tr>
+<tr>
+<td align="center">phase.canceled</td>
+<td align="center">返回值不再改变时</td>
+<td align="center">按钮被释放</td>
+<td align="center">返回值不再改变时</td>
+</tr>
+</tbody></table>
+<p>Pass Through与Value基本一致，区别是Value只会响应一个最活跃的输入，而Pass Through会响应所有绑定了这一Action的按键的输入</p>
+<h3 id="Interactions"><a href="#Interactions" class="headerlink" title="Interactions"></a>Interactions</h3><p>Action共有6种Interactions，<strong>其影响的是Action对于输入行为的响应规则</strong></p>
+<p>当不设置时会设定为Default，响应与Types相同，其余Interactions理解并不困难，可见官方文档:</p>
+<p><a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/Interactions.html#predefined-interactions">https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/Interactions.html#predefined-interactions</a></p>
+<hr>
+<h2 id="Action与方法的绑定"><a href="#Action与方法的绑定" class="headerlink" title="Action与方法的绑定"></a>Action与方法的绑定</h2><p>创建Actions后，便可以将Actions与具体的方法进行绑定，同时也存在着有多种方式来进行</p>
+<p><strong>主要可以分为两个步骤：</strong></p>
+<ol>
+<li><strong>Action的获取</strong></li>
+<li><strong>方法的触发</strong></li>
+</ol>
+<p>我们有多种方法可以进行以上两步，以下是两个例子：</p>
+<h3 id="通过Player-Input组件进行绑定"><a href="#通过Player-Input组件进行绑定" class="headerlink" title="通过Player Input组件进行绑定"></a>通过Player Input组件进行绑定</h3><p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303300101984.png"></p>
+<p>在导入Input System包导入后，我们可以为GmaeObject添加Player Input组件对ActionMap进行管理</p>
+<p><strong>Action的获取</strong>：将我们的InputActionAsset拖入组件中Actions之后，PlayerInput组件便会自动获取其中的Action</p>
+<p><strong>方法的触发</strong>：PlayerInput组件为我们提供了4种方式触发方法，如上图所示，在Behavior属性中可以进行选择</p>
+<ul>
+<li>Send Messages：通过Unity本身的消息机制触发方法，只要在对应GameObject挂载的脚本中编写名为OnT（T为对应Action的名字，在选择Send Messages方法后会在下方显示应该编写的方法名）的方法即可，这种方法应用方便，但是Unity的消息利用的是反射机制，效率较差</li>
+</ul>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305231927303.png" alt="image-20230523192728237"></p>
+<ul>
+<li>Broadcast Messages：通过Unity的消息广播触发方法，本质与Send Messages并不不同，区别是可以将消息广播到子物体，但效率更差了</li>
+<li>Invoke Unity Events：利用UnityEvents触发方法，与Button等利用UnityEvents的方法一样，在Inspector中对应Action的EventsList中添加事件即可，缺点是需要拖来拖出，非常繁琐，在需要处理大量事件时操作麻烦</li>
+<li>Invoke C Sharp Events：利用C#的Events在脚本中手动注册回调，触发方法，效率较高，利用C#的Events写起来也会比较优雅，需要在脚本中先获取PlayerInput组件，通过其中的onActionTriggered触发事件，缺点是只有onActionTriggered一个事件，若有多个Action需要进行单独判断</li>
+</ul>
+<p><em>在使用PlayerInput时，其实我们并不一定要采取其提供给我们的四种方法进行操作，我们可以直接在脚本中获取PlayerInput组件的实例，直接在实例中获取特定Action，后通过Action直接进行方法的绑定，这种使用方法与下面要说的利用InputActionAssets生成C#类类似，故不再赘述</em></p>
+<h3 id="通过ActionMap生成C-类进行绑定"><a href="#通过ActionMap生成C-类进行绑定" class="headerlink" title="通过ActionMap生成C#类进行绑定"></a>通过ActionMap生成C#类进行绑定</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305232310377.png" style="zoom: 50%;" />
+
+
+
+<p>在创建完成InputActionAsset后，点击创建的文件，在Inspector界面中便可以看到Generate C# Class选项，勾选该选项，点击Apply便可以生成与InputActionAsset文件同名的C#类，这个类中包含了InputActionAsset中的所有数据</p>
+<p>之后我们便可以直接在脚本中通过new对刚刚生成的C#类进行实例化，调用其中的数据与回调函数、</p>
+<p><em>记得一定要先Enable，不然不会起作用</em></p>
+<p>测试代码如下：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// IS_Test 为InputActionAsset与生成的C#类的名字</span></span><br><span class="line">    <span class="keyword">private</span> IS_Test _inputAction;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 实例化</span></span><br><span class="line">        _inputAction = <span class="keyword">new</span> IS_Test();</span><br><span class="line">        <span class="comment">// 注册回调</span></span><br><span class="line">        _inputAction.Games.Move.performed += OnMove;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnEnable</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        _inputAction.Enable();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnDestroy</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        _inputAction.Disable();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 回调函数，注意*回调函数的参数必须为InputAction.CallbackContext</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnMove</span>(<span class="params">InputAction.CallbackContext obj</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(obj.ReadValue&lt;Vector2&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="基于Input-System的InputManager的实现"><a href="#基于Input-System的InputManager的实现" class="headerlink" title="基于Input System的InputManager的实现"></a>基于Input System的InputManager的实现</h2><p>在上文中，我梳理了一遍Input System的使用方法，而现在让我们实现一个基于Input System的输入管理器模块吧！</p>
+<p><em>摆了！以后再写</em></p>
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>Input System</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>EscapeFromVirus-严肃游戏工坊作品</title>
+    <url>/posts/41160/</url>
+    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261533351.png" alt="logo" style="zoom: 50%;" />
+
+<blockquote>
+<p>项目介绍：<a href="https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA">https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA</a></p>
+</blockquote>
+<h2 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h2><p>策划-唐诗</p>
+<p>美术-王子彤 刘月映</p>
+<p>程序-<strong>伍泽华</strong></p>
+<p>测试-杨光平</p>
+<h2 id="游戏内容"><a href="#游戏内容" class="headerlink" title="游戏内容"></a>游戏内容</h2><p>这是一款竖版弹幕类、动作敏捷类平面游戏。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261547150.png" alt="640 (1)" style="zoom:50%;" />
+
+<h2 id="游戏机制"><a href="#游戏机制" class="headerlink" title="游戏机制"></a>游戏机制</h2><p>玩家需要扮演角色“阿尼”或“A喵”，在屏幕上躲避从屏幕四周袭来的象征冠状病毒的弹幕，期间尽可能收集口罩等防疫物品，获得有助于通关的增益效果。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548998.png" alt="640" style="zoom:50%;" />
+
+<h2 id="游戏介绍"><a href="#游戏介绍" class="headerlink" title="游戏介绍"></a>游戏介绍</h2><p>通过回答防疫相关问题，获取猫粮，尽可能长时间地生存下来，生存时间越长得分越高。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548606.png" alt="640 (2)" style="zoom:50%;" />
+
+<h2 id="创作立意"><a href="#创作立意" class="headerlink" title="创作立意"></a>创作立意</h2><p>希望通过制作这样的一款严肃游戏，能让玩家关注防疫政策的变化，学习到防范病毒的小知识，学会做自己健康第一责任人。</p>
+]]></content>
+      <categories>
+        <category>我参与的游戏</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【3B1B】《线性代数的本质》学习笔记</title>
     <url>/posts/17021/</url>
     <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100312370.png" alt="image-20230410031239217" style="zoom:50%;" />
@@ -347,189 +530,6 @@
       <tags>
         <tag>线性代数</tag>
         <tag>《线性代数的本质》</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Unity Input System 学习笔记</title>
-    <url>/posts/18584/</url>
-    <content><![CDATA[<h1 id="Input-System-Unity新输入系统-学习笔记"><a href="#Input-System-Unity新输入系统-学习笔记" class="headerlink" title="Input System-Unity新输入系统 学习笔记"></a>Input System-Unity新输入系统 学习笔记</h1><blockquote>
-<p>官方文档：<a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/index.html">https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/index.html</a></p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Input System是Unity新推出的输入控制系统（好像也不是很新了），我之前对其的使用只能说是一知半解，本文是我根据网上的一些资料与官方文档对Input System的使用方法的学习笔记，希望对你有帮助。😉</p>
-<hr>
-<h2 id="Input-System的导入"><a href="#Input-System的导入" class="headerlink" title="Input System的导入"></a>Input System的导入</h2><p>于Unity自带的<code>Windows-&gt;Package Manager</code>安装即可，安装后需要重启项目</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303291955069.png" alt="image-20230329195514972" style="zoom:67%;" />
-
-<p>之后将<code>Project Settings-&gt;Player-&gt;Others-&gt;Configuration-&gt;Active Input Handling</code></p>
-<p>设置为<code>Both/Input System Package(New)</code>以启用Input System</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303291959502.png" alt="image-20230329195944467" style="zoom:67%;" />
-
-<hr>
-<h2 id="Action概述"><a href="#Action概述" class="headerlink" title="Action概述"></a>Action概述</h2><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303292017544.png" alt="image-20230329201723515" style="zoom:67%;" />
-
-<p><strong>Action</strong>可以说是Input System中最重要的新引入的概念之一</p>
-<p>Input System通过Action对用户的输入方式进行了映射，即一个Action可以关联多个输入，而原先的Input系统不同的是，与具体逻辑关联的也是Action，而非用户的具体输入</p>
-<p>相当于Action成为了输入与逻辑之间的中间商，用户输入-&gt;Action-&gt;具体逻辑</p>
-<p>Input System通过Action系统实现了输入与逻辑的分离，使得对于用户输入的管理与多端设备兼容更加容易</p>
-<p>如我们可以将多个不同设备的移动输入绑定到同一个Action上，这样无论我们在手柄上移动摇杆，还是按下键盘的WASD，Action都会为我们返回统一的返回值，我们在编写移动逻辑时，便只需要关心Action的返回值即可，而无需分平台分设备地单独编写逻辑</p>
-<hr>
-<h2 id="Action的创建"><a href="#Action的创建" class="headerlink" title="Action的创建"></a>Action的创建</h2><p>在Input System中存在着多种创建Action的方式，以下介绍通过序列化单独创建，与通过ActionMap统一创建管理两个方式：</p>
-<ol>
-<li><strong>通过序列化创建单一Action</strong></li>
-</ol>
-<p>可以通过在继承了<code>Monobehavior</code>的脚本中声明<code>InputAction</code>类型的变量(需要引入<code>UnityEngine.InputSystem</code>命名空间)</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.InputSystem;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> InputAction moveAction;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>挂载脚本后便可以在Inspector界面看到声明的<code>moveAction</code></p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303292039605.png" alt="image-20230329203921581"></p>
-<p>点击齿轮符号便可对<code>moveAction</code>进行编辑，设置Action的属性</p>
-<p>点击加减号可以为Action添加&#x2F;删除按键绑定，为Action绑定对应按键后，按下按键便可触发与Action相关联的方法</p>
-<ol start="2">
-<li><strong>通过ActionMap文件统一创建Action</strong></li>
-</ol>
-<p>成功安装Input System包之后，于Assets界面<code>右键-&gt;Create-&gt;Input Actions</code>便可创建Input Actions Asset文件</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303292046474.png" alt="image-20230329204610432" style="zoom: 50%;" />
-
-<p>双击创建出的InputActions即可于专门的界面中统一创建管理Actions</p>
-<p>其中ActionMaps可以理解为Action的集合，我们可以创建多个Map进行随时切换，如UI和Game</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303292049942.png" alt="image-20230329204920905" style="zoom: 50%;" />
-
-<hr>
-<h2 id="Action的属性"><a href="#Action的属性" class="headerlink" title="Action的属性"></a>Action的属性</h2><p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303292052522.png"></p>
-<p>一个Action有着多种属性，其影响着Action的触发方式、返回值等信息</p>
-<h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h3><p>Action共有三种默认的Type，<strong>其影响的是Action对于输入值的响应规则</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">Value</th>
-<th align="center">Button</th>
-<th align="center">Pass Through</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">phase.started</td>
-<td align="center">返回值从初始状态被改变时</td>
-<td align="center">按钮开始被按下，但尚未超过阈值</td>
-<td align="center">第一个控制器的返回值从初始状态被改变时</td>
-</tr>
-<tr>
-<td align="center">phase.performed</td>
-<td align="center">返回值改变时</td>
-<td align="center">按钮被按下超过阈值时</td>
-<td align="center">返回值改变时</td>
-</tr>
-<tr>
-<td align="center">phase.canceled</td>
-<td align="center">返回值不再改变时</td>
-<td align="center">按钮被释放</td>
-<td align="center">返回值不再改变时</td>
-</tr>
-</tbody></table>
-<p>Pass Through与Value基本一致，区别是Value只会响应一个最活跃的输入，而Pass Through会响应所有绑定了这一Action的按键的输入</p>
-<h3 id="Interactions"><a href="#Interactions" class="headerlink" title="Interactions"></a>Interactions</h3><p>Action共有6种Interactions，<strong>其影响的是Action对于输入行为的响应规则</strong></p>
-<p>当不设置时会设定为Default，响应与Types相同，其余Interactions理解并不困难，可见官方文档:</p>
-<p><a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/Interactions.html#predefined-interactions">https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/Interactions.html#predefined-interactions</a></p>
-<hr>
-<h2 id="Action与方法的绑定"><a href="#Action与方法的绑定" class="headerlink" title="Action与方法的绑定"></a>Action与方法的绑定</h2><p>创建Actions后，便可以将Actions与具体的方法进行绑定，同时也存在着有多种方式来进行</p>
-<p><strong>主要可以分为两个步骤：</strong></p>
-<ol>
-<li><strong>Action的获取</strong></li>
-<li><strong>方法的触发</strong></li>
-</ol>
-<p>我们有多种方法可以进行以上两步，以下是两个例子：</p>
-<h3 id="通过Player-Input组件进行绑定"><a href="#通过Player-Input组件进行绑定" class="headerlink" title="通过Player Input组件进行绑定"></a>通过Player Input组件进行绑定</h3><p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303300101984.png"></p>
-<p>在导入Input System包导入后，我们可以为GmaeObject添加Player Input组件对ActionMap进行管理</p>
-<p><strong>Action的获取</strong>：将我们的InputActionAsset拖入组件中Actions之后，PlayerInput组件便会自动获取其中的Action</p>
-<p><strong>方法的触发</strong>：PlayerInput组件为我们提供了4种方式触发方法，如上图所示，在Behavior属性中可以进行选择</p>
-<ul>
-<li>Send Messages：通过Unity本身的消息机制触发方法，只要在对应GameObject挂载的脚本中编写名为OnT（T为对应Action的名字，在选择Send Messages方法后会在下方显示应该编写的方法名）的方法即可，这种方法应用方便，但是Unity的消息利用的是反射机制，效率较差</li>
-</ul>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305231927303.png" alt="image-20230523192728237"></p>
-<ul>
-<li>Broadcast Messages：通过Unity的消息广播触发方法，本质与Send Messages并不不同，区别是可以将消息广播到子物体，但效率更差了</li>
-<li>Invoke Unity Events：利用UnityEvents触发方法，与Button等利用UnityEvents的方法一样，在Inspector中对应Action的EventsList中添加事件即可，缺点是需要拖来拖出，非常繁琐，在需要处理大量事件时操作麻烦</li>
-<li>Invoke C Sharp Events：利用C#的Events在脚本中手动注册回调，触发方法，效率较高，利用C#的Events写起来也会比较优雅，需要在脚本中先获取PlayerInput组件，通过其中的onActionTriggered触发事件，缺点是只有onActionTriggered一个事件，若有多个Action需要进行单独判断</li>
-</ul>
-<p><em>在使用PlayerInput时，其实我们并不一定要采取其提供给我们的四种方法进行操作，我们可以直接在脚本中获取PlayerInput组件的实例，直接在实例中获取特定Action，后通过Action直接进行方法的绑定，这种使用方法与下面要说的利用InputActionAssets生成C#类类似，故不再赘述</em></p>
-<h3 id="通过ActionMap生成C-类进行绑定"><a href="#通过ActionMap生成C-类进行绑定" class="headerlink" title="通过ActionMap生成C#类进行绑定"></a>通过ActionMap生成C#类进行绑定</h3><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305232310377.png" style="zoom: 50%;" />
-
-
-
-<p>在创建完成InputActionAsset后，点击创建的文件，在Inspector界面中便可以看到Generate C# Class选项，勾选该选项，点击Apply便可以生成与InputActionAsset文件同名的C#类，这个类中包含了InputActionAsset中的所有数据</p>
-<p>之后我们便可以直接在脚本中通过new对刚刚生成的C#类进行实例化，调用其中的数据与回调函数、</p>
-<p><em>记得一定要先Enable，不然不会起作用</em></p>
-<p>测试代码如下：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// IS_Test 为InputActionAsset与生成的C#类的名字</span></span><br><span class="line">    <span class="keyword">private</span> IS_Test _inputAction;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 实例化</span></span><br><span class="line">        _inputAction = <span class="keyword">new</span> IS_Test();</span><br><span class="line">        <span class="comment">// 注册回调</span></span><br><span class="line">        _inputAction.Games.Move.performed += OnMove;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnEnable</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        _inputAction.Enable();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnDestroy</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        _inputAction.Disable();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 回调函数，注意*回调函数的参数必须为InputAction.CallbackContext</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnMove</span>(<span class="params">InputAction.CallbackContext obj</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(obj.ReadValue&lt;Vector2&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="基于Input-System的InputManager的实现"><a href="#基于Input-System的InputManager的实现" class="headerlink" title="基于Input System的InputManager的实现"></a>基于Input System的InputManager的实现</h2><p>在上文中，我梳理了一遍Input System的使用方法，而现在让我们实现一个基于Input System的输入管理器模块吧！</p>
-<p><em>摆了！以后再写</em></p>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>Input System</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Cyberpsychosis-AI Game Jam</title>
-    <url>/posts/35484/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261558559.png" alt="qN0WZOY3ZLuswAaY2CB4RM3NRHPgpBfQE9G2VaSz"></p>
-<blockquote>
-<p>游戏页面：<a href="https://gmhub.com/game/2005">https://gmhub.com/game/2005</a></p>
-<p>介绍视频：<a href="https://www.bilibili.com/video/BV1U44y1Z7oU/">https://www.bilibili.com/video/BV1U44y1Z7oU/</a></p>
-</blockquote>
-<h2 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h2><p><strong>定福庄AI小队：</strong></p>
-<p>策划：虚虚、TenGo</p>
-<p>程序：紫地丁、<strong>徽墨行深(伍泽华)</strong></p>
-<p>美术：范静云  </p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601861.jpg" alt="tjM0fNlKlAXcGfzvM1iy4WCGjKLP7xijILJWeR2j"></p>
-<h2 id="游戏简介："><a href="#游戏简介：" class="headerlink" title="游戏简介："></a>游戏简介：</h2><p>一款联合移动的推箱子游戏，由5名中国传媒大学的大一学生共同完成。</p>
-<p>本次Game Jam的主题是「和谐的缝合怪」，我们的创作思路是在一个经典简洁的游戏机制上，做一些小的调整和创新。游戏故事背景设定参照了「赛博朋克」，其中的人类进行进行大量机械植入又要保证人性不丧失，避免「赛博精神病」，我们想这种人性与机械的平衡正符合本次大赛的主题，因而游戏名也取作「Cyberpsychosis」。</p>
-<p>游戏女主因车祸而需要进行机械移植治疗，手术后检测报告显示她很大概率会因免疫排斥而出现双向情感障碍，而她不富裕的家境无法承担高额的免疫抑制剂费用。在医生的建议下，她通过控制虚拟游戏中分裂的两个自我（狂躁和抑郁），去协作完成游戏目标，来达到训练自我达到平衡的效果。</p>
-<p>游戏内背景、人物立绘、BGM都是由AI进行创作。（策划和美术都被AI驯服了）</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601694.png" alt="6dAGl1r5fzLbMt6RppK7lLODYiCtMPYapnhXBoud"></p>
-]]></content>
-      <categories>
-        <category>我参与的游戏</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EscapeFromVirus-严肃游戏工坊作品</title>
-    <url>/posts/41160/</url>
-    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261533351.png" alt="logo" style="zoom: 50%;" />
-
-<blockquote>
-<p>项目介绍：<a href="https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA">https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA</a></p>
-</blockquote>
-<h2 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h2><p>策划-唐诗</p>
-<p>美术-王子彤 刘月映</p>
-<p>程序-<strong>伍泽华</strong></p>
-<p>测试-杨光平</p>
-<h2 id="游戏内容"><a href="#游戏内容" class="headerlink" title="游戏内容"></a>游戏内容</h2><p>这是一款竖版弹幕类、动作敏捷类平面游戏。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261547150.png" alt="640 (1)" style="zoom:50%;" />
-
-<h2 id="游戏机制"><a href="#游戏机制" class="headerlink" title="游戏机制"></a>游戏机制</h2><p>玩家需要扮演角色“阿尼”或“A喵”，在屏幕上躲避从屏幕四周袭来的象征冠状病毒的弹幕，期间尽可能收集口罩等防疫物品，获得有助于通关的增益效果。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548998.png" alt="640" style="zoom:50%;" />
-
-<h2 id="游戏介绍"><a href="#游戏介绍" class="headerlink" title="游戏介绍"></a>游戏介绍</h2><p>通过回答防疫相关问题，获取猫粮，尽可能长时间地生存下来，生存时间越长得分越高。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548606.png" alt="640 (2)" style="zoom:50%;" />
-
-<h2 id="创作立意"><a href="#创作立意" class="headerlink" title="创作立意"></a>创作立意</h2><p>希望通过制作这样的一款严肃游戏，能让玩家关注防疫政策的变化，学习到防范病毒的小知识，学会做自己健康第一责任人。</p>
-]]></content>
-      <categories>
-        <category>我参与的游戏</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
       </tags>
   </entry>
   <entry>
@@ -789,6 +789,29 @@
       </tags>
   </entry>
   <entry>
+    <title>《游戏编程模式》读书笔记六（更新中）</title>
+    <url>/posts/12389/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304070014396.jpeg" alt="img"></p>
+<blockquote>
+<p>《游戏编程模式》-Bob Nystrom</p>
+<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
+</blockquote>
+<hr>
+<h1 id="序列模式"><a href="#序列模式" class="headerlink" title="序列模式"></a>序列模式</h1><p>在游戏制作中，“时间”是一个极其重要的概念，我们需要为我们创造的虚拟世界赋予时钟。本章节序列模式(SequencingPatterns)便是构建时钟的工具。</p>
+<p><strong>游戏循环</strong>是时钟的主轴</p>
+<p>对象通过<strong>Update方法</strong>响应游戏循环</p>
+<p>应用<strong>双缓冲模式</strong>可以储存快照来隐藏计算机顺序执行的特性，使游戏看起来是同步更新的</p>
+<hr>
+<h2 id="双缓冲模式"><a href="#双缓冲模式" class="headerlink" title="双缓冲模式"></a>双缓冲模式</h2>]]></content>
+      <categories>
+        <category>《游戏编程模式》笔记</category>
+      </categories>
+      <tags>
+        <tag>《游戏编程模式》</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《游戏编程模式》读书笔记四</title>
     <url>/posts/7953/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304060426139.jpeg" alt="img"></p>
@@ -821,6 +844,45 @@
       <tags>
         <tag>《游戏编程模式》</tag>
         <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Unity-HmxsToolkit】零-前言</title>
+    <url>/posts/23946/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
+</blockquote>
+<hr>
+<p>这是一个个人Toolkit项目，会记录一些自己写<del>Ctrl+C&#x2F;V</del>的Unity模块&#x2F;功能&#x2F;系统&#x2F;轮子</p>
+<p>开始这个项目的契机是翻到了之前自己写的一个小框架，现在看来非常不成熟，没有配套的文档，注释不走心，有些功能自己也不是很明白，总之非常不满意，所以借此开了一个新坑。我会从头开始实现一些模块，并且编写一些较为详细的文档，希望这个Toolkit能作为一种技术积累</p>
+<p>以下是一些已经实现的模块：</p>
+<table>
+<thead>
+<tr>
+<th align="center">模块</th>
+<th align="center">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><a href="https://hmxs.games/posts/36395/">Singleton</a></td>
+<td align="center">泛型单例模块，包含了不继承&#x2F;继承Mono、线程安全&#x2F;不安全、SO单例等多种泛型基类</td>
+</tr>
+<tr>
+<td align="center"><a href="https://hmxs.games/posts/42997/">EventCenter</a></td>
+<td align="center">事件中心模块，观察者模式的实现，可以帮助解耦</td>
+</tr>
+<tr>
+<td align="center">GuestSystem</td>
+<td align="center">任务系统，一个基于ScriptableObject的较为通用的任务系统，包含了数据持久化的内容</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>HmxsToolkit</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>Toolkit</tag>
       </tags>
   </entry>
   <entry>
@@ -867,68 +929,6 @@
       <tags>
         <tag>《游戏编程模式》</tag>
         <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《游戏编程模式》读书笔记六（更新中）</title>
-    <url>/posts/12389/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304070014396.jpeg" alt="img"></p>
-<blockquote>
-<p>《游戏编程模式》-Bob Nystrom</p>
-<p>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></p>
-</blockquote>
-<hr>
-<h1 id="序列模式"><a href="#序列模式" class="headerlink" title="序列模式"></a>序列模式</h1><p>在游戏制作中，“时间”是一个极其重要的概念，我们需要为我们创造的虚拟世界赋予时钟。本章节序列模式(SequencingPatterns)便是构建时钟的工具。</p>
-<p><strong>游戏循环</strong>是时钟的主轴</p>
-<p>对象通过<strong>Update方法</strong>响应游戏循环</p>
-<p>应用<strong>双缓冲模式</strong>可以储存快照来隐藏计算机顺序执行的特性，使游戏看起来是同步更新的</p>
-<hr>
-<h2 id="双缓冲模式"><a href="#双缓冲模式" class="headerlink" title="双缓冲模式"></a>双缓冲模式</h2>]]></content>
-      <categories>
-        <category>《游戏编程模式》笔记</category>
-      </categories>
-      <tags>
-        <tag>《游戏编程模式》</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Unity-HmxsToolkit】零-前言</title>
-    <url>/posts/23946/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
-</blockquote>
-<hr>
-<p>这是一个个人Toolkit项目，会记录一些自己写<del>Ctrl+C&#x2F;V</del>的Unity模块&#x2F;功能&#x2F;系统&#x2F;轮子</p>
-<p>开始这个项目的契机是翻到了之前自己写的一个小框架，现在看来非常不成熟，没有配套的文档，注释不走心，有些功能自己也不是很明白，总之非常不满意，所以借此开了一个新坑。我会从头开始实现一些模块，并且编写一些较为详细的文档，希望这个Toolkit能作为一种技术积累</p>
-<p>以下是一些已经实现的模块：</p>
-<table>
-<thead>
-<tr>
-<th align="center">模块</th>
-<th align="center">简介</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><a href="https://hmxs.games/posts/36395/">Singleton</a></td>
-<td align="center">泛型单例模块，包含了不继承&#x2F;继承Mono、线程安全&#x2F;不安全、SO单例等多种泛型基类</td>
-</tr>
-<tr>
-<td align="center"><a href="https://hmxs.games/posts/42997/">EventCenter</a></td>
-<td align="center">事件中心模块，观察者模式的实现，可以帮助解耦</td>
-</tr>
-<tr>
-<td align="center">GuestSystem</td>
-<td align="center">任务系统，一个基于ScriptableObject的较为通用的任务系统，包含了数据持久化的内容</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>HmxsToolkit</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>Toolkit</tag>
       </tags>
   </entry>
   <entry>
@@ -984,6 +984,24 @@
       </tags>
   </entry>
   <entry>
+    <title>2048</title>
+    <url>/posts/42265/</url>
+    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251612203.png" alt="2048" style="zoom: 25%;" />
+
+<blockquote>
+<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/Unity-2048-New">https://github.com/hmxsqaq/Unity-2048-New</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>经典小游戏复刻</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Unity-HmxsToolkit】二-事件中心</title>
     <url>/posts/42997/</url>
     <content><![CDATA[<blockquote>
@@ -1031,7 +1049,27 @@
       </tags>
   </entry>
   <entry>
-    <title>【Unity-HmxsToolkit】二-事件中心</title>
+    <title>FlappyBird</title>
+    <url>/posts/16350/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251606418.png" alt="FlappyBird"></p>
+<blockquote>
+<p><strong>项目地址：</strong></p>
+<p>Unity: <a href="https://github.com/hmxsqaq/Unity-FlappyBird">https://github.com/hmxsqaq/Unity-FlappyBird</a></p>
+<p>Pygame: <a href="https://github.com/hmxsqaq/Pygame-FlappyBird">https://github.com/hmxsqaq/Pygame-FlappyBird</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>经典小游戏复刻</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Unity-HmxsToolkit】三-任务系统</title>
     <url>/posts/42998/</url>
     <content><![CDATA[<blockquote>
 <p><strong>Github项目地址：<a href="https://github.com/hmxsqaq/Unity-HmxsToolkit">https://github.com/hmxsqaq/Unity-HmxsToolkit</a></strong></p>
@@ -1547,78 +1585,9 @@
       </tags>
   </entry>
   <entry>
-    <title>2048</title>
-    <url>/posts/42265/</url>
-    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251612203.png" alt="2048" style="zoom: 25%;" />
-
-<blockquote>
-<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/Unity-2048-New">https://github.com/hmxsqaq/Unity-2048-New</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>经典小游戏复刻</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FlappyBird</title>
-    <url>/posts/16350/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251606418.png" alt="FlappyBird"></p>
-<blockquote>
-<p><strong>项目地址：</strong></p>
-<p>Unity: <a href="https://github.com/hmxsqaq/Unity-FlappyBird">https://github.com/hmxsqaq/Unity-FlappyBird</a></p>
-<p>Pygame: <a href="https://github.com/hmxsqaq/Pygame-FlappyBird">https://github.com/hmxsqaq/Pygame-FlappyBird</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>经典小游戏复刻</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>分类</title>
-    <url>/categories/index.html</url>
+    <title>友链</title>
+    <url>/link/index.html</url>
     <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/css/custom.css</url>
-    <content><![CDATA[/* 页脚与头图透明 */
-#web_bg{
-    filter: brightness(0.8);
-}
-
-#footer {
-    background: transparent !important;
-}
-#page-header {
-    background: transparent !important;
-}
-
-/* 白天模式遮罩透明 */
-#footer::before {
-    background: transparent !important;
-}
-#page-header::before {
-    background: transparent !important;
-}
-
-/* 夜间模式遮罩透明 */
-[data-theme="dark"] #footer::before {
-    background: transparent !important;
-}
-[data-theme="dark"] #page-header::before {
-    background: transparent !important;
-}]]></content>
   </entry>
   <entry>
     <title>About Me</title>
@@ -1711,9 +1680,35 @@
 ]]></content>
   </entry>
   <entry>
-    <title>友链</title>
-    <url>/link/index.html</url>
-    <content><![CDATA[]]></content>
+    <title></title>
+    <url>/css/custom.css</url>
+    <content><![CDATA[/* 页脚与头图透明 */
+#web_bg{
+    filter: brightness(0.8);
+}
+
+#footer {
+    background: transparent !important;
+}
+#page-header {
+    background: transparent !important;
+}
+
+/* 白天模式遮罩透明 */
+#footer::before {
+    background: transparent !important;
+}
+#page-header::before {
+    background: transparent !important;
+}
+
+/* 夜间模式遮罩透明 */
+[data-theme="dark"] #footer::before {
+    background: transparent !important;
+}
+[data-theme="dark"] #page-header::before {
+    background: transparent !important;
+}]]></content>
   </entry>
   <entry>
     <title></title>
@@ -1915,6 +1910,11 @@
 .pace.pace-inactive {
 	display: none;
 }]]></content>
+  </entry>
+  <entry>
+    <title>分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>标签</title>
