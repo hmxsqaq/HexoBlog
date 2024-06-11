@@ -72,68 +72,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【LeetCode】算法练习记录</title>
-    <url>/posts/18628/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202309090059804.png" alt="leetcode"></p>
-<blockquote>
-<p><strong>力扣个人主页：<a href="https://leetcode.cn/u/nervous-i3elllb6/">https://leetcode.cn/u/nervous-i3elllb6/</a></strong></p>
-</blockquote>
-<hr>
-<h2 id="template：">template：</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## date</span><br><span class="line"></span><br><span class="line">### title</span><br><span class="line"></span><br><span class="line">#### 思路</span><br><span class="line"></span><br><span class="line">#### 题解</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="230905">230905</h2>
-<h3 id="2605-从两个数字数组里生成最小数字"><a href="https://leetcode.cn/problems/form-smallest-number-from-two-digit-arrays/">2605. 从两个数字数组里生成最小数字</a></h3>
-<h4 id="思路">思路</h4>
-<ul>
-<li>哈希：通过哈希表筛出两个数组的重复数与最小数</li>
-</ul>
-<h4 id="题解">题解</h4>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 哈希</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minNumber</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> result = <span class="number">10</span>;</span><br><span class="line">        <span class="function">unordered_set&lt;<span class="type">int</span>&gt; <span class="title">hash</span><span class="params">(nums1.begin(), nums1.end())</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums2)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (hash.<span class="built_in">find</span>(num) != hash.<span class="built_in">end</span>())</span><br><span class="line">                result = <span class="built_in">min</span>(result, num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (result &lt; <span class="number">10</span>)</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        <span class="type">int</span> num1 = *<span class="built_in">min_element</span>(nums1.<span class="built_in">begin</span>(), nums1.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> num2 = *<span class="built_in">min_element</span>(nums2.<span class="built_in">begin</span>(), nums2.<span class="built_in">end</span>());</span><br><span class="line">        result = num1 &lt; num2 ? num1 * <span class="number">10</span> + num2 : num2 * <span class="number">10</span> + num1;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="1-两数之和"><a href="https://leetcode.cn/problems/two-sum/">1. 两数之和</a></h3>
-<h4 id="思路-2">思路</h4>
-<ul>
-<li>遍历爆搜：把所有两两组合全试一遍</li>
-<li>哈希：由<code>x + y = target</code>得<code>target - x = y</code>，建立哈希表进行索引，遍历过程中，设遍历到的数为<code>x</code>，在哈希表中寻找<code>target - x</code>，如果找不到就把<code>x</code>加入哈希表</li>
-</ul>
-<h4 id="题解-2">题解</h4>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 遍历爆搜</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; nums.<span class="built_in">size</span>(); ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] == target)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> &#123; i, j &#125;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 哈希</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; hash;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">auto</span> iterator = hash.<span class="built_in">find</span>(target - nums[i]);</span><br><span class="line">            <span class="keyword">if</span> (iterator != hash.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> &#123; iterator-&gt;second, i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hash[nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="230906">230906</h2>
-<h3 id="2-两数相加"><a href="https://leetcode.cn/problems/add-two-numbers/">2. 两数相加</a></h3>
-<h4 id="思路-3">思路</h4>
-<p>链表题</p>
-<ul>
-<li>迭代模拟：模拟加法的过程，遍历即可，需要注意边界检查等细节，需要采用一个<code>dummy head</code>（傀儡头指针）对链表头进行标记</li>
-<li>递归：<code>sum = l1 + l2 + carry_bit</code>，使用递归进行链表的递推</li>
-</ul>
-<h4 id="题解-3">题解</h4>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 模拟</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode* tail = <span class="literal">nullptr</span>;</span><br><span class="line">        ListNode* head = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="type">int</span> carry_bit = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (l1 || l2 )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> add1 = l1 ? l1-&gt;val : <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> add2 = l2 ? l2-&gt;val : <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> sum = add1 + add2 + carry_bit;</span><br><span class="line">            carry_bit = sum / <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span> (head == <span class="literal">nullptr</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                tail = <span class="keyword">new</span> <span class="built_in">ListNode</span>(sum % <span class="number">10</span>);</span><br><span class="line">                head = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>, tail);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                tail-&gt;next = <span class="keyword">new</span> <span class="built_in">ListNode</span>(sum % <span class="number">10</span>);</span><br><span class="line">                tail = tail-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (l1) l1 = l1-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (l2) l2 = l2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (carry_bit &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            tail-&gt;next = <span class="keyword">new</span> <span class="built_in">ListNode</span>(carry_bit);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 递归</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">add</span><span class="params">(ListNode* l1, ListNode* l2, <span class="type">int</span> carry)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l1 == <span class="literal">nullptr</span> &amp;&amp; l2 == <span class="literal">nullptr</span> &amp;&amp; carry == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="type">int</span> sum = (l1 ? l1-&gt;val : <span class="number">0</span>) + (l2 ? l2-&gt;val : <span class="number">0</span>) + carry;</span><br><span class="line">        ListNode* node = <span class="keyword">new</span> <span class="built_in">ListNode</span>(sum % <span class="number">10</span>);</span><br><span class="line">        node-&gt;next = <span class="built_in">add</span>(l1 ? l1-&gt;next : <span class="literal">nullptr</span>, l2 ? l2-&gt;next : <span class="literal">nullptr</span>, sum / <span class="number">10</span>);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">add</span>(l1, l2, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="230908">230908</h2>
-<h3 id="3-无重复字符的最长子串"><a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/">3. 无重复字符的最长子串</a></h3>
-<h4 id="思路-4">思路</h4>
-<ul>
-<li>滑动窗口：使用一左一右两个索引“指针”，创造一个“窗口”，窗口中的元素是符合要求的，使其在字符串/数组上移动，完成遍历</li>
-</ul>
-<h4 id="题解-4">题解</h4>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 滑动窗口</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(string s)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        unordered_set&lt;<span class="type">char</span>&gt; hash;</span><br><span class="line">        <span class="type">int</span> right = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> left = <span class="number">0</span>;left &lt; s.<span class="built_in">length</span>();left++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (right &lt; s.<span class="built_in">length</span>() &amp;&amp; hash.<span class="built_in">find</span>(s[right]) == hash.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                hash.<span class="built_in">insert</span>(s[right]);</span><br><span class="line">                right++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, right - left);</span><br><span class="line">            hash.<span class="built_in">erase</span>(s[left]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="230909">230909</h2>
-<p>看了俩题都做寄了，摆！待我学成《算法4》归来</p>
-<hr>
-]]></content>
-      <categories>
-        <category>Notes</category>
-        <category>Algorithm</category>
-      </categories>
-      <tags>
-        <tag>C/C++</tag>
-        <tag>Algorithm</tag>
-        <tag>Note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>针对《异度神剑2》的批判看法与改造意见</title>
     <url>/posts/17116/</url>
     <content><![CDATA[<h1>针对《异度神剑2》的批判看法与改造意见</h1>
@@ -161,60 +99,6 @@
       <tags>
         <tag>Games</tag>
         <tag>Comment</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【C#-泛型约束】学习笔记</title>
-    <url>/posts/17194/</url>
-    <content><![CDATA[<h1>泛型约束</h1>
-<blockquote>
-<p>泛型约束：对泛型类型参数施加限制，用于限制可以传递到该类型参数的类型种类，共有6种</p>
-</blockquote>
-<p><strong>基本语法</strong>：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">struct</span>/<span class="keyword">class</span>/<span class="title">new</span>()/&lt;<span class="title">base</span> <span class="title">class</span> <span class="title">name</span>&gt;/&lt;<span class="title">interface</span> <span class="title">name</span>&gt;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="结构约束-where-T-struct">结构约束 <code>where T : struct</code></h2>
-<p>T必须是<strong>值类型</strong>，可以指定除 Nullable 以外的任何值类型</p>
-<p>（值类型有int、float、char、bool、struct、enum、byte等，值类型声明后被直接分配内存）</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">struct</span> &#123; &#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyGeneric&lt;<span class="built_in">int</span>&gt; myGenericint = <span class="keyword">new</span> MyGeneric&lt;<span class="built_in">int</span>&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="类关键词约束-where-T-class">类关键词约束 <code>where T : class</code></h2>
-<p>T必须是<strong>引用类型</strong>，包括任何类、接口、委托或数组类型</p>
-<p>（引用类型有string和class，引用类型被声明时只在栈中分配一小片内存用于容纳一个地址，其实例被创建时，才会为其在堆中分配内存，并将堆中被分配的内存地址保存到栈中）</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="keyword">class</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyGeneric&lt;<span class="built_in">string</span>&gt; myGenericstring = <span class="keyword">new</span> MyGeneric&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="接口名约束-where-T-interface-name">接口名约束 <code>where T : &lt;interface name&gt;</code></h2>
-<p>T必须<strong>继承所给名称的指定接口</strong>，并实现其中的所有方法</p>
-<p>可以指定多个接口约束</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IMyInterface</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">int</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a,<span class="built_in">int</span> b</span>)</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Show</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">A</span> : <span class="title">IMyInterface</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a,<span class="built_in">int</span> b</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Show</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(<span class="string">&quot;This is a test.&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">IMyInterface</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyGeneric&lt;A&gt; myGenericA = <span class="keyword">new</span> MyGeneric&lt;A&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="类名约束-where-T-base-class-name">类名约束 <code>where T : &lt;base class name&gt;</code></h2>
-<p>T必须<strong>是该类本身或是该类的子类</strong></p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">A</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">B</span> : <span class="title">A</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">A</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span>&#123;</span><br><span class="line">    MyGeneric&lt;A&gt; myGenericA = <span class="keyword">new</span> MyGeneric&lt;A&gt;();</span><br><span class="line">    MyGeneric&lt;B&gt; myGenericB = <span class="keyword">new</span> MyGeneric&lt;B&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="构造约束-where-T-new">构造约束 <code>where T : new()</code></h2>
-<p>T必须具<strong>有无参数的公共构造函数</strong></p>
-<p>当与其他约束一起使用时，new() 约束必须最后指定</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">A</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">A</span>,<span class="title">new</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span>&#123;</span><br><span class="line">    MyGeneric&lt;A&gt; myGenericA = <span class="keyword">new</span> MyGeneric&lt;A&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h1>泛型约束的应用</h1>
-<h2 id="例：">例：</h2>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyBaseGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; &#123; &#125;</span><br></pre></td></tr></table></figure>
-<p>采用了**“类名约束”**</p>
-<p>根据定义：T必须是该类本身或是该类的子类，即T必须是MyBaseGeneric<T>本身或是MyBaseGeneric<T>的子类</p>
-<p>故当有其他类MyGeneric想要继承MyBaseGeneric<T>时，T便只能为MyGeneric本身或其他已经继承了MyBaseGeneric<T>的类</p>
-<p>写法为：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span> : <span class="title">MyBaseGeneric</span>&lt;<span class="title">MyGeneric</span>&gt; &#123; &#125;</span><br></pre></td></tr></table></figure>
-<p>这样便通过类名泛型约束限制了泛型T</p>
-]]></content>
-      <categories>
-        <category>Notes</category>
-        <category>C#</category>
-      </categories>
-      <tags>
-        <tag>Note</tag>
-        <tag>C#</tag>
-        <tag>Generic</tag>
       </tags>
   </entry>
   <entry>
@@ -285,189 +169,125 @@
         <category>C#</category>
       </categories>
       <tags>
-        <tag>Note</tag>
         <tag>C#</tag>
         <tag>Reflection</tag>
+        <tag>Note</tag>
       </tags>
   </entry>
   <entry>
-    <title>【3B1B-线性代数的本质】学习笔记</title>
-    <url>/posts/17021/</url>
-    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100312370.png" alt="image-20230410031239217" style="zoom:50%;" />
+    <title>【C#-泛型约束】学习笔记</title>
+    <url>/posts/17194/</url>
+    <content><![CDATA[<h1>泛型约束</h1>
 <blockquote>
-<p>视频地址: <a href="https://www.bilibili.com/video/BV1ys411472E">https://www.bilibili.com/video/BV1ys411472E</a></p>
+<p>泛型约束：对泛型类型参数施加限制，用于限制可以传递到该类型参数的类型种类，共有6种</p>
 </blockquote>
+<p><strong>基本语法</strong>：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">struct</span>/<span class="keyword">class</span>/<span class="title">new</span>()/&lt;<span class="title">base</span> <span class="title">class</span> <span class="title">name</span>&gt;/&lt;<span class="title">interface</span> <span class="title">name</span>&gt;</span><br></pre></td></tr></table></figure>
 <hr>
-<h1>线性代数的本质</h1>
-<h2 id="向量是什么">向量是什么</h2>
-<h3 id="向量的三种理解">向量的三种理解</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100320590.png" alt="image-20230410032014523" style="zoom: 33%;" />
-<ul>
-<li>物理: 向量是空间中的箭头，决定一个向量的是它的长度与所指的方向</li>
-<li>计算机: 向量是有序的数字列表</li>
-<li>数学: A Vector can be anything! 只要保证两个向量相加/数乘有意义即可</li>
-</ul>
-<h3 id="线性代数中的向量">线性代数中的向量</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100328975.png" alt="image-20230410032831917" style="zoom:33%;" />
-<p>从几何直观的角度出发，线代中的向量是位于坐标系中且始终出发于原点的箭头，其坐标代表了其距离坐标轴的距离</p>
-<p>(因为绝大部分情况下，向量的起点都是原点，所以有时我们也可以将向量看做坐标系中的一个点来进行理解)</p>
-<h3 id="向量的基本运算">向量的基本运算</h3>
-<ul>
-<li>加法: 三角形法则—描述了两个向量运动的叠加</li>
-<li>数乘: 对于向量的拉伸、压缩、翻转</li>
-</ul>
+<h2 id="结构约束-where-T-struct">结构约束 <code>where T : struct</code></h2>
+<p>T必须是<strong>值类型</strong>，可以指定除 Nullable 以外的任何值类型</p>
+<p>（值类型有int、float、char、bool、struct、enum、byte等，值类型声明后被直接分配内存）</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">struct</span> &#123; &#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyGeneric&lt;<span class="built_in">int</span>&gt; myGenericint = <span class="keyword">new</span> MyGeneric&lt;<span class="built_in">int</span>&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="线性组合、张成空间与基向量">线性组合、张成空间与基向量</h2>
-<h3 id="线性组合">线性组合</h3>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100335051.png" alt="image-20230410033539016"></p>
-<p>两个数乘向量的和被称为这两个向量的线性组合</p>
-<p>“线性”的一种理解: 在向量的组合中，如果固定其中一个标量，让另一个标量自由变化，所产生的向量的终点会描出一条直线</p>
-<p>线性组合存在不同情况: 大部分情况下，v和w的线性组合可以到达二维空间中的任意点，而少部分情况下(共线/都是零向量)时，它们只能到达一条直线/原点</p>
-<h3 id="张成空间-span">张成空间(span)</h3>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100338169.png" alt="image-20230410033843131"></p>
-<p>所有可以表示为给定向量线性组合的向量的集合被称为给定向量张成的空间</p>
-<h3 id="线性相关与线性无关">线性相关与线性无关</h3>
-<ul>
-<li>线性相关:</li>
-</ul>
-<p>​	当我们有多个向量，并且可以移除其中的一个而不减小张成的空间，则这些向量“线性相关”</p>
-<p>​	另一种表述，其中一个向量可以表示为其它向量的线性组合</p>
-<ul>
-<li>线性相关:</li>
-</ul>
-<p>​	如果所有的向量都给张成的空间增加了新的维度，则称这些向量“线性无关”</p>
-<h3 id="基向量">基向量</h3>
-<p>向量空间的一组基是张成该空间的一个线性无关的向量集</p>
+<h2 id="类关键词约束-where-T-class">类关键词约束 <code>where T : class</code></h2>
+<p>T必须是<strong>引用类型</strong>，包括任何类、接口、委托或数组类型</p>
+<p>（引用类型有string和class，引用类型被声明时只在栈中分配一小片内存用于容纳一个地址，其实例被创建时，才会为其在堆中分配内存，并将堆中被分配的内存地址保存到栈中）</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="keyword">class</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyGeneric&lt;<span class="built_in">string</span>&gt; myGenericstring = <span class="keyword">new</span> MyGeneric&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="矩阵与线性变换">矩阵与线性变换</h2>
-<h3 id="线性变换">线性变换</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100357189.png" alt="image-20230410035722134" style="zoom:50%;" />
-<p>“线性变换”中“变换”一词的本质便是函数，其接受输入并输出对应结果。</p>
-<p>采用“变换”一词来描述，着重突出了其带有的“运动属性”，即并不是单纯的由a得b，而是由a运动到b，这对于向量有着非常好的几何直观</p>
-<p>而线性代数中的变换，便是将向量空间中的所有点移动到另一个位置上</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100402034.png" alt="image-20230410040256993" style="zoom:33%;" />
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100403770.png" alt="image-20230410040341704" style="zoom:33%;" />
-<p>而线性变换便是一种特殊的变换，其有着两条性质:</p>
-<ul>
-<li>直线在变换后仍为直线</li>
-<li>原点不能移动</li>
-</ul>
-<p>线性变换是让网格线保持平行且等距分布的变换，并保持原点不动</p>
-<p><strong>只需要记录变换前后的一组基向量，即可用其的线性组合描述空间中任意向量的对应变换</strong></p>
-<h3 id="矩阵乘法的几何意义">矩阵乘法的几何意义</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100410685.webp" alt="img" style="zoom: 67%;" />
-<p>方阵的每一列都是一个基向量变换后的值，用方阵乘以(x,y)向量即可得(x,y)经过对应线性变换后的值</p>
-<p>每当看到矩阵时，我们都可以把它理解为对空间的一种特定变换</p>
+<h2 id="接口名约束-where-T-interface-name">接口名约束 <code>where T : &lt;interface name&gt;</code></h2>
+<p>T必须<strong>继承所给名称的指定接口</strong>，并实现其中的所有方法</p>
+<p>可以指定多个接口约束</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IMyInterface</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">int</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a,<span class="built_in">int</span> b</span>)</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Show</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">A</span> : <span class="title">IMyInterface</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a,<span class="built_in">int</span> b</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Show</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(<span class="string">&quot;This is a test.&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">IMyInterface</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyGeneric&lt;A&gt; myGenericA = <span class="keyword">new</span> MyGeneric&lt;A&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="矩阵乘法与线性变换的复合">矩阵乘法与线性变换的复合</h2>
-<p>线性变换可以复合，即多次独立的线性变换可以形成一个新的线性变换，这个变换被称为“复合变换”</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130148780.png" alt="image-20230413014833701" style="zoom:50%;" />
-<p>而复合变换的变换矩阵即为之前的独立线性变换矩阵的积，根据变换顺序，从右往左相乘</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130151133.png" alt="image-20230413015109095" style="zoom:50%;" />
-<p>同时需要注意的是，矩阵乘法不具有交换律，反映到几何直观上，同样两次独立的线性变换，改变变换的先后顺序会使最后的复合变换改变</p>
+<h2 id="类名约束-where-T-base-class-name">类名约束 <code>where T : &lt;base class name&gt;</code></h2>
+<p>T必须<strong>是该类本身或是该类的子类</strong></p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">A</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">B</span> : <span class="title">A</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">A</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span>&#123;</span><br><span class="line">    MyGeneric&lt;A&gt; myGenericA = <span class="keyword">new</span> MyGeneric&lt;A&gt;();</span><br><span class="line">    MyGeneric&lt;B&gt; myGenericB = <span class="keyword">new</span> MyGeneric&lt;B&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="行列式">行列式</h2>
-<h3 id="行列式的几何意义">行列式的几何意义</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130156166.png" alt="image-20230413015615112" style="zoom:50%;" />
-<p>线性变换改变空间面积的比例，成为变换的行列式</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130157043.png" alt="image-20230413015704985" style="zoom:50%;" />
-<p>当行列式为0时，这意味着这次变换将一个平面压缩到了一条线/一个点上，将空间压缩到了更小的维度上</p>
-<p>这对变换来说是一个非常有用重要的性质，这意味着这次变换是“线性相关”的</p>
-<h3 id="行列式的负数情况">行列式的负数情况</h3>
-<p>根据行列式的几何意义，其代表空间改变的比例，但这无法解释为什么行列式存在负数</p>
-<p>而这其实是由于空间的翻转导致的，有时变换会导致空间发生翻转，使得空间的定向(Orientation)发生改变，而行列式的负号表明了这点，此时行列式的绝对值仍然代表着空间的改变比例</p>
-<p>三维空间的行列式的负数含义：由右手系变为左手系</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130205801.png" alt="image-20230413020509744" style="zoom:50%;" />
+<h2 id="构造约束-where-T-new">构造约束 <code>where T : new()</code></h2>
+<p>T必须具<strong>有无参数的公共构造函数</strong></p>
+<p>当与其他约束一起使用时，new() 约束必须最后指定</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">A</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">A</span>,<span class="title">new</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span>&#123;</span><br><span class="line">    MyGeneric&lt;A&gt; myGenericA = <span class="keyword">new</span> MyGeneric&lt;A&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="逆矩阵、列空间与零空间">逆矩阵、列空间与零空间</h2>
-<h3 id="利用线性代数求解方程组">利用线性代数求解方程组</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130208815.png" alt="image-20230413020806766" style="zoom:50%;" />
-<p>线性代数的一大应用便是其可以帮助我们求解线性方程组，我们可以将线性方程组抽象为一种将未知向量变为已知向量的特定的变换，赋予了方程组几何意义</p>
-<ul>
-<li>当A变换行列式不为0时：</li>
-</ul>
-<p>这代表着变换不会缩小空间的维度，意味着我们永远可以找到满足方程组的变换，之后只需要通过逆变换回溯变换就可以求出位置向量</p>
-<ul>
-<li>当A变换行列式为0时：</li>
-</ul>
-<p>这代表着变换会将空间压缩到更低的维度上，这种情况下逆变换将不存在，如果恰好目标向量正好仍在空间中，则可以求解，否则无解</p>
-<p>对空间维度的压缩意味着会有多个输入对应一个输出</p>
-<h3 id="秩-Rank">秩(Rank)</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130218890.png" alt="image-20230413021856846" style="zoom:50%;" />
-<p>秩意味着变换后空间的维数</p>
-<p>更准确的来说: 列空间的维数被称为秩</p>
-<h3 id="列空间">列空间</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130220425.png" alt="image-20230413022023369" style="zoom:50%;" />
-<p>某一变换所有可能的输出向量的集合，被称为此向量的列空间</p>
-<p>矩阵的列告诉你基向量变换后的位置，这些变换后的基向量张成的空间就是所有可能的变换结果</p>
-<p>列空间就是矩阵的列所张成的空间</p>
-<p>需要注意的是，因为线性变换规定原点不可变，故零向量一定会被包含在列空间中</p>
-<h3 id="零空间">零空间</h3>
-<p>一些向量在变换后会落在零向量/原点上，这些向量的集合被称为零空间</p>
-<p>对于满秩的变换来说，零空间就是原点自身</p>
-<p>而对于一个非满秩的变换来说，因为其对空间的压缩，会有某个面/某条线成为零空间</p>
-<hr>
-<h2 id="点积与对偶性">点积与对偶性</h2>
-<h3 id="点积的标准解释">点积的标准解释</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130230312.png" alt="image-20230413023002271" style="zoom:50%;" />
-<p>两个维数相同的向量，将对应坐标配对相乘后相加</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130231015.png" alt="image-20230413023128940" style="zoom:50%;" />
-<p>几何理解: 某一向量在另一向量上的投影长度与另一向量模长的乘积</p>
-<h3 id="线性代数视角中的点积">线性代数视角中的点积</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130239670.png" alt="image-20230413023939605" style="zoom:50%;" />
-<p>将点积中的某一向量看做一种由<strong>二维向一维的变换</strong></p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130244388.png" alt="image-20230413024445329" style="zoom:50%;" />
-<p><strong>通过对称性，可以发现这种二维向一维的变换矩阵就是这一向量的x，y坐标，这太酷了！！！！！！！！！</strong></p>
-<hr>
-<h2 id="叉积">叉积</h2>
-<h3 id="叉积的标准解释">叉积的标准解释</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304131755993.png" alt="image-20230413175520918" style="zoom:50%;" />
-<p>模长为两个向量通过平移形成的平行四边形的面积</p>
-<p>方向为VW向量的相对位置</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150406598.png" alt="image-20230415040637504" style="zoom:50%;" />
-<p>对于三维向量，其几何意义是依据右手系导出一个同时垂直于v、w的向量，且其模长为v、w形成的平行四边形的面积，计算公式如上</p>
-<h3 id="以线性代数的眼光看待叉积">以线性代数的眼光看待叉积</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150411093.png" alt="image-20230415041158985" style="zoom: 33%;" />
-<hr>
-<h2 id="基变换">基变换</h2>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150430127.png" alt="image-20230415043031077" style="zoom:50%;" />
-<p>发生在向量与一组数之间的任意一种转化，都被称为一个坐标系</p>
-<p>而坐标系的基向量规定了这种转化，采用不同的基向量，坐标系的映射关系便会发生改变</p>
-<p>而通过变换矩阵可以实现基向量的变换</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150435050.png" alt="image-20230415043533994" style="zoom:33%;" />
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150436557.png" alt="image-20230415043651504" style="zoom: 50%;" />
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150439622.png" alt="image-20230415043900570" style="zoom:50%;" />
-<hr>
-<h2 id="特征向量与特征值">特征向量与特征值</h2>
-<h3 id="定义">定义</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150443258.png" alt="image-20230415044306169" style="zoom:50%;" />
-<p>特征向量：在变换中张成方向保持不变的向量</p>
-<p>特征值：特征向量被拉伸/压缩比例的系数</p>
-<h3 id="计算思想">计算思想</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150446401.png" alt="image-20230415044635353" style="zoom:50%;" />
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150451537.png" alt="image-20230415045155504" style="zoom:50%;" />
-<h3 id="特征基">特征基</h3>
-<p>以特征向量为基向量会使许多计算变得简单</p>
-<hr>
-<h2 id="抽象向量空间">抽象向量空间</h2>
-<h3 id="线性的严格定义">线性的严格定义</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150501610.png" alt="image-20230415050157546" style="zoom:50%;" />
-<p>线性让一个线性变换可以通过它对基向量的作用来完全描述，这使得矩阵向量乘法成为可能</p>
-<p>(求导就是一种线性运算)</p>
-<h3 id="函数与向量">函数与向量</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150507883.png" alt="image-20230415050754810" style="zoom:50%;" />
-<h3 id="向量空间">向量空间</h3>
-<p>向量空间是抽象出来的无形概念，任何满足公理的东西都可以被称为向量空间，并应用向量的性质</p>
-<h3 id="万物皆可向量！">万物皆可向量！</h3>
+<h1>泛型约束的应用</h1>
+<h2 id="例：">例：</h2>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyBaseGeneric</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="title">MyGeneric</span>&lt;<span class="title">T</span>&gt; &#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>采用了**“类名约束”**</p>
+<p>根据定义：T必须是该类本身或是该类的子类，即T必须是MyBaseGeneric<T>本身或是MyBaseGeneric<T>的子类</p>
+<p>故当有其他类MyGeneric想要继承MyBaseGeneric<T>时，T便只能为MyGeneric本身或其他已经继承了MyBaseGeneric<T>的类</p>
+<p>写法为：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyGeneric</span> : <span class="title">MyBaseGeneric</span>&lt;<span class="title">MyGeneric</span>&gt; &#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>这样便通过类名泛型约束限制了泛型T</p>
 ]]></content>
       <categories>
         <category>Notes</category>
-        <category>Mathematics</category>
-        <category>《Essence of Linear Algebra》</category>
+        <category>C#</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>Note</tag>
+        <tag>Generic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【LeetCode】算法练习记录</title>
+    <url>/posts/18628/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202309090059804.png" alt="leetcode"></p>
+<blockquote>
+<p><strong>力扣个人主页：<a href="https://leetcode.cn/u/nervous-i3elllb6/">https://leetcode.cn/u/nervous-i3elllb6/</a></strong></p>
+</blockquote>
+<hr>
+<h2 id="template：">template：</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## date</span><br><span class="line"></span><br><span class="line">### title</span><br><span class="line"></span><br><span class="line">#### 思路</span><br><span class="line"></span><br><span class="line">#### 题解</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="230905">230905</h2>
+<h3 id="2605-从两个数字数组里生成最小数字"><a href="https://leetcode.cn/problems/form-smallest-number-from-two-digit-arrays/">2605. 从两个数字数组里生成最小数字</a></h3>
+<h4 id="思路">思路</h4>
+<ul>
+<li>哈希：通过哈希表筛出两个数组的重复数与最小数</li>
+</ul>
+<h4 id="题解">题解</h4>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 哈希</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minNumber</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> result = <span class="number">10</span>;</span><br><span class="line">        <span class="function">unordered_set&lt;<span class="type">int</span>&gt; <span class="title">hash</span><span class="params">(nums1.begin(), nums1.end())</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums2)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (hash.<span class="built_in">find</span>(num) != hash.<span class="built_in">end</span>())</span><br><span class="line">                result = <span class="built_in">min</span>(result, num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (result &lt; <span class="number">10</span>)</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        <span class="type">int</span> num1 = *<span class="built_in">min_element</span>(nums1.<span class="built_in">begin</span>(), nums1.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> num2 = *<span class="built_in">min_element</span>(nums2.<span class="built_in">begin</span>(), nums2.<span class="built_in">end</span>());</span><br><span class="line">        result = num1 &lt; num2 ? num1 * <span class="number">10</span> + num2 : num2 * <span class="number">10</span> + num1;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="1-两数之和"><a href="https://leetcode.cn/problems/two-sum/">1. 两数之和</a></h3>
+<h4 id="思路-2">思路</h4>
+<ul>
+<li>遍历爆搜：把所有两两组合全试一遍</li>
+<li>哈希：由<code>x + y = target</code>得<code>target - x = y</code>，建立哈希表进行索引，遍历过程中，设遍历到的数为<code>x</code>，在哈希表中寻找<code>target - x</code>，如果找不到就把<code>x</code>加入哈希表</li>
+</ul>
+<h4 id="题解-2">题解</h4>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 遍历爆搜</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; nums.<span class="built_in">size</span>(); ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] == target)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> &#123; i, j &#125;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 哈希</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; hash;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">auto</span> iterator = hash.<span class="built_in">find</span>(target - nums[i]);</span><br><span class="line">            <span class="keyword">if</span> (iterator != hash.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> &#123; iterator-&gt;second, i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hash[nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="230906">230906</h2>
+<h3 id="2-两数相加"><a href="https://leetcode.cn/problems/add-two-numbers/">2. 两数相加</a></h3>
+<h4 id="思路-3">思路</h4>
+<p>链表题</p>
+<ul>
+<li>迭代模拟：模拟加法的过程，遍历即可，需要注意边界检查等细节，需要采用一个<code>dummy head</code>（傀儡头指针）对链表头进行标记</li>
+<li>递归：<code>sum = l1 + l2 + carry_bit</code>，使用递归进行链表的递推</li>
+</ul>
+<h4 id="题解-3">题解</h4>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 模拟</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode* tail = <span class="literal">nullptr</span>;</span><br><span class="line">        ListNode* head = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="type">int</span> carry_bit = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (l1 || l2 )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> add1 = l1 ? l1-&gt;val : <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> add2 = l2 ? l2-&gt;val : <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> sum = add1 + add2 + carry_bit;</span><br><span class="line">            carry_bit = sum / <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span> (head == <span class="literal">nullptr</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                tail = <span class="keyword">new</span> <span class="built_in">ListNode</span>(sum % <span class="number">10</span>);</span><br><span class="line">                head = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>, tail);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                tail-&gt;next = <span class="keyword">new</span> <span class="built_in">ListNode</span>(sum % <span class="number">10</span>);</span><br><span class="line">                tail = tail-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (l1) l1 = l1-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (l2) l2 = l2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (carry_bit &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            tail-&gt;next = <span class="keyword">new</span> <span class="built_in">ListNode</span>(carry_bit);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 递归</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">add</span><span class="params">(ListNode* l1, ListNode* l2, <span class="type">int</span> carry)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l1 == <span class="literal">nullptr</span> &amp;&amp; l2 == <span class="literal">nullptr</span> &amp;&amp; carry == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="type">int</span> sum = (l1 ? l1-&gt;val : <span class="number">0</span>) + (l2 ? l2-&gt;val : <span class="number">0</span>) + carry;</span><br><span class="line">        ListNode* node = <span class="keyword">new</span> <span class="built_in">ListNode</span>(sum % <span class="number">10</span>);</span><br><span class="line">        node-&gt;next = <span class="built_in">add</span>(l1 ? l1-&gt;next : <span class="literal">nullptr</span>, l2 ? l2-&gt;next : <span class="literal">nullptr</span>, sum / <span class="number">10</span>);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">add</span>(l1, l2, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="230908">230908</h2>
+<h3 id="3-无重复字符的最长子串"><a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/">3. 无重复字符的最长子串</a></h3>
+<h4 id="思路-4">思路</h4>
+<ul>
+<li>滑动窗口：使用一左一右两个索引“指针”，创造一个“窗口”，窗口中的元素是符合要求的，使其在字符串/数组上移动，完成遍历</li>
+</ul>
+<h4 id="题解-4">题解</h4>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 滑动窗口</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(string s)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        unordered_set&lt;<span class="type">char</span>&gt; hash;</span><br><span class="line">        <span class="type">int</span> right = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> left = <span class="number">0</span>;left &lt; s.<span class="built_in">length</span>();left++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (right &lt; s.<span class="built_in">length</span>() &amp;&amp; hash.<span class="built_in">find</span>(s[right]) == hash.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                hash.<span class="built_in">insert</span>(s[right]);</span><br><span class="line">                right++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, right - left);</span><br><span class="line">            hash.<span class="built_in">erase</span>(s[left]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="230909">230909</h2>
+<p>看了俩题都做寄了，摆！待我学成《算法4》归来</p>
+<hr>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Algorithm</category>
       </categories>
       <tags>
         <tag>Note</tag>
-        <tag>线性代数</tag>
+        <tag>C/C++</tag>
+        <tag>Algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -1604,6 +1424,186 @@ L &amp; = L_a + L_d + L_s \\
       </tags>
   </entry>
   <entry>
+    <title>【3B1B-线性代数的本质】学习笔记</title>
+    <url>/posts/17021/</url>
+    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100312370.png" alt="image-20230410031239217" style="zoom:50%;" />
+<blockquote>
+<p>视频地址: <a href="https://www.bilibili.com/video/BV1ys411472E">https://www.bilibili.com/video/BV1ys411472E</a></p>
+</blockquote>
+<hr>
+<h1>线性代数的本质</h1>
+<h2 id="向量是什么">向量是什么</h2>
+<h3 id="向量的三种理解">向量的三种理解</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100320590.png" alt="image-20230410032014523" style="zoom: 33%;" />
+<ul>
+<li>物理: 向量是空间中的箭头，决定一个向量的是它的长度与所指的方向</li>
+<li>计算机: 向量是有序的数字列表</li>
+<li>数学: A Vector can be anything! 只要保证两个向量相加/数乘有意义即可</li>
+</ul>
+<h3 id="线性代数中的向量">线性代数中的向量</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100328975.png" alt="image-20230410032831917" style="zoom:33%;" />
+<p>从几何直观的角度出发，线代中的向量是位于坐标系中且始终出发于原点的箭头，其坐标代表了其距离坐标轴的距离</p>
+<p>(因为绝大部分情况下，向量的起点都是原点，所以有时我们也可以将向量看做坐标系中的一个点来进行理解)</p>
+<h3 id="向量的基本运算">向量的基本运算</h3>
+<ul>
+<li>加法: 三角形法则—描述了两个向量运动的叠加</li>
+<li>数乘: 对于向量的拉伸、压缩、翻转</li>
+</ul>
+<hr>
+<h2 id="线性组合、张成空间与基向量">线性组合、张成空间与基向量</h2>
+<h3 id="线性组合">线性组合</h3>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100335051.png" alt="image-20230410033539016"></p>
+<p>两个数乘向量的和被称为这两个向量的线性组合</p>
+<p>“线性”的一种理解: 在向量的组合中，如果固定其中一个标量，让另一个标量自由变化，所产生的向量的终点会描出一条直线</p>
+<p>线性组合存在不同情况: 大部分情况下，v和w的线性组合可以到达二维空间中的任意点，而少部分情况下(共线/都是零向量)时，它们只能到达一条直线/原点</p>
+<h3 id="张成空间-span">张成空间(span)</h3>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100338169.png" alt="image-20230410033843131"></p>
+<p>所有可以表示为给定向量线性组合的向量的集合被称为给定向量张成的空间</p>
+<h3 id="线性相关与线性无关">线性相关与线性无关</h3>
+<ul>
+<li>线性相关:</li>
+</ul>
+<p>​	当我们有多个向量，并且可以移除其中的一个而不减小张成的空间，则这些向量“线性相关”</p>
+<p>​	另一种表述，其中一个向量可以表示为其它向量的线性组合</p>
+<ul>
+<li>线性相关:</li>
+</ul>
+<p>​	如果所有的向量都给张成的空间增加了新的维度，则称这些向量“线性无关”</p>
+<h3 id="基向量">基向量</h3>
+<p>向量空间的一组基是张成该空间的一个线性无关的向量集</p>
+<hr>
+<h2 id="矩阵与线性变换">矩阵与线性变换</h2>
+<h3 id="线性变换">线性变换</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100357189.png" alt="image-20230410035722134" style="zoom:50%;" />
+<p>“线性变换”中“变换”一词的本质便是函数，其接受输入并输出对应结果。</p>
+<p>采用“变换”一词来描述，着重突出了其带有的“运动属性”，即并不是单纯的由a得b，而是由a运动到b，这对于向量有着非常好的几何直观</p>
+<p>而线性代数中的变换，便是将向量空间中的所有点移动到另一个位置上</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100402034.png" alt="image-20230410040256993" style="zoom:33%;" />
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100403770.png" alt="image-20230410040341704" style="zoom:33%;" />
+<p>而线性变换便是一种特殊的变换，其有着两条性质:</p>
+<ul>
+<li>直线在变换后仍为直线</li>
+<li>原点不能移动</li>
+</ul>
+<p>线性变换是让网格线保持平行且等距分布的变换，并保持原点不动</p>
+<p><strong>只需要记录变换前后的一组基向量，即可用其的线性组合描述空间中任意向量的对应变换</strong></p>
+<h3 id="矩阵乘法的几何意义">矩阵乘法的几何意义</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100410685.webp" alt="img" style="zoom: 67%;" />
+<p>方阵的每一列都是一个基向量变换后的值，用方阵乘以(x,y)向量即可得(x,y)经过对应线性变换后的值</p>
+<p>每当看到矩阵时，我们都可以把它理解为对空间的一种特定变换</p>
+<hr>
+<h2 id="矩阵乘法与线性变换的复合">矩阵乘法与线性变换的复合</h2>
+<p>线性变换可以复合，即多次独立的线性变换可以形成一个新的线性变换，这个变换被称为“复合变换”</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130148780.png" alt="image-20230413014833701" style="zoom:50%;" />
+<p>而复合变换的变换矩阵即为之前的独立线性变换矩阵的积，根据变换顺序，从右往左相乘</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130151133.png" alt="image-20230413015109095" style="zoom:50%;" />
+<p>同时需要注意的是，矩阵乘法不具有交换律，反映到几何直观上，同样两次独立的线性变换，改变变换的先后顺序会使最后的复合变换改变</p>
+<hr>
+<h2 id="行列式">行列式</h2>
+<h3 id="行列式的几何意义">行列式的几何意义</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130156166.png" alt="image-20230413015615112" style="zoom:50%;" />
+<p>线性变换改变空间面积的比例，成为变换的行列式</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130157043.png" alt="image-20230413015704985" style="zoom:50%;" />
+<p>当行列式为0时，这意味着这次变换将一个平面压缩到了一条线/一个点上，将空间压缩到了更小的维度上</p>
+<p>这对变换来说是一个非常有用重要的性质，这意味着这次变换是“线性相关”的</p>
+<h3 id="行列式的负数情况">行列式的负数情况</h3>
+<p>根据行列式的几何意义，其代表空间改变的比例，但这无法解释为什么行列式存在负数</p>
+<p>而这其实是由于空间的翻转导致的，有时变换会导致空间发生翻转，使得空间的定向(Orientation)发生改变，而行列式的负号表明了这点，此时行列式的绝对值仍然代表着空间的改变比例</p>
+<p>三维空间的行列式的负数含义：由右手系变为左手系</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130205801.png" alt="image-20230413020509744" style="zoom:50%;" />
+<hr>
+<h2 id="逆矩阵、列空间与零空间">逆矩阵、列空间与零空间</h2>
+<h3 id="利用线性代数求解方程组">利用线性代数求解方程组</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130208815.png" alt="image-20230413020806766" style="zoom:50%;" />
+<p>线性代数的一大应用便是其可以帮助我们求解线性方程组，我们可以将线性方程组抽象为一种将未知向量变为已知向量的特定的变换，赋予了方程组几何意义</p>
+<ul>
+<li>当A变换行列式不为0时：</li>
+</ul>
+<p>这代表着变换不会缩小空间的维度，意味着我们永远可以找到满足方程组的变换，之后只需要通过逆变换回溯变换就可以求出位置向量</p>
+<ul>
+<li>当A变换行列式为0时：</li>
+</ul>
+<p>这代表着变换会将空间压缩到更低的维度上，这种情况下逆变换将不存在，如果恰好目标向量正好仍在空间中，则可以求解，否则无解</p>
+<p>对空间维度的压缩意味着会有多个输入对应一个输出</p>
+<h3 id="秩-Rank">秩(Rank)</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130218890.png" alt="image-20230413021856846" style="zoom:50%;" />
+<p>秩意味着变换后空间的维数</p>
+<p>更准确的来说: 列空间的维数被称为秩</p>
+<h3 id="列空间">列空间</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130220425.png" alt="image-20230413022023369" style="zoom:50%;" />
+<p>某一变换所有可能的输出向量的集合，被称为此向量的列空间</p>
+<p>矩阵的列告诉你基向量变换后的位置，这些变换后的基向量张成的空间就是所有可能的变换结果</p>
+<p>列空间就是矩阵的列所张成的空间</p>
+<p>需要注意的是，因为线性变换规定原点不可变，故零向量一定会被包含在列空间中</p>
+<h3 id="零空间">零空间</h3>
+<p>一些向量在变换后会落在零向量/原点上，这些向量的集合被称为零空间</p>
+<p>对于满秩的变换来说，零空间就是原点自身</p>
+<p>而对于一个非满秩的变换来说，因为其对空间的压缩，会有某个面/某条线成为零空间</p>
+<hr>
+<h2 id="点积与对偶性">点积与对偶性</h2>
+<h3 id="点积的标准解释">点积的标准解释</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130230312.png" alt="image-20230413023002271" style="zoom:50%;" />
+<p>两个维数相同的向量，将对应坐标配对相乘后相加</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130231015.png" alt="image-20230413023128940" style="zoom:50%;" />
+<p>几何理解: 某一向量在另一向量上的投影长度与另一向量模长的乘积</p>
+<h3 id="线性代数视角中的点积">线性代数视角中的点积</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130239670.png" alt="image-20230413023939605" style="zoom:50%;" />
+<p>将点积中的某一向量看做一种由<strong>二维向一维的变换</strong></p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304130244388.png" alt="image-20230413024445329" style="zoom:50%;" />
+<p><strong>通过对称性，可以发现这种二维向一维的变换矩阵就是这一向量的x，y坐标，这太酷了！！！！！！！！！</strong></p>
+<hr>
+<h2 id="叉积">叉积</h2>
+<h3 id="叉积的标准解释">叉积的标准解释</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304131755993.png" alt="image-20230413175520918" style="zoom:50%;" />
+<p>模长为两个向量通过平移形成的平行四边形的面积</p>
+<p>方向为VW向量的相对位置</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150406598.png" alt="image-20230415040637504" style="zoom:50%;" />
+<p>对于三维向量，其几何意义是依据右手系导出一个同时垂直于v、w的向量，且其模长为v、w形成的平行四边形的面积，计算公式如上</p>
+<h3 id="以线性代数的眼光看待叉积">以线性代数的眼光看待叉积</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150411093.png" alt="image-20230415041158985" style="zoom: 33%;" />
+<hr>
+<h2 id="基变换">基变换</h2>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150430127.png" alt="image-20230415043031077" style="zoom:50%;" />
+<p>发生在向量与一组数之间的任意一种转化，都被称为一个坐标系</p>
+<p>而坐标系的基向量规定了这种转化，采用不同的基向量，坐标系的映射关系便会发生改变</p>
+<p>而通过变换矩阵可以实现基向量的变换</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150435050.png" alt="image-20230415043533994" style="zoom:33%;" />
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150436557.png" alt="image-20230415043651504" style="zoom: 50%;" />
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150439622.png" alt="image-20230415043900570" style="zoom:50%;" />
+<hr>
+<h2 id="特征向量与特征值">特征向量与特征值</h2>
+<h3 id="定义">定义</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150443258.png" alt="image-20230415044306169" style="zoom:50%;" />
+<p>特征向量：在变换中张成方向保持不变的向量</p>
+<p>特征值：特征向量被拉伸/压缩比例的系数</p>
+<h3 id="计算思想">计算思想</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150446401.png" alt="image-20230415044635353" style="zoom:50%;" />
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150451537.png" alt="image-20230415045155504" style="zoom:50%;" />
+<h3 id="特征基">特征基</h3>
+<p>以特征向量为基向量会使许多计算变得简单</p>
+<hr>
+<h2 id="抽象向量空间">抽象向量空间</h2>
+<h3 id="线性的严格定义">线性的严格定义</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150501610.png" alt="image-20230415050157546" style="zoom:50%;" />
+<p>线性让一个线性变换可以通过它对基向量的作用来完全描述，这使得矩阵向量乘法成为可能</p>
+<p>(求导就是一种线性运算)</p>
+<h3 id="函数与向量">函数与向量</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304150507883.png" alt="image-20230415050754810" style="zoom:50%;" />
+<h3 id="向量空间">向量空间</h3>
+<p>向量空间是抽象出来的无形概念，任何满足公理的东西都可以被称为向量空间，并应用向量的性质</p>
+<h3 id="万物皆可向量！">万物皆可向量！</h3>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Mathematics</category>
+        <category>《Essence of Linear Algebra》</category>
+      </categories>
+      <tags>
+        <tag>Note</tag>
+        <tag>线性代数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Unity-Input System】学习笔记</title>
     <url>/posts/18584/</url>
     <content><![CDATA[<h1>Input System：浅尝Unity新输入系统</h1>
@@ -1735,6 +1735,154 @@ L &amp; = L_a + L_d + L_s \\
       </tags>
   </entry>
   <entry>
+    <title>《Cyberpsychosis》-AI Game Jam 2022</title>
+    <url>/posts/35484/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261558559.png" alt="qN0WZOY3ZLuswAaY2CB4RM3NRHPgpBfQE9G2VaSz"></p>
+<h1>Cyberpsychosis</h1>
+<blockquote>
+<p><strong>游戏页面</strong>：<a href="https://gmhub.com/game/2005">https://gmhub.com/game/2005</a></p>
+<p><strong>介绍视频</strong>：<a href="https://www.bilibili.com/video/BV1U44y1Z7oU/">https://www.bilibili.com/video/BV1U44y1Z7oU/</a></p>
+</blockquote>
+<p>我在本次项目中担任程序，使用Unity引擎负责了部分代码的编写</p>
+<h2 id="小组成员">小组成员</h2>
+<p><strong>定福庄AI小队：</strong></p>
+<p>策划：虚虚、TenGo</p>
+<p>程序：紫地丁、<strong>徽墨行深(伍泽华)</strong></p>
+<p>美术：范静云</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601861.jpg" alt="tjM0fNlKlAXcGfzvM1iy4WCGjKLP7xijILJWeR2j"></p>
+<h2 id="游戏简介">游戏简介</h2>
+<p>一款联合移动的推箱子游戏，由5名中国传媒大学的大一学生共同完成。</p>
+<p>本次Game Jam的主题是「和谐的缝合怪」，我们的创作思路是在一个经典简洁的游戏机制上，做一些小的调整和创新。游戏故事背景设定参照了「赛博朋克」，其中的人类进行进行大量机械植入又要保证人性不丧失，避免「赛博精神病」，我们想这种人性与机械的平衡正符合本次大赛的主题，因而游戏名也取作「Cyberpsychosis」。</p>
+<p>游戏女主因车祸而需要进行机械移植治疗，手术后检测报告显示她很大概率会因免疫排斥而出现双向情感障碍，而她不富裕的家境无法承担高额的免疫抑制剂费用。在医生的建议下，她通过控制虚拟游戏中分裂的两个自我（狂躁和抑郁），去协作完成游戏目标，来达到训练自我达到平衡的效果。</p>
+<p>游戏内背景、人物立绘、BGM都是由AI进行创作。（策划和美术都被AI驯服了）</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601694.png" alt="6dAGl1r5fzLbMt6RppK7lLODYiCtMPYapnhXBoud"></p>
+]]></content>
+      <categories>
+        <category>Projects</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《EscapeFromVirus》-严肃游戏工坊作品</title>
+    <url>/posts/41160/</url>
+    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261533351.png" alt="logo" style="zoom: 50%;" />
+<h1>躲避病毒</h1>
+<blockquote>
+<p><strong>项目介绍</strong>：<a href="https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA">https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA</a></p>
+</blockquote>
+<p>我在本次项目中独自担任程序，使用Unity引擎负责了全部代码的编写</p>
+<h2 id="小组成员">小组成员</h2>
+<p>策划：唐诗</p>
+<p>美术：王子彤 刘月映</p>
+<p>程序：<strong>伍泽华</strong></p>
+<p>测试：杨光平</p>
+<h2 id="游戏内容">游戏内容</h2>
+<p>这是一款竖版弹幕类、动作敏捷类平面游戏。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261547150.png" alt="640 (1)" style="zoom:50%;" />
+<h2 id="游戏机制">游戏机制</h2>
+<p>玩家需要扮演角色“阿尼”或“A喵”，在屏幕上躲避从屏幕四周袭来的象征冠状病毒的弹幕，期间尽可能收集口罩等防疫物品，获得有助于通关的增益效果。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548998.png" alt="640" style="zoom:50%;" />
+<h2 id="游戏介绍">游戏介绍</h2>
+<p>通过回答防疫相关问题，获取猫粮，尽可能长时间地生存下来，生存时间越长得分越高。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548606.png" alt="640 (2)" style="zoom:50%;" />
+<h2 id="创作立意">创作立意</h2>
+<p>希望通过制作这样的一款严肃游戏，能让玩家关注防疫政策的变化，学习到防范病毒的小知识，学会做自己健康第一责任人。</p>
+]]></content>
+      <categories>
+        <category>Projects</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《Revive》-UE GameJam 2022</title>
+    <url>/posts/41772/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261605787.png" alt="Logo"></p>
+<h1>Revive</h1>
+<blockquote>
+<p><strong>介绍视频</strong>：<a href="https://www.bilibili.com/video/BV1p44y1Q7tY/">https://www.bilibili.com/video/BV1p44y1Q7tY/</a></p>
+</blockquote>
+<p>我在本次项目中担任程序，使用Unity引擎负责了部分代码的编写</p>
+<h2 id="小组成员">小组成员</h2>
+<p><strong>新发地农贸批发市场</strong>：</p>
+<p>程序：李健豪 <strong>伍泽华</strong></p>
+<p>美术：成可</p>
+<p>音乐：赵永炜</p>
+<p>文案：孙诗佳</p>
+<h2 id="游戏主题：">游戏主题：</h2>
+<blockquote>
+<p><em>“I shall die again and again to know that life is inexhaustible. ”</em></p>
+<p><em>——泰戈尔《飞鸟集》</em></p>
+</blockquote>
+<p>作为人类，我们的生命是有限的。然而，我们体内的基因会一直随着我们的繁衍不断延续下去。“基因既是遗传的基本单位，也是自然选择的基本单位。”在道金斯《自私的基因》一书中，他指出，基因的本质是自私的，它们控制生物的各种行为活动，只为了自己更多更快速地复制，以达到不断地延续。</p>
+<p>以母亲十月怀胎为例，母子之间**并非和平共生，而是不断的抗争。**母体为了延续自己的基因而生育，但在胎儿的成长之中，他不断吸取甚至掠夺养分，不顾母体死活保证自己的存活和生长。与此同时，为了防止自身的死亡，母体也会时刻警惕胎儿，保证自己排异的权利，一旦胎儿吸取过多营养或产生不健康反应，就会立刻停止供应排出婴儿。</p>
+<p>基因一直是自私的，胎儿的基因无意识地只以生存为目的伤害了母体，然而成长之后自己成为母亲却又被伤害，目睹死亡到自己接受死亡，被延续到自己继续延续，一次一次的生命的继承即是<strong>Revive</strong>，在不断的死中明白生的无穷尽。</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261616467.png" alt="Snipaste_2023-03-26_16-12-31"></p>
+<h2 id="游戏玩法">游戏玩法</h2>
+<p>游戏共有三个关卡，主要以WASD进行操作**。**玩家将操控一个球体，在游玩中，球体将不断成长，其寓意着生命由精子—受精卵—胚胎的发展，最后长成婴儿出生。玩家逐步完成关卡的过程，实际就是胎儿与母体斗争伤害直至出生离开母体的过程。游戏将营造一个较为抽象的形象，并不会直接体现具体要素，只有在完成三个关卡后，游戏的真面目才会真正揭开。</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261616505.png" alt="Snipaste_2023-03-26_16-13-31"></p>
+<h2 id="关卡设计">关卡设计</h2>
+<p>**（1）   第一关：**模拟受精卵的形成。玩家将操控代表精子的球体在类似输卵管的地图中不断前行，以接近卵子进行结合。但过程中将会有障碍：紫色粘液代表受到子宫颈粘液的阻挡，玩家经过会减缓速度；白色晶体会在一定范围内追踪玩家，如果被追上将会被吞食，关卡将重新开始。玩家需操控角色躲避，顺利到达终点，完成精卵结合。</p>
+<p>**（2）   第二关：**模拟受精卵从母体中汲取养分。玩家需操控球体吞食周边的养料，以不断壮大自身，同时也要暂时避开难以吞食的养分。使用空格键可以短暂加速，但使用一次后需要时间恢复体力。每当有养料被吞食时，都会出现血丝，意为从母体获得的养分对母体的伤害。地图二进制的设计代表计算机语言的最初始，也体现着当今科技时代的初始，亦与生命的开始相呼应，连接着虚拟与现实。当球体壮大到一定程度时，将自动进入下一关。</p>
+<p>**（3）   第三关：**模拟胎儿反向输送激素，榨取更多能量。玩家以AD键操作，当白球到判定线时需按下D，红球即为A，每连击一次加一分，掉落一次减一分，达到一定分数时，背景将会发生变化，树的根会越来越多越来越长，下落速度也会发生变化，同时传出流血音效，意为血管扎根和对母体心跳加速的影响。完成激素输送，游戏结束，迎来婴儿诞生。</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261616278.png" alt="Snipaste_2023-03-26_16-15-14"></p>
+<h2 id="美术风格">美术风格</h2>
+<p>整体美术风格以黑白为主，中间穿插红蓝等饱和度较低的色调，体现真相的残忍。背景以母体生育器官为基础，为保留神秘性并非完全具象，进行了艺术加工。主角球体的采用也寓意着基因的不断延续，宿命的不断轮回。</p>
+<h2 id="音乐风格">音乐风格</h2>
+<p>游戏背景音乐采用纯钢琴演奏，在悲伤静谧的氛围中感受生命的残忍和基因的自私，迎合游戏主题，叙事感较强。</p>
+<h2 id="创意理念">创意理念</h2>
+<p>灵感来源即为《自私的基因》一书。游戏策划过程中，关于机制均参考了胚胎的形成和发育过程，并体现出其在成长过程中对母体的伤害。制作过程中，第一关地图以输卵管为基础进行加工，使其更加扭曲和抽象，迎合游戏氛围；第二关活动区域模拟子宫环境，以人体所需葡萄糖为养料之一进行设计；第三关，以不断长大的胎儿作为树冠，以逆卡巴拉生命树象征反输送激素，不顾母体安危。红键象征流血，而白键象征生命延续的希望，体现出母体受伤和基因延续的矛盾性。胚胎反向输送激素时，母体的流血会增加，即为音效采用流血的原因；心跳会加速，也是判定线采用心电图的原因。</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261616663.png" alt="Snipaste_2023-03-26_16-16-02"></p>
+]]></content>
+      <categories>
+        <category>Projects</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《SCP》-游戏创作1 week3</title>
+    <url>/posts/57480/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221534305.jpg" alt="SCP"></p>
+<h1>SCP</h1>
+<blockquote>
+<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/Unity-SCP">https://github.com/hmxsqaq/Unity-SCP</a></p>
+</blockquote>
+<p>我在本次项目中独自担任程序，使用Unity引擎负责了全部代码的编写</p>
+<h2 id="小组成员">小组成员</h2>
+<p>策划：杜修臣</p>
+<p>程序：<strong>伍泽华</strong></p>
+<p>美术：魏可欣</p>
+<p>音效：高祎祎、王菲阳</p>
+<h2 id="游戏简介">游戏简介</h2>
+<p>这是一款基于Unity的2D恐怖游戏，【游戏创作1】课程第三周的小组作业，围绕拍卖到的主题“SCP”进行展开</p>
+<p>故事发生在SCP收容失败的背景下，玩家可以通过W/A/S/D控制侥幸存活的D级人员，与各类物品进行交互</p>
+<p>途中玩家会遇到各类SCP，运用你的知识与手段逃出去吧！</p>
+<h2 id="截图">截图</h2>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535994.png" alt="截图1"></p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535175.png" alt="截图2"></p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535877.png" alt="截图3"></p>
+]]></content>
+      <categories>
+        <category>Projects</category>
+        <category>2023</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Unity-Timeline】学习笔记</title>
     <url>/posts/15399/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312182321194.jpg" alt="Unity_Timeline"></p>
@@ -1850,154 +1998,6 @@ L &amp; = L_a + L_d + L_s \\
       </tags>
   </entry>
   <entry>
-    <title>《Cyberpsychosis》-AI Game Jam 2022</title>
-    <url>/posts/35484/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261558559.png" alt="qN0WZOY3ZLuswAaY2CB4RM3NRHPgpBfQE9G2VaSz"></p>
-<h1>Cyberpsychosis</h1>
-<blockquote>
-<p><strong>游戏页面</strong>：<a href="https://gmhub.com/game/2005">https://gmhub.com/game/2005</a></p>
-<p><strong>介绍视频</strong>：<a href="https://www.bilibili.com/video/BV1U44y1Z7oU/">https://www.bilibili.com/video/BV1U44y1Z7oU/</a></p>
-</blockquote>
-<p>我在本次项目中担任程序，使用Unity引擎负责了部分代码的编写</p>
-<h2 id="小组成员">小组成员</h2>
-<p><strong>定福庄AI小队：</strong></p>
-<p>策划：虚虚、TenGo</p>
-<p>程序：紫地丁、<strong>徽墨行深(伍泽华)</strong></p>
-<p>美术：范静云</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601861.jpg" alt="tjM0fNlKlAXcGfzvM1iy4WCGjKLP7xijILJWeR2j"></p>
-<h2 id="游戏简介">游戏简介</h2>
-<p>一款联合移动的推箱子游戏，由5名中国传媒大学的大一学生共同完成。</p>
-<p>本次Game Jam的主题是「和谐的缝合怪」，我们的创作思路是在一个经典简洁的游戏机制上，做一些小的调整和创新。游戏故事背景设定参照了「赛博朋克」，其中的人类进行进行大量机械植入又要保证人性不丧失，避免「赛博精神病」，我们想这种人性与机械的平衡正符合本次大赛的主题，因而游戏名也取作「Cyberpsychosis」。</p>
-<p>游戏女主因车祸而需要进行机械移植治疗，手术后检测报告显示她很大概率会因免疫排斥而出现双向情感障碍，而她不富裕的家境无法承担高额的免疫抑制剂费用。在医生的建议下，她通过控制虚拟游戏中分裂的两个自我（狂躁和抑郁），去协作完成游戏目标，来达到训练自我达到平衡的效果。</p>
-<p>游戏内背景、人物立绘、BGM都是由AI进行创作。（策划和美术都被AI驯服了）</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601694.png" alt="6dAGl1r5fzLbMt6RppK7lLODYiCtMPYapnhXBoud"></p>
-]]></content>
-      <categories>
-        <category>Projects</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《Revive》-UE GameJam 2022</title>
-    <url>/posts/41772/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261605787.png" alt="Logo"></p>
-<h1>Revive</h1>
-<blockquote>
-<p><strong>介绍视频</strong>：<a href="https://www.bilibili.com/video/BV1p44y1Q7tY/">https://www.bilibili.com/video/BV1p44y1Q7tY/</a></p>
-</blockquote>
-<p>我在本次项目中担任程序，使用Unity引擎负责了部分代码的编写</p>
-<h2 id="小组成员">小组成员</h2>
-<p><strong>新发地农贸批发市场</strong>：</p>
-<p>程序：李健豪 <strong>伍泽华</strong></p>
-<p>美术：成可</p>
-<p>音乐：赵永炜</p>
-<p>文案：孙诗佳</p>
-<h2 id="游戏主题：">游戏主题：</h2>
-<blockquote>
-<p><em>“I shall die again and again to know that life is inexhaustible. ”</em></p>
-<p><em>——泰戈尔《飞鸟集》</em></p>
-</blockquote>
-<p>作为人类，我们的生命是有限的。然而，我们体内的基因会一直随着我们的繁衍不断延续下去。“基因既是遗传的基本单位，也是自然选择的基本单位。”在道金斯《自私的基因》一书中，他指出，基因的本质是自私的，它们控制生物的各种行为活动，只为了自己更多更快速地复制，以达到不断地延续。</p>
-<p>以母亲十月怀胎为例，母子之间**并非和平共生，而是不断的抗争。**母体为了延续自己的基因而生育，但在胎儿的成长之中，他不断吸取甚至掠夺养分，不顾母体死活保证自己的存活和生长。与此同时，为了防止自身的死亡，母体也会时刻警惕胎儿，保证自己排异的权利，一旦胎儿吸取过多营养或产生不健康反应，就会立刻停止供应排出婴儿。</p>
-<p>基因一直是自私的，胎儿的基因无意识地只以生存为目的伤害了母体，然而成长之后自己成为母亲却又被伤害，目睹死亡到自己接受死亡，被延续到自己继续延续，一次一次的生命的继承即是<strong>Revive</strong>，在不断的死中明白生的无穷尽。</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261616467.png" alt="Snipaste_2023-03-26_16-12-31"></p>
-<h2 id="游戏玩法">游戏玩法</h2>
-<p>游戏共有三个关卡，主要以WASD进行操作**。**玩家将操控一个球体，在游玩中，球体将不断成长，其寓意着生命由精子—受精卵—胚胎的发展，最后长成婴儿出生。玩家逐步完成关卡的过程，实际就是胎儿与母体斗争伤害直至出生离开母体的过程。游戏将营造一个较为抽象的形象，并不会直接体现具体要素，只有在完成三个关卡后，游戏的真面目才会真正揭开。</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261616505.png" alt="Snipaste_2023-03-26_16-13-31"></p>
-<h2 id="关卡设计">关卡设计</h2>
-<p>**（1）   第一关：**模拟受精卵的形成。玩家将操控代表精子的球体在类似输卵管的地图中不断前行，以接近卵子进行结合。但过程中将会有障碍：紫色粘液代表受到子宫颈粘液的阻挡，玩家经过会减缓速度；白色晶体会在一定范围内追踪玩家，如果被追上将会被吞食，关卡将重新开始。玩家需操控角色躲避，顺利到达终点，完成精卵结合。</p>
-<p>**（2）   第二关：**模拟受精卵从母体中汲取养分。玩家需操控球体吞食周边的养料，以不断壮大自身，同时也要暂时避开难以吞食的养分。使用空格键可以短暂加速，但使用一次后需要时间恢复体力。每当有养料被吞食时，都会出现血丝，意为从母体获得的养分对母体的伤害。地图二进制的设计代表计算机语言的最初始，也体现着当今科技时代的初始，亦与生命的开始相呼应，连接着虚拟与现实。当球体壮大到一定程度时，将自动进入下一关。</p>
-<p>**（3）   第三关：**模拟胎儿反向输送激素，榨取更多能量。玩家以AD键操作，当白球到判定线时需按下D，红球即为A，每连击一次加一分，掉落一次减一分，达到一定分数时，背景将会发生变化，树的根会越来越多越来越长，下落速度也会发生变化，同时传出流血音效，意为血管扎根和对母体心跳加速的影响。完成激素输送，游戏结束，迎来婴儿诞生。</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261616278.png" alt="Snipaste_2023-03-26_16-15-14"></p>
-<h2 id="美术风格">美术风格</h2>
-<p>整体美术风格以黑白为主，中间穿插红蓝等饱和度较低的色调，体现真相的残忍。背景以母体生育器官为基础，为保留神秘性并非完全具象，进行了艺术加工。主角球体的采用也寓意着基因的不断延续，宿命的不断轮回。</p>
-<h2 id="音乐风格">音乐风格</h2>
-<p>游戏背景音乐采用纯钢琴演奏，在悲伤静谧的氛围中感受生命的残忍和基因的自私，迎合游戏主题，叙事感较强。</p>
-<h2 id="创意理念">创意理念</h2>
-<p>灵感来源即为《自私的基因》一书。游戏策划过程中，关于机制均参考了胚胎的形成和发育过程，并体现出其在成长过程中对母体的伤害。制作过程中，第一关地图以输卵管为基础进行加工，使其更加扭曲和抽象，迎合游戏氛围；第二关活动区域模拟子宫环境，以人体所需葡萄糖为养料之一进行设计；第三关，以不断长大的胎儿作为树冠，以逆卡巴拉生命树象征反输送激素，不顾母体安危。红键象征流血，而白键象征生命延续的希望，体现出母体受伤和基因延续的矛盾性。胚胎反向输送激素时，母体的流血会增加，即为音效采用流血的原因；心跳会加速，也是判定线采用心电图的原因。</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261616663.png" alt="Snipaste_2023-03-26_16-16-02"></p>
-]]></content>
-      <categories>
-        <category>Projects</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《EscapeFromVirus》-严肃游戏工坊作品</title>
-    <url>/posts/41160/</url>
-    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261533351.png" alt="logo" style="zoom: 50%;" />
-<h1>躲避病毒</h1>
-<blockquote>
-<p><strong>项目介绍</strong>：<a href="https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA">https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA</a></p>
-</blockquote>
-<p>我在本次项目中独自担任程序，使用Unity引擎负责了全部代码的编写</p>
-<h2 id="小组成员">小组成员</h2>
-<p>策划：唐诗</p>
-<p>美术：王子彤 刘月映</p>
-<p>程序：<strong>伍泽华</strong></p>
-<p>测试：杨光平</p>
-<h2 id="游戏内容">游戏内容</h2>
-<p>这是一款竖版弹幕类、动作敏捷类平面游戏。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261547150.png" alt="640 (1)" style="zoom:50%;" />
-<h2 id="游戏机制">游戏机制</h2>
-<p>玩家需要扮演角色“阿尼”或“A喵”，在屏幕上躲避从屏幕四周袭来的象征冠状病毒的弹幕，期间尽可能收集口罩等防疫物品，获得有助于通关的增益效果。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548998.png" alt="640" style="zoom:50%;" />
-<h2 id="游戏介绍">游戏介绍</h2>
-<p>通过回答防疫相关问题，获取猫粮，尽可能长时间地生存下来，生存时间越长得分越高。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548606.png" alt="640 (2)" style="zoom:50%;" />
-<h2 id="创作立意">创作立意</h2>
-<p>希望通过制作这样的一款严肃游戏，能让玩家关注防疫政策的变化，学习到防范病毒的小知识，学会做自己健康第一责任人。</p>
-]]></content>
-      <categories>
-        <category>Projects</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《SCP》-游戏创作1 week3</title>
-    <url>/posts/57480/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221534305.jpg" alt="SCP"></p>
-<h1>SCP</h1>
-<blockquote>
-<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/Unity-SCP">https://github.com/hmxsqaq/Unity-SCP</a></p>
-</blockquote>
-<p>我在本次项目中独自担任程序，使用Unity引擎负责了全部代码的编写</p>
-<h2 id="小组成员">小组成员</h2>
-<p>策划：杜修臣</p>
-<p>程序：<strong>伍泽华</strong></p>
-<p>美术：魏可欣</p>
-<p>音效：高祎祎、王菲阳</p>
-<h2 id="游戏简介">游戏简介</h2>
-<p>这是一款基于Unity的2D恐怖游戏，【游戏创作1】课程第三周的小组作业，围绕拍卖到的主题“SCP”进行展开</p>
-<p>故事发生在SCP收容失败的背景下，玩家可以通过W/A/S/D控制侥幸存活的D级人员，与各类物品进行交互</p>
-<p>途中玩家会遇到各类SCP，运用你的知识与手段逃出去吧！</p>
-<h2 id="截图">截图</h2>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535994.png" alt="截图1"></p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535175.png" alt="截图2"></p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535877.png" alt="截图3"></p>
-]]></content>
-      <categories>
-        <category>Projects</category>
-        <category>2023</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《Just Suck.》-吉比特GameJam2023</title>
     <url>/posts/52301/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202311010242672.jpeg" alt="img"></p>
@@ -2061,33 +2061,6 @@ L &amp; = L_a + L_d + L_s \\
       </tags>
   </entry>
   <entry>
-    <title>《联机象棋》-游戏编程实训</title>
-    <url>/posts/8233/</url>
-    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202307161608249.png" alt="image-20230716150851155" style="zoom: 80%;" />
-<h1>联机象棋</h1>
-<blockquote>
-<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/C-ChineseChessWithLAN">https://github.com/hmxsqaq/C-ChineseChessWithLAN</a></p>
-</blockquote>
-<p>我在本次项目中担任程序，使用C++Socket实现了局域网p2p联机，同时完成了棋子合法性判断的逻辑</p>
-<h2 id="小组成员">小组成员</h2>
-<p>伍泽华-负责网络模块、棋子合法性判断</p>
-<p>李建豪-负责游戏前端、游戏流程</p>
-<h2 id="游戏简介">游戏简介</h2>
-<p>一款可局域网联机的中国象棋游戏</p>
-<p>局域网联机功能通过C语言Socket实现</p>
-<p>游戏前端通过EasyX图形库呈现</p>
-<p>大学生练习作品</p>
-]]></content>
-      <categories>
-        <category>Projects</category>
-        <category>2023</category>
-      </categories>
-      <tags>
-        <tag>C/C++</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《辟邪傩狮》-游戏创作1结课</title>
     <url>/posts/30933/</url>
     <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202307161452197.png" alt="image-20230716135205003" style="zoom: 67%;" />
@@ -2113,6 +2086,33 @@ L &amp; = L_a + L_d + L_s \\
       </categories>
       <tags>
         <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《联机象棋》-游戏编程实训</title>
+    <url>/posts/8233/</url>
+    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202307161608249.png" alt="image-20230716150851155" style="zoom: 80%;" />
+<h1>联机象棋</h1>
+<blockquote>
+<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/C-ChineseChessWithLAN">https://github.com/hmxsqaq/C-ChineseChessWithLAN</a></p>
+</blockquote>
+<p>我在本次项目中担任程序，使用C++Socket实现了局域网p2p联机，同时完成了棋子合法性判断的逻辑</p>
+<h2 id="小组成员">小组成员</h2>
+<p>伍泽华-负责网络模块、棋子合法性判断</p>
+<p>李建豪-负责游戏前端、游戏流程</p>
+<h2 id="游戏简介">游戏简介</h2>
+<p>一款可局域网联机的中国象棋游戏</p>
+<p>局域网联机功能通过C语言Socket实现</p>
+<p>游戏前端通过EasyX图形库呈现</p>
+<p>大学生练习作品</p>
+]]></content>
+      <categories>
+        <category>Projects</category>
+        <category>2023</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
         <tag>GameProject</tag>
       </tags>
   </entry>
@@ -2155,8 +2155,8 @@ L &amp; = L_a + L_d + L_s \\
         <category>《Algorithms, 4th Edition》</category>
       </categories>
       <tags>
-        <tag>Algorithm</tag>
         <tag>Note</tag>
+        <tag>Algorithm</tag>
         <tag>Java</tag>
       </tags>
   </entry>
@@ -2653,8 +2653,8 @@ L &amp; = L_a + L_d + L_s \\
         <category>《Algorithms, 4th Edition》</category>
       </categories>
       <tags>
-        <tag>Algorithm</tag>
         <tag>Note</tag>
+        <tag>Algorithm</tag>
         <tag>Java</tag>
       </tags>
   </entry>
@@ -2674,6 +2674,84 @@ L &amp; = L_a + L_d + L_s \\
         <tag>C#</tag>
         <tag>Unity</tag>
         <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FlappyBird</title>
+    <url>/posts/16350/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251606418.png" alt="FlappyBird"></p>
+<blockquote>
+<p><strong>项目地址：</strong></p>
+<p>Unity: <a href="https://github.com/hmxsqaq/Unity-FlappyBird">https://github.com/hmxsqaq/Unity-FlappyBird</a></p>
+<p>Pygame: <a href="https://github.com/hmxsqaq/Pygame-FlappyBird">https://github.com/hmxsqaq/Pygame-FlappyBird</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Projects</category>
+        <category>经典小游戏复刻</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【游戏编程模式】读书笔记零：目录</title>
+    <url>/posts/56336/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305311339429.jpeg" alt="img"></p>
+<blockquote>
+<p><strong>《游戏编程模式》-Bob Nystrom</strong></p>
+<p><strong>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></strong></p>
+</blockquote>
+<hr>
+<p>《游戏编程模式》是一本介绍游戏开发中常用设计模式的书籍，它涵盖了许多常见的游戏编程问题，并提供了解决方案。这本书可以帮助游戏开发者更加高效地开发游戏，并提高代码的可重用性和可维护性</p>
+<p><strong>以下是我学习《游戏编程模式》一书的读书笔记</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Notes</th>
+<th style="text-align:center">Introduction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><a href="https://hmxs.games/posts/7377/">《游戏编程模式》读书笔记 一</a></td>
+<td style="text-align:center">序章：架构、性能与游戏</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://hmxs.games/posts/7569/">《游戏编程模式》读书笔记 二</a></td>
+<td style="text-align:center">重访设计模式：命令模式</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://hmxs.games/posts/56656/">《游戏编程模式》读书笔记 三</a></td>
+<td style="text-align:center">重访设计模式：享元模式、观察者模式</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://hmxs.games/posts/7953/">《游戏编程模式》读书笔记 四</a></td>
+<td style="text-align:center">重访设计模式：原型模式、单例模式</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://hmxs.games/posts/57296/">《游戏编程模式》读书笔记 五</a></td>
+<td style="text-align:center">重访设计模式：状态模式</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://hmxs.games/posts/12389/">《游戏编程模式》读书笔记 六（更新中）</a></td>
+<td style="text-align:center">序列模式</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Design Pattern</category>
+        <category>《Game Programming Patterns》</category>
+      </categories>
+      <tags>
+        <tag>Note</tag>
+        <tag>《游戏编程模式》</tag>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
@@ -2921,87 +2999,9 @@ L &amp; = L_a + L_d + L_s \\
         <category>《Algorithms, 4th Edition》</category>
       </categories>
       <tags>
+        <tag>Note</tag>
         <tag>Algorithm</tag>
-        <tag>Note</tag>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【游戏编程模式】读书笔记零：目录</title>
-    <url>/posts/56336/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305311339429.jpeg" alt="img"></p>
-<blockquote>
-<p><strong>《游戏编程模式》-Bob Nystrom</strong></p>
-<p><strong>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></strong></p>
-</blockquote>
-<hr>
-<p>《游戏编程模式》是一本介绍游戏开发中常用设计模式的书籍，它涵盖了许多常见的游戏编程问题，并提供了解决方案。这本书可以帮助游戏开发者更加高效地开发游戏，并提高代码的可重用性和可维护性</p>
-<p><strong>以下是我学习《游戏编程模式》一书的读书笔记</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Notes</th>
-<th style="text-align:center">Introduction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><a href="https://hmxs.games/posts/7377/">《游戏编程模式》读书笔记 一</a></td>
-<td style="text-align:center">序章：架构、性能与游戏</td>
-</tr>
-<tr>
-<td style="text-align:center"><a href="https://hmxs.games/posts/7569/">《游戏编程模式》读书笔记 二</a></td>
-<td style="text-align:center">重访设计模式：命令模式</td>
-</tr>
-<tr>
-<td style="text-align:center"><a href="https://hmxs.games/posts/56656/">《游戏编程模式》读书笔记 三</a></td>
-<td style="text-align:center">重访设计模式：享元模式、观察者模式</td>
-</tr>
-<tr>
-<td style="text-align:center"><a href="https://hmxs.games/posts/7953/">《游戏编程模式》读书笔记 四</a></td>
-<td style="text-align:center">重访设计模式：原型模式、单例模式</td>
-</tr>
-<tr>
-<td style="text-align:center"><a href="https://hmxs.games/posts/57296/">《游戏编程模式》读书笔记 五</a></td>
-<td style="text-align:center">重访设计模式：状态模式</td>
-</tr>
-<tr>
-<td style="text-align:center"><a href="https://hmxs.games/posts/12389/">《游戏编程模式》读书笔记 六（更新中）</a></td>
-<td style="text-align:center">序列模式</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-      <categories>
-        <category>Notes</category>
-        <category>Design Pattern</category>
-        <category>《Game Programming Patterns》</category>
-      </categories>
-      <tags>
-        <tag>Note</tag>
-        <tag>《游戏编程模式》</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FlappyBird</title>
-    <url>/posts/16350/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251606418.png" alt="FlappyBird"></p>
-<blockquote>
-<p><strong>项目地址：</strong></p>
-<p>Unity: <a href="https://github.com/hmxsqaq/Unity-FlappyBird">https://github.com/hmxsqaq/Unity-FlappyBird</a></p>
-<p>Pygame: <a href="https://github.com/hmxsqaq/Pygame-FlappyBird">https://github.com/hmxsqaq/Pygame-FlappyBird</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Projects</category>
-        <category>经典小游戏复刻</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -3657,8 +3657,8 @@ L &amp; = L_a + L_d + L_s \\
         <category>TheCherno</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>Note</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -4213,8 +4213,8 @@ L &amp; = L_a + L_d + L_s \\
         <category>TheCherno</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>Note</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -4549,8 +4549,8 @@ L &amp; = L_a + L_d + L_s \\
         <category>TheCherno</category>
       </categories>
       <tags>
-        <tag>C/C++</tag>
         <tag>Note</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -4691,9 +4691,9 @@ L &amp; = L_a + L_d + L_s \\
 ]]></content>
   </entry>
   <entry>
-    <title></title>
-    <url>/css/custom_loading.css</url>
-    <content><![CDATA[.loading-img{background:url(https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312251233199.jpeg) no-repeat center center;background-size:cover}]]></content>
+    <title>标签</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title></title>
@@ -4701,14 +4701,14 @@ L &amp; = L_a + L_d + L_s \\
     <content><![CDATA[#web_bg{filter:blur(3px) brightness(70%)}#footer{background:0 0!important}#page-header{background:0 0!important}#footer::before{background:0 0!important}#page-header::before{background:0 0!important}[data-theme=dark] #footer::before{background:0 0!important}[data-theme=dark] #page-header::before{background:0 0!important}]]></content>
   </entry>
   <entry>
-    <title></title>
-    <url>/css/progress_bar.css</url>
-    <content><![CDATA[.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none;z-index:2000;position:fixed;margin:auto;top:10px;left:0;right:0;height:8px;border-radius:8px;width:4rem;background:#eaecf2;border:1px #e3e8f7;overflow:hidden}.pace-inactive .pace-progress{opacity:0;transition:.3s ease-in}.pace .pace-progress{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);max-width:200px;position:absolute;z-index:2000;display:block;top:0;right:100%;height:100%;width:100%;background:linear-gradient(-45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);animation:gradient 1.5s ease infinite;background-size:200%}.pace.pace-inactive{opacity:0;transition:.3s;top:-8px}@keyframes gradient{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}]]></content>
+    <title>友链</title>
+    <url>/link/index.html</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[]]></content>
+    <title></title>
+    <url>/css/custom_loading.css</url>
+    <content><![CDATA[.loading-img{background:url(https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312251233199.jpeg) no-repeat center center;background-size:cover}]]></content>
   </entry>
   <entry>
     <title></title>
@@ -4716,8 +4716,8 @@ L &amp; = L_a + L_d + L_s \\
     <content><![CDATA[@font-face{font-family:mononoki;font-display:swap;src:url('../fonts/mononoki-Regular.ttf') format("truetype")}@font-face{font-family:LXGWWenKaiScreen;font-display:swap;src:url('../fonts/LXGWWenKaiScreen.ttf') format("truetype")}]]></content>
   </entry>
   <entry>
-    <title>友链</title>
-    <url>/link/index.html</url>
-    <content><![CDATA[]]></content>
+    <title></title>
+    <url>/css/progress_bar.css</url>
+    <content><![CDATA[.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none;z-index:2000;position:fixed;margin:auto;top:10px;left:0;right:0;height:8px;border-radius:8px;width:4rem;background:#eaecf2;border:1px #e3e8f7;overflow:hidden}.pace-inactive .pace-progress{opacity:0;transition:.3s ease-in}.pace .pace-progress{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);max-width:200px;position:absolute;z-index:2000;display:block;top:0;right:100%;height:100%;width:100%;background:linear-gradient(-45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);animation:gradient 1.5s ease infinite;background-size:200%}.pace.pace-inactive{opacity:0;transition:.3s;top:-8px}@keyframes gradient{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}]]></content>
   </entry>
 </search>
