@@ -102,79 +102,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【C#-反射】学习笔记</title>
-    <url>/posts/10824/</url>
-    <content><![CDATA[<h1>反射</h1>
-<h2 id="前言">前言</h2>
-<p>反射（Reflection）是C#中的一种强大特性，其在Unity与游戏开发中被运用于诸多方面，而我之前对其早有耳闻，但一直是一知半解、望而生畏，关于什么是反射，以及反射的具体作用一直没有一个清晰的认知。</p>
-<p>而本文是我较为系统的学习反射的一些笔记，希望对你有帮助😆</p>
-<hr>
-<h2 id="C-中的内存布局：类与类的实例化">C#中的内存布局：类与类的实例化</h2>
-<p>类是C#中最为重要的概念之一，Unity的每个脚本都是一个类，编写C#代码时，几乎无时无刻都在和类打交道。</p>
-<p>而关于类的本质，其可以被称为一种**“对类型的描述”或是“字段与方法的集合”**，类本身只是一种描述、一种声明，其说明了这个类型由那些数据和方法组成，仅此而已，其并不指向任何一片具体的内存。</p>
-<p>而“类的实例化”过程则承担了将具体的内存与相关联的任务，所谓“实例化”便是根据类的声明为具体的实例分配内存空间的过程；对于普通的类，我们需要通过new方法对其进行实例化；而在Unity中，Unity会自动帮我们实例化挂载在<code>GameObject</code>上并继承了<code>Monobehavior</code>的类。</p>
-<p>在我们实例化一个类时，一块具体的内存会被分配给类的数据成员，而类的成员函数则属于代码指令，会被共同编译成为指令集，存入代码段，所有这一类的实例全局共用一份。</p>
-<hr>
-<h2 id="反射的原理：类的忒休斯之船">反射的原理：类的忒休斯之船</h2>
-<h3 id="类的描述与解构">类的描述与解构</h3>
-<p>在Unity中，往往存在着这样一种场景，我们将一个脚本“<code>GameManager</code>”挂载在了“<code>Game</code>”物体上，并在Inspector界面中将<code>GameManager</code>中的<code>int</code>类型的变量<code>a</code>的值改为了1，之后我们关闭了Unity工程，在重新打开该工程时，我们可以发现<code>GameManager</code>仍然在<code>Game</code>上，且变量a仍然是1。</p>
-<p>上述场景看起来稀松平常，但若细究其中的原理便会发现其不寻常。</p>
-<p>“挂载脚本“实际上是一个“实例化”的过程，当我们把一个脚本挂载到游戏物体上的时候，实际发生的过程是通过脚本中的类实例化了一个对象挂载到游戏物体上，而当项目被关闭，其实例自然也会被销毁，而数据会以字符串的形式被保存在<code>scene</code>文件中，当我们再次打开项目时，如果要实现上述场景，那么Unity便需要根据上次保存的字符串动态的为我们的脚本进行实例化，这并不容易。在正常场景中，若要根据字符串进行实例化，那么代码往往会变成下面这样：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (name == <span class="string">&quot;GameManager&quot;</span>)&#123;</span><br><span class="line">    Game.AddComponent&lt;GameManager&gt;();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (...)</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (...)</span><br></pre></td></tr></table></figure>
-<p>如果用这种方式实现上述场景，便意味着每次用户更改脚本，引擎底层都需要进行更改与重新编译，这将是极其灾难性的</p>
-<p>而问题的实质便是：<strong>每个类都有自己独立的描述，每个类都是不同的类型，而我们无法通过统一的方式来处理不同的描述、不同的类型</strong></p>
-<p>若我们能找到一种统一的方式来描述任意的类，那么这一问题便可以迎刃而解，这便是“反射”的核心，我将其称之为<strong>类的忒休斯之船</strong></p>
-<p>任一类都可以转化为这样一种描述：</p>
-<ul>
-<li>类实例的内存大小：类的实例便是一块内存空间，我们在编译时可以获得其大小</li>
-<li>数据成员信息：通过数组或其他方式，我们可以将类的数据成员的名字、类型、地址偏移等信息保存起来</li>
-</ul>
-<p>如：<code>&#123;“name”,type string,1&#125;,&#123;“damage”,type int,2&#125;</code></p>
-<ul>
-<li>成员函数信息：通过数组或其他方式，我们可以将类中的方法的名字、类型、地址等信息保存起来</li>
-</ul>
-<p>如：<code>&#123;“add”,type func,0xaa&#125;</code></p>
-<p>通过这种描述，我们可以用其来表达任意不同的类型，也就是表达任意不同的类，这样统一的处理不同类便成为了可能。</p>
-<h3 id="类的重新实例化-Type类的引入">类的重新实例化-Type类的引入</h3>
-<p>而在C#中我们会通过<code>System</code>命名空间下的<code>Type</code>类型来对具体类的信息进行存储，需要进行实例化时根据<code>Type</code>实例中的数据对具体类进行实例化。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">FiledData</span> &#123;</span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="built_in">int</span> type;</span><br><span class="line">    <span class="built_in">int</span> offset;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">MethodData</span> &#123;</span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="built_in">int</span> type;</span><br><span class="line">    <span class="built_in">int</span> offset;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Type</span> &#123;</span><br><span class="line">    <span class="built_in">int</span> size;</span><br><span class="line">    List&lt;FiledData&gt; datas;</span><br><span class="line">    List&lt;MethodData&gt; funcs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上描述了<code>Type</code>类大致的组织方式，其中存储了具体类的各个信息，通过这些信息我们便可以完整的描述一个类</p>
-<p>根据<code>Type</code>类中的数据，引擎的底层便可以通过调用OS等API，动态的分配内存，构建不同的类型</p>
-<p>以下是通过<code>Type</code>类构建对象的流程：</p>
-<ol>
-<li>
-<p>编译某个类时，可以为该类生成一个<code>Type</code>类型的全局数据，其中存放了该类的描述数据</p>
-<p>我们可以通过<code>System.Type.GetType(“类名”)/typeof(T)</code>等API，根据类型/类名获取类的描述对象实例（即Type数据）</p>
-</li>
-<li>
-<p><code>Type</code>类型中，系统已经封装好了描述一个类需要的信息，包含：<code>FieldsInfos</code>（数据成员信息）、<code>MethodInfos</code>（成员方法信息）等</p>
-</li>
-<li>
-<p>通过反射API（<code>Activator.CreateInstance</code>），便可以根据<code>Type</code>数据构建对象</p>
-</li>
-<li>
-<p>在Type中可以说拥有类的一切数据，我们不仅可以构建类，同时也能更改、调用它们</p>
-</li>
-</ol>
-<hr>
-<h2 id="反射的应用：以Unity中的反射为例">反射的应用：以Unity中的反射为例</h2>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Reflection;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试类，通过反射对Data类进行操作</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Data</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Value;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Data</span>(<span class="params"><span class="built_in">string</span> name, <span class="built_in">int</span> <span class="keyword">value</span></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.Name = name;</span><br><span class="line">        <span class="keyword">this</span>.Value = <span class="keyword">value</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Show</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(<span class="string">&quot;Value:&quot;</span> + Value);</span><br><span class="line">        Debug.Log(<span class="string">&quot;Name:&quot;</span> + Name);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="built_in">int</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a, <span class="built_in">int</span> b</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestClass</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 构建Data类的Type对象</span></span><br><span class="line">        Type type = Type.GetType(<span class="string">&quot;Data&quot;</span>);</span><br><span class="line">        ShowConstructor(type);</span><br><span class="line">        ShowPublicMethod(type);</span><br><span class="line">        CreateObjectByConstructor(type);</span><br><span class="line">        CreateObjectByActivator(type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取构造函数的所有参数与类型</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ShowConstructor</span>(<span class="params">Type type</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 通过Type获取Data类中所有构造函数的信息</span></span><br><span class="line">        ConstructorInfo[] constructorInfos = type.GetConstructors();</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> constructorInfo <span class="keyword">in</span> constructorInfos)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 获取每个构造函数的所有参数</span></span><br><span class="line">            ParameterInfo[] parameterInfos = constructorInfo.GetParameters();</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="keyword">var</span> parameterInfo <span class="keyword">in</span> parameterInfos)</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.Log(<span class="string">$&quot;类型:<span class="subst">&#123;parameterInfo.ParameterType&#125;</span>, 变量名:<span class="subst">&#123;parameterInfo.Name&#125;</span>;&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取类中的公开方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ShowPublicMethod</span>(<span class="params">Type type</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        MethodInfo[] methodInfos = type.GetMethods();</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> methodInfo <span class="keyword">in</span> methodInfos)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">$&quot;方法:<span class="subst">&#123;methodInfo&#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 通过反射用构造函数动态生成对象</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">CreateObjectByConstructor</span>(<span class="params">Type type</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        ConstructorInfo constructorInfo = type.GetConstructor(<span class="keyword">new</span> []&#123;<span class="keyword">typeof</span>(<span class="built_in">string</span>),<span class="keyword">typeof</span>(<span class="built_in">int</span>)&#125;);</span><br><span class="line">        <span class="built_in">object</span>[] parameters = &#123; <span class="string">&quot;Hmxs&quot;</span>, <span class="number">100</span> &#125;;</span><br><span class="line">        <span class="built_in">object</span> obj = constructorInfo!.Invoke(parameters);</span><br><span class="line">        ((Data)obj).Show();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 通过反射用Activator静态生成对象</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">CreateObjectByActivator</span>(<span class="params">Type type</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">object</span>[] parameters = &#123; <span class="string">&quot;Hmxs2&quot;</span>, <span class="number">200</span> &#125;;</span><br><span class="line">        <span class="built_in">object</span> obj = Activator.CreateInstance(type, parameters);</span><br><span class="line">        ((Data)obj).Show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述代码中，通过C#提供的反射API对Data类进行了读取、构建</p>
-<blockquote>
-<p>总的来说，反射由于API贼长，且较为繁杂，给人以非常复杂的第一印象，但实际上，反射并不难以理解</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Notes</category>
-        <category>C#</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-        <tag>Reflection</tag>
-        <tag>Note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【C#-泛型约束】学习笔记</title>
     <url>/posts/17194/</url>
     <content><![CDATA[<h1>泛型约束</h1>
@@ -224,8 +151,8 @@
       </categories>
       <tags>
         <tag>C#</tag>
-        <tag>Note</tag>
         <tag>Generic</tag>
+        <tag>Note</tag>
       </tags>
   </entry>
   <entry>
@@ -1424,6 +1351,79 @@ L &amp; = L_a + L_d + L_s \\
       </tags>
   </entry>
   <entry>
+    <title>【C#-反射】学习笔记</title>
+    <url>/posts/10824/</url>
+    <content><![CDATA[<h1>反射</h1>
+<h2 id="前言">前言</h2>
+<p>反射（Reflection）是C#中的一种强大特性，其在Unity与游戏开发中被运用于诸多方面，而我之前对其早有耳闻，但一直是一知半解、望而生畏，关于什么是反射，以及反射的具体作用一直没有一个清晰的认知。</p>
+<p>而本文是我较为系统的学习反射的一些笔记，希望对你有帮助😆</p>
+<hr>
+<h2 id="C-中的内存布局：类与类的实例化">C#中的内存布局：类与类的实例化</h2>
+<p>类是C#中最为重要的概念之一，Unity的每个脚本都是一个类，编写C#代码时，几乎无时无刻都在和类打交道。</p>
+<p>而关于类的本质，其可以被称为一种**“对类型的描述”或是“字段与方法的集合”**，类本身只是一种描述、一种声明，其说明了这个类型由那些数据和方法组成，仅此而已，其并不指向任何一片具体的内存。</p>
+<p>而“类的实例化”过程则承担了将具体的内存与相关联的任务，所谓“实例化”便是根据类的声明为具体的实例分配内存空间的过程；对于普通的类，我们需要通过new方法对其进行实例化；而在Unity中，Unity会自动帮我们实例化挂载在<code>GameObject</code>上并继承了<code>Monobehavior</code>的类。</p>
+<p>在我们实例化一个类时，一块具体的内存会被分配给类的数据成员，而类的成员函数则属于代码指令，会被共同编译成为指令集，存入代码段，所有这一类的实例全局共用一份。</p>
+<hr>
+<h2 id="反射的原理：类的忒休斯之船">反射的原理：类的忒休斯之船</h2>
+<h3 id="类的描述与解构">类的描述与解构</h3>
+<p>在Unity中，往往存在着这样一种场景，我们将一个脚本“<code>GameManager</code>”挂载在了“<code>Game</code>”物体上，并在Inspector界面中将<code>GameManager</code>中的<code>int</code>类型的变量<code>a</code>的值改为了1，之后我们关闭了Unity工程，在重新打开该工程时，我们可以发现<code>GameManager</code>仍然在<code>Game</code>上，且变量a仍然是1。</p>
+<p>上述场景看起来稀松平常，但若细究其中的原理便会发现其不寻常。</p>
+<p>“挂载脚本“实际上是一个“实例化”的过程，当我们把一个脚本挂载到游戏物体上的时候，实际发生的过程是通过脚本中的类实例化了一个对象挂载到游戏物体上，而当项目被关闭，其实例自然也会被销毁，而数据会以字符串的形式被保存在<code>scene</code>文件中，当我们再次打开项目时，如果要实现上述场景，那么Unity便需要根据上次保存的字符串动态的为我们的脚本进行实例化，这并不容易。在正常场景中，若要根据字符串进行实例化，那么代码往往会变成下面这样：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (name == <span class="string">&quot;GameManager&quot;</span>)&#123;</span><br><span class="line">    Game.AddComponent&lt;GameManager&gt;();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (...)</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (...)</span><br></pre></td></tr></table></figure>
+<p>如果用这种方式实现上述场景，便意味着每次用户更改脚本，引擎底层都需要进行更改与重新编译，这将是极其灾难性的</p>
+<p>而问题的实质便是：<strong>每个类都有自己独立的描述，每个类都是不同的类型，而我们无法通过统一的方式来处理不同的描述、不同的类型</strong></p>
+<p>若我们能找到一种统一的方式来描述任意的类，那么这一问题便可以迎刃而解，这便是“反射”的核心，我将其称之为<strong>类的忒休斯之船</strong></p>
+<p>任一类都可以转化为这样一种描述：</p>
+<ul>
+<li>类实例的内存大小：类的实例便是一块内存空间，我们在编译时可以获得其大小</li>
+<li>数据成员信息：通过数组或其他方式，我们可以将类的数据成员的名字、类型、地址偏移等信息保存起来</li>
+</ul>
+<p>如：<code>&#123;“name”,type string,1&#125;,&#123;“damage”,type int,2&#125;</code></p>
+<ul>
+<li>成员函数信息：通过数组或其他方式，我们可以将类中的方法的名字、类型、地址等信息保存起来</li>
+</ul>
+<p>如：<code>&#123;“add”,type func,0xaa&#125;</code></p>
+<p>通过这种描述，我们可以用其来表达任意不同的类型，也就是表达任意不同的类，这样统一的处理不同类便成为了可能。</p>
+<h3 id="类的重新实例化-Type类的引入">类的重新实例化-Type类的引入</h3>
+<p>而在C#中我们会通过<code>System</code>命名空间下的<code>Type</code>类型来对具体类的信息进行存储，需要进行实例化时根据<code>Type</code>实例中的数据对具体类进行实例化。</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">FiledData</span> &#123;</span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="built_in">int</span> type;</span><br><span class="line">    <span class="built_in">int</span> offset;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">MethodData</span> &#123;</span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="built_in">int</span> type;</span><br><span class="line">    <span class="built_in">int</span> offset;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Type</span> &#123;</span><br><span class="line">    <span class="built_in">int</span> size;</span><br><span class="line">    List&lt;FiledData&gt; datas;</span><br><span class="line">    List&lt;MethodData&gt; funcs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上描述了<code>Type</code>类大致的组织方式，其中存储了具体类的各个信息，通过这些信息我们便可以完整的描述一个类</p>
+<p>根据<code>Type</code>类中的数据，引擎的底层便可以通过调用OS等API，动态的分配内存，构建不同的类型</p>
+<p>以下是通过<code>Type</code>类构建对象的流程：</p>
+<ol>
+<li>
+<p>编译某个类时，可以为该类生成一个<code>Type</code>类型的全局数据，其中存放了该类的描述数据</p>
+<p>我们可以通过<code>System.Type.GetType(“类名”)/typeof(T)</code>等API，根据类型/类名获取类的描述对象实例（即Type数据）</p>
+</li>
+<li>
+<p><code>Type</code>类型中，系统已经封装好了描述一个类需要的信息，包含：<code>FieldsInfos</code>（数据成员信息）、<code>MethodInfos</code>（成员方法信息）等</p>
+</li>
+<li>
+<p>通过反射API（<code>Activator.CreateInstance</code>），便可以根据<code>Type</code>数据构建对象</p>
+</li>
+<li>
+<p>在Type中可以说拥有类的一切数据，我们不仅可以构建类，同时也能更改、调用它们</p>
+</li>
+</ol>
+<hr>
+<h2 id="反射的应用：以Unity中的反射为例">反射的应用：以Unity中的反射为例</h2>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Reflection;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试类，通过反射对Data类进行操作</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Data</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Value;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Data</span>(<span class="params"><span class="built_in">string</span> name, <span class="built_in">int</span> <span class="keyword">value</span></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.Name = name;</span><br><span class="line">        <span class="keyword">this</span>.Value = <span class="keyword">value</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Show</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Debug.Log(<span class="string">&quot;Value:&quot;</span> + Value);</span><br><span class="line">        Debug.Log(<span class="string">&quot;Name:&quot;</span> + Name);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="built_in">int</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a, <span class="built_in">int</span> b</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestClass</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 构建Data类的Type对象</span></span><br><span class="line">        Type type = Type.GetType(<span class="string">&quot;Data&quot;</span>);</span><br><span class="line">        ShowConstructor(type);</span><br><span class="line">        ShowPublicMethod(type);</span><br><span class="line">        CreateObjectByConstructor(type);</span><br><span class="line">        CreateObjectByActivator(type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取构造函数的所有参数与类型</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ShowConstructor</span>(<span class="params">Type type</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 通过Type获取Data类中所有构造函数的信息</span></span><br><span class="line">        ConstructorInfo[] constructorInfos = type.GetConstructors();</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> constructorInfo <span class="keyword">in</span> constructorInfos)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 获取每个构造函数的所有参数</span></span><br><span class="line">            ParameterInfo[] parameterInfos = constructorInfo.GetParameters();</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="keyword">var</span> parameterInfo <span class="keyword">in</span> parameterInfos)</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.Log(<span class="string">$&quot;类型:<span class="subst">&#123;parameterInfo.ParameterType&#125;</span>, 变量名:<span class="subst">&#123;parameterInfo.Name&#125;</span>;&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取类中的公开方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ShowPublicMethod</span>(<span class="params">Type type</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        MethodInfo[] methodInfos = type.GetMethods();</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> methodInfo <span class="keyword">in</span> methodInfos)</span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">$&quot;方法:<span class="subst">&#123;methodInfo&#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 通过反射用构造函数动态生成对象</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">CreateObjectByConstructor</span>(<span class="params">Type type</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        ConstructorInfo constructorInfo = type.GetConstructor(<span class="keyword">new</span> []&#123;<span class="keyword">typeof</span>(<span class="built_in">string</span>),<span class="keyword">typeof</span>(<span class="built_in">int</span>)&#125;);</span><br><span class="line">        <span class="built_in">object</span>[] parameters = &#123; <span class="string">&quot;Hmxs&quot;</span>, <span class="number">100</span> &#125;;</span><br><span class="line">        <span class="built_in">object</span> obj = constructorInfo!.Invoke(parameters);</span><br><span class="line">        ((Data)obj).Show();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 通过反射用Activator静态生成对象</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">CreateObjectByActivator</span>(<span class="params">Type type</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">object</span>[] parameters = &#123; <span class="string">&quot;Hmxs2&quot;</span>, <span class="number">200</span> &#125;;</span><br><span class="line">        <span class="built_in">object</span> obj = Activator.CreateInstance(type, parameters);</span><br><span class="line">        ((Data)obj).Show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述代码中，通过C#提供的反射API对Data类进行了读取、构建</p>
+<blockquote>
+<p>总的来说，反射由于API贼长，且较为繁杂，给人以非常复杂的第一印象，但实际上，反射并不难以理解</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>C#</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>Note</tag>
+        <tag>Reflection</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【3B1B-线性代数的本质】学习笔记</title>
     <url>/posts/17021/</url>
     <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304100312370.png" alt="image-20230410031239217" style="zoom:50%;" />
@@ -1604,6 +1604,188 @@ L &amp; = L_a + L_d + L_s \\
       </tags>
   </entry>
   <entry>
+    <title>《Cyberpsychosis》-AI Game Jam 2022</title>
+    <url>/posts/35484/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261558559.png" alt="qN0WZOY3ZLuswAaY2CB4RM3NRHPgpBfQE9G2VaSz"></p>
+<h1>Cyberpsychosis</h1>
+<blockquote>
+<p><strong>游戏页面</strong>：<a href="https://gmhub.com/game/2005">https://gmhub.com/game/2005</a></p>
+<p><strong>介绍视频</strong>：<a href="https://www.bilibili.com/video/BV1U44y1Z7oU/">https://www.bilibili.com/video/BV1U44y1Z7oU/</a></p>
+</blockquote>
+<p>我在本次项目中担任程序，使用Unity引擎负责了部分代码的编写</p>
+<h2 id="小组成员">小组成员</h2>
+<p><strong>定福庄AI小队：</strong></p>
+<p>策划：虚虚、TenGo</p>
+<p>程序：紫地丁、<strong>徽墨行深(伍泽华)</strong></p>
+<p>美术：范静云</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601861.jpg" alt="tjM0fNlKlAXcGfzvM1iy4WCGjKLP7xijILJWeR2j"></p>
+<h2 id="游戏简介">游戏简介</h2>
+<p>一款联合移动的推箱子游戏，由5名中国传媒大学的大一学生共同完成。</p>
+<p>本次Game Jam的主题是「和谐的缝合怪」，我们的创作思路是在一个经典简洁的游戏机制上，做一些小的调整和创新。游戏故事背景设定参照了「赛博朋克」，其中的人类进行进行大量机械植入又要保证人性不丧失，避免「赛博精神病」，我们想这种人性与机械的平衡正符合本次大赛的主题，因而游戏名也取作「Cyberpsychosis」。</p>
+<p>游戏女主因车祸而需要进行机械移植治疗，手术后检测报告显示她很大概率会因免疫排斥而出现双向情感障碍，而她不富裕的家境无法承担高额的免疫抑制剂费用。在医生的建议下，她通过控制虚拟游戏中分裂的两个自我（狂躁和抑郁），去协作完成游戏目标，来达到训练自我达到平衡的效果。</p>
+<p>游戏内背景、人物立绘、BGM都是由AI进行创作。（策划和美术都被AI驯服了）</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601694.png" alt="6dAGl1r5fzLbMt6RppK7lLODYiCtMPYapnhXBoud"></p>
+]]></content>
+      <categories>
+        <category>Projects</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Unity-Timeline】学习笔记</title>
+    <url>/posts/15399/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312182321194.jpg" alt="Unity_Timeline"></p>
+<h1>Timeline：强大的可视化流程控制工具</h1>
+<blockquote>
+<p>官方文档：<a href="https://docs.unity3d.com/Packages/com.unity.timeline@1.8/manual/index.html">https://docs.unity3d.com/Packages/com.unity.timeline@1.8/manual/index.html</a></p>
+</blockquote>
+<hr>
+<h2 id="前言">前言</h2>
+<p><code>Timeline</code>是Unity中的一个强大的可视化工具，用于创建、编辑和控制复杂的时间线动画和剧情序列，可以轻松实现剪辑、动画、特效和音频的精确时间控制和协调</p>
+<p>而从笔者目前的了解来说，<code>Timeline</code>可以做的远不止“做剧情过程”这么简单，其本质上是一个强大的可视化时间轴控制器，我们可以通过其实现一定程度的流程控制，即从某一时刻开始以既定序列执行一系列事件，而得益于其提供了可供自定义的接口，这个“事件”的定义可以非常广泛，如可以用其实现：<code>在玩家按下开火键后立刻触发一个粒子特效，3帧后，生成子弹预制体，1秒后播放玩家动画</code>之类的效果</p>
+<p>如果只从这个角度来说，<code>Animation</code>组件也可以实现这一效果，但其只能承载一些比较简单的流程控制，并且可视化编辑体验并不算好；而<code>Timeline</code>相比来说更加强大，可供拓展的范围更广，并且可以实现一定程度的节点复用，在可视化编辑体验上来说也更加现代；同时，<code>Timeline</code>也可以很好地和原先的<code>Animation</code>系统交互</p>
+<p>之前在Unity中，若要在不借助第三方插件的前提下进行较为精确的时间轴控制，往往使用协程或难用的<code>Animation</code>，而<code>Timeline</code>可以说补足了Unity功能的一大空缺，可以说非常强大了</p>
+<hr>
+<h2 id="Timeline概念概述">Timeline概念概述</h2>
+<h3 id="运作方式：Timeline与Animation">运作方式：Timeline与Animation</h3>
+<p>在整体的运作方式上，<code>Timeline</code>与<code>Animation</code>非常相像；在使用<code>Animation</code>时，我们需要创建<code>Animation Clip</code>资源文件，并在对应物体上挂载<code>Animation</code>/<code>Animator</code>组件，通过组件驱动<code>Animation Clip</code>进行播放；而<code>Timeline</code>与其几乎一样，我们需要创建<code>Timeline</code>资源文件，并在物体上挂载<code>Playable Director</code>组件，通过其来驱动<code>Timeline</code>进行播放</p>
+<p>而二者不同的地方在于，<code>Animation</code>在设计上是与挂载了<code>Animation</code>/<code>Animator</code>组件物体高度相关的，即动画应该是属于某一物体的，一段主角身上的动画应该是属于主角的，其应该只影响主角，我们当然也可以通过一些手段让其控制其他物体，但总的来说很不方便也很不优雅；而在<code>Timeline</code>中，<code>Playable Director</code>正如其名只是一个“导演”，其只承担<code>Timeline</code>的驱动和管理，而可以不与<code>Timeline</code>所影响的物体相关，即导演在大部分情况下不会参演其导演的作品，这赋予了<code>Timeline</code>无比的自由度，你可以在其中控制场景中的一切</p>
+<h3 id="构成方式：Track-Clip">构成方式：Track - Clip</h3>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312300219644.png" alt="image-20231230021929575" style="zoom: 67%;" />
+<p>了解了<code>Timeline</code>的大体运作方式后，我们该认识一个<code>Timeline</code>的构成了；实际上，如果你了解或使用过任何视频剪辑软件，如：PR、达芬奇，你便会对<code>Timeline</code>的结构一目了然，<code>Timeline</code>的构成方式与视频剪辑软件非常相似</p>
+<p><strong>Track</strong>：</p>
+<ul>
+<li>一个<code>Timeline</code>由0~N个<code>Track</code>构成，<code>Track</code>是一个无限长的时间轴，一个<code>Timeline</code>中的所有<code>Track</code>共用一个时间轴</li>
+<li><code>Track</code>的存在允许我们方便地管理多个物体的行为，如我们希望A物体在1.0s出现、3.0s小时，B物体在2.0s出现、4.0s消失，我们便可以使用两个<code>Track</code>来实现这点</li>
+<li><code>Track</code>有不同的类型，其描述了<code>Track</code>的基本功能，Unity已经为我们提供了一些预制好的<code>Track</code>，如最基本的<code>Activation Track</code>便是控制一个物体的<code>Active</code>状态的</li>
+</ul>
+<p><strong>Clip</strong>：</p>
+<ul>
+<li>
+<p>一个<code>Track</code>由0~N个<code>Clip</code>构成，<code>Clip</code>是一个有开始时间和结束时间的区块，其存在于<code>Track</code>之上，当时间运行到对应<code>Clip</code>时，其便会执行对应行为</p>
+</li>
+<li>
+<p><code>Clip</code>允许我们对物体的状态在时间轴上进行精确的并行的控制，其与<code>Track</code>的结合可以很好地帮助我们实现想要的效果</p>
+</li>
+</ul>
+<p><strong>需要注意的是，Track和Clip本身实际上都不具有具体的功能，它们都是回调的触发者，真正的逻辑位于Behavior之上，这点在后续的自定义Track部分会详细说明</strong></p>
+<hr>
+<h2 id="各默认Track介绍">各默认Track介绍</h2>
+<h3 id="Activation-Track"><code>Activation Track</code></h3>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072301841.png" alt="image-20240107230145773"></p>
+<p><code>Activation Track</code>用于在特定时间启用或禁用游戏对象</p>
+<p>Track上可以绑定一个<code>GameObject</code>对象（这一对象最好不是Director，禁用Director将会终止Timeline的播放），一个<code>Activation Track</code>只能控制一个对象；Clip则决定了对象显隐的具体时间</p>
+<p><em><strong>需要注意的是，Clip在设计上是从属于Track的，从抽象层来说不应该访问Track上的数据（被控制对象的引用是绑定在Track上的），此处实际上使用了<code>Track Mixer</code>进行实现，在后续的自定义Track部分会详细说明</strong></em></p>
+<h3 id="Animation-Track"><code>Animation Track</code></h3>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072311002.png" alt="image-20240107231151968"></p>
+<p><code>Animation Track</code>用于播放Animator控制器上的动画片段（<code>Animation Clip</code>）</p>
+<p>Track上可以绑定一个<code>Animator</code>对象，Clip则由对象的动画片段构成；同时，Track上实现了<code>Track Mixer</code>，我们可以将两个的Clip进行重叠，实现动画的平滑过渡，并且自由地编辑过渡曲线</p>
+<h3 id="Audio-Track"><code>Audio Track</code></h3>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072320908.png" alt="image-20240107232004861"></p>
+<p><code>Audio Track</code>用于控制音频的播放</p>
+<p>Track上可以绑定一个<code>Audio Source</code>对象，该对象用于播放音频；而Clip则是具体需要播放的音频片段（<code>Audio Clip</code>）；同时，其也实现了<code>Track Mixer</code>，我们可以将两个的Clip进行重叠，实现音频的平滑过渡，并且自由地编辑过渡曲线</p>
+<h3 id="Control-Track"><code>Control Track</code></h3>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072326535.png" alt="image-20240107232611495"></p>
+<p><code>Control Track</code>允许你控制其他<code>Player Director</code>的播放，可以用来触发其他Timeline</p>
+<p>其Track上没有数据，Clip则由其他<code>Player Director</code>构成</p>
+<h3 id="Playable-Track"><code>Playable Track</code></h3>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072328418.png" alt="image-20240107232843380"></p>
+<p><code>Playable Track</code>较为特殊，其本身没有实际的逻辑，但其可以驱动自定义Clip</p>
+<p>当我们想进行一定程度的自定义，但不需要用到Track时，我们便可以只自定义Clip，并在<code>Playable Track</code>对其进行应用</p>
+<h3 id="Signal-Track"><code>Signal Track</code></h3>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072332456.png" alt="image-20240107233201429"></p>
+<p><code>Signal</code>是Timeline中内置的“事件系统”，其基于观察者模式进行搭建，如果你有使用过事件中心，那么你便能很快上手这个概念</p>
+<p>在使用它时，我们需要先右击创建后缀为<code>.signal</code>的资产文件，这相当于事件系统中的“事件”，需要注意的时，其本身不具有逻辑，其只是一个“概念”，一个逻辑的容器</p>
+<p>之后我们需要在事件作用的对象身上创建<code>Signal Receiver</code>组件，在其之上，我们便可以在<code>Inspector</code>中对需要触发的事件进行绑定，如下图所示</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072338800.png" alt="image-20240107233841768"></p>
+<p>这一组件是时间的“订阅者”，需要注意的是，<code>Signal</code>在这一过程中是可以被复用的，一个<code>Signal</code>可以被绑定给多个<code>Reveiver</code></p>
+<p>之后，我们便可以右击Track，选择<code>Add Signal Emitter</code>，当Track运行到该节点时，对应<code>Signal</code>便会被触发</p>
+<p>事实上，我们可以在任何Track上添加<code>Signal Emitter</code>，而独立出来的<code>Signal Track</code>或许是希望让<code>Signal</code>的触发更加容易管理</p>
+<p><em>Signal系统由于基于Timeline而生，在某些情况下并不那么好用，因其只支持在Inspector中进行事件的绑定，有时然而会让事情变得复杂，难以管理，或许我们可以在之后使用自定义Track功能创建自己的事件系统</em></p>
+<h3 id="Cinemachine-Track"><code>Cinemachine Track</code></h3>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072348212.png" alt="image-20240107234802182"></p>
+<p>这并不是Timeline中自带的功能，其由<code>Cinemachine</code>插件提供</p>
+<p>其可以非常方便地通过Timeline控制<code>Cinemachine</code>中的虚拟相机，是个非常强大便捷的功能</p>
+<p><code>Cinemachine</code>不是本文的主角，故此处对其用法不过多赘述</p>
+<hr>
+<h2 id="自定义Track">自定义Track</h2>
+<h3 id="概述">概述</h3>
+<p>接下来终于来到了个人认为Timeline中最激动人心的部分：强大的自定义功能</p>
+<p>Unity为我们提供了<code>TrackAsset</code>、<code>PlayableAsset</code>与<code>PlayableBehaviour</code>三个类与一些接口，通过继承它们，我们便可以实现对于Track的完全自定义</p>
+<p><em>上面介绍过的Timeline提供的默认Track也都是通过这些类实现的，其没有被写在Unity内核中，这也意味着我们可以在项目中直接找到实现它们的C#代码，这相当于官方范例，我想这可以给我们的自定义带来很大的帮助</em></p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401082030081.png" alt="image-20240108203042955"></p>
+<p>上图展示了一个完整Track的基本构成方式（括号中是它们背后的类）</p>
+<ul>
+<li>
+<p><code>PlayerBehaviour</code>是承载具体逻辑的基类，其具有多个回调，如<code>OnBehaviourPlay</code>（开始调用时）、<code>ProcessFrame</code>（每个逻辑帧）等；其既可以绑定在Clip上也可以由Track创建</p>
+</li>
+<li>
+<p><code>PlayableAsset</code>是Clip的基类，实现其<code>CreatePlayable</code>函数即可将一个<code>PlayerBehaviour</code>与其绑定，从而触发<code>PlayerBehaviour</code>中的回调函数</p>
+</li>
+<li>
+<p><code>TrackAsset</code>是Track的基类，其定义了一个Track的方方面面，包括Track上绑定的物体的类型、Track上Clip的类型、Track的颜色等；而实现<code>CreateTrackMixer</code>可以将一个<code>PlayerBehaviour</code>与其绑定，我们通常称其为Mixer，其可以访问整个Track上的绑定对象与其中的Clip的数据；尽管绑定在Clip上的<code>PlayerBehaviour</code>实际上也可以获取到Track上的绑定对象，但从面向对象的角度出发，和Track绑定对象相关的逻辑应该写在Mixer中，同时Mixer也负责处理Clip之间的融合逻辑，例如默认Track中的<code>Animation Track</code>与<code>Audio Track</code>便实现了对应功能</p>
+</li>
+</ul>
+<h3 id="具体实现">具体实现</h3>
+<h4 id="Track类">Track类</h4>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Timeline</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">TrackColor(0.5f, 0.5f, 0.5f)</span>]          <span class="comment">// Track颜色</span></span><br><span class="line">    [<span class="meta">TrackClipType(typeof(CustomClip))</span>]     <span class="comment">// Track上的Clip类型</span></span><br><span class="line">    [<span class="meta">TrackBindingType(typeof(GameObject))</span>]  <span class="comment">// Track上的绑定对象类型</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomTrack</span> : <span class="title">TrackAsset</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// inputCount即为Track上的Clip数量</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> Playable <span class="title">CreateTrackMixer</span>(<span class="params">PlayableGraph graph, GameObject go, <span class="built_in">int</span> inputCount</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> ScriptPlayable&lt;CustomMixer&gt;.Create(graph, inputCount);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Clip类">Clip类</h4>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Timeline</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomClip</span> : <span class="title">PlayableAsset</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> Playable <span class="title">CreatePlayable</span>(<span class="params">PlayableGraph graph, GameObject owner</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> ScriptPlayable&lt;CustomBehavior&gt;.Create(graph);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Behavior类">Behavior类</h4>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Timeline</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomBehavior</span> : <span class="title">PlayableBehaviour</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnBehaviourPlay</span>(<span class="params">Playable playable, FrameData info</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;OnBehaviourPlay&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnBehaviourPause</span>(<span class="params">Playable playable, FrameData info</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;OnBehaviourPause&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">ProcessFrame</span>(<span class="params">Playable playable, FrameData info, <span class="built_in">object</span> playerData</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;OnBehaviourProcessFrame&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Mixer类">Mixer类</h4>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Timeline</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomMixer</span> : <span class="title">PlayableBehaviour</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> GameObject _boundObject;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnBehaviourPlay</span>(<span class="params">Playable playable, FrameData info</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;OnMixerPlay&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnBehaviourPause</span>(<span class="params">Playable playable, FrameData info</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;OnMixerPause&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">ProcessFrame</span>(<span class="params">Playable playable, FrameData info, <span class="built_in">object</span> playerData</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 如果_boundObject为空则尝试获取绑定对象</span></span><br><span class="line">            _boundObject ??= playerData <span class="keyword">as</span> GameObject;</span><br><span class="line">            <span class="keyword">if</span> (_boundObject == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> inputCount = playable.GetInputCount();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; inputCount; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 获取融合权重</span></span><br><span class="line">                <span class="keyword">var</span> weight = playable.GetInputWeight(i);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 获取当前Clip</span></span><br><span class="line">                <span class="keyword">var</span> clipPlayable = (ScriptPlayable&lt;CustomBehavior&gt;)playable.GetInput(i);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 获取Clip上的Behavior</span></span><br><span class="line">                <span class="keyword">var</span> behavior = clipPlayable.GetBehaviour();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// do something......</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            Debug.Log(<span class="string">&quot;OnMixerProcessFrame&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Note</tag>
+        <tag>Unity</tag>
+        <tag>Timeline</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《EscapeFromVirus》-严肃游戏工坊作品</title>
+    <url>/posts/41160/</url>
+    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261533351.png" alt="logo" style="zoom: 50%;" />
+<h1>躲避病毒</h1>
+<blockquote>
+<p><strong>项目介绍</strong>：<a href="https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA">https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA</a></p>
+</blockquote>
+<p>我在本次项目中独自担任程序，使用Unity引擎负责了全部代码的编写</p>
+<h2 id="小组成员">小组成员</h2>
+<p>策划：唐诗</p>
+<p>美术：王子彤 刘月映</p>
+<p>程序：<strong>伍泽华</strong></p>
+<p>测试：杨光平</p>
+<h2 id="游戏内容">游戏内容</h2>
+<p>这是一款竖版弹幕类、动作敏捷类平面游戏。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261547150.png" alt="640 (1)" style="zoom:50%;" />
+<h2 id="游戏机制">游戏机制</h2>
+<p>玩家需要扮演角色“阿尼”或“A喵”，在屏幕上躲避从屏幕四周袭来的象征冠状病毒的弹幕，期间尽可能收集口罩等防疫物品，获得有助于通关的增益效果。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548998.png" alt="640" style="zoom:50%;" />
+<h2 id="游戏介绍">游戏介绍</h2>
+<p>通过回答防疫相关问题，获取猫粮，尽可能长时间地生存下来，生存时间越长得分越高。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548606.png" alt="640 (2)" style="zoom:50%;" />
+<h2 id="创作立意">创作立意</h2>
+<p>希望通过制作这样的一款严肃游戏，能让玩家关注防疫政策的变化，学习到防范病毒的小知识，学会做自己健康第一责任人。</p>
+]]></content>
+      <categories>
+        <category>Projects</category>
+        <category>2022</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Unity-Input System】学习笔记</title>
     <url>/posts/18584/</url>
     <content><![CDATA[<h1>Input System：浅尝Unity新输入系统</h1>
@@ -1735,73 +1917,6 @@ L &amp; = L_a + L_d + L_s \\
       </tags>
   </entry>
   <entry>
-    <title>《Cyberpsychosis》-AI Game Jam 2022</title>
-    <url>/posts/35484/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261558559.png" alt="qN0WZOY3ZLuswAaY2CB4RM3NRHPgpBfQE9G2VaSz"></p>
-<h1>Cyberpsychosis</h1>
-<blockquote>
-<p><strong>游戏页面</strong>：<a href="https://gmhub.com/game/2005">https://gmhub.com/game/2005</a></p>
-<p><strong>介绍视频</strong>：<a href="https://www.bilibili.com/video/BV1U44y1Z7oU/">https://www.bilibili.com/video/BV1U44y1Z7oU/</a></p>
-</blockquote>
-<p>我在本次项目中担任程序，使用Unity引擎负责了部分代码的编写</p>
-<h2 id="小组成员">小组成员</h2>
-<p><strong>定福庄AI小队：</strong></p>
-<p>策划：虚虚、TenGo</p>
-<p>程序：紫地丁、<strong>徽墨行深(伍泽华)</strong></p>
-<p>美术：范静云</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601861.jpg" alt="tjM0fNlKlAXcGfzvM1iy4WCGjKLP7xijILJWeR2j"></p>
-<h2 id="游戏简介">游戏简介</h2>
-<p>一款联合移动的推箱子游戏，由5名中国传媒大学的大一学生共同完成。</p>
-<p>本次Game Jam的主题是「和谐的缝合怪」，我们的创作思路是在一个经典简洁的游戏机制上，做一些小的调整和创新。游戏故事背景设定参照了「赛博朋克」，其中的人类进行进行大量机械植入又要保证人性不丧失，避免「赛博精神病」，我们想这种人性与机械的平衡正符合本次大赛的主题，因而游戏名也取作「Cyberpsychosis」。</p>
-<p>游戏女主因车祸而需要进行机械移植治疗，手术后检测报告显示她很大概率会因免疫排斥而出现双向情感障碍，而她不富裕的家境无法承担高额的免疫抑制剂费用。在医生的建议下，她通过控制虚拟游戏中分裂的两个自我（狂躁和抑郁），去协作完成游戏目标，来达到训练自我达到平衡的效果。</p>
-<p>游戏内背景、人物立绘、BGM都是由AI进行创作。（策划和美术都被AI驯服了）</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261601694.png" alt="6dAGl1r5fzLbMt6RppK7lLODYiCtMPYapnhXBoud"></p>
-]]></content>
-      <categories>
-        <category>Projects</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《EscapeFromVirus》-严肃游戏工坊作品</title>
-    <url>/posts/41160/</url>
-    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261533351.png" alt="logo" style="zoom: 50%;" />
-<h1>躲避病毒</h1>
-<blockquote>
-<p><strong>项目介绍</strong>：<a href="https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA">https://mp.weixin.qq.com/s/vUAJRW31vuiZmy-ZV_FtrA</a></p>
-</blockquote>
-<p>我在本次项目中独自担任程序，使用Unity引擎负责了全部代码的编写</p>
-<h2 id="小组成员">小组成员</h2>
-<p>策划：唐诗</p>
-<p>美术：王子彤 刘月映</p>
-<p>程序：<strong>伍泽华</strong></p>
-<p>测试：杨光平</p>
-<h2 id="游戏内容">游戏内容</h2>
-<p>这是一款竖版弹幕类、动作敏捷类平面游戏。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261547150.png" alt="640 (1)" style="zoom:50%;" />
-<h2 id="游戏机制">游戏机制</h2>
-<p>玩家需要扮演角色“阿尼”或“A喵”，在屏幕上躲避从屏幕四周袭来的象征冠状病毒的弹幕，期间尽可能收集口罩等防疫物品，获得有助于通关的增益效果。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548998.png" alt="640" style="zoom:50%;" />
-<h2 id="游戏介绍">游戏介绍</h2>
-<p>通过回答防疫相关问题，获取猫粮，尽可能长时间地生存下来，生存时间越长得分越高。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261548606.png" alt="640 (2)" style="zoom:50%;" />
-<h2 id="创作立意">创作立意</h2>
-<p>希望通过制作这样的一款严肃游戏，能让玩家关注防疫政策的变化，学习到防范病毒的小知识，学会做自己健康第一责任人。</p>
-]]></content>
-      <categories>
-        <category>Projects</category>
-        <category>2022</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《Revive》-UE GameJam 2022</title>
     <url>/posts/41772/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303261605787.png" alt="Logo"></p>
@@ -1851,6 +1966,37 @@ L &amp; = L_a + L_d + L_s \\
       </tags>
   </entry>
   <entry>
+    <title>《Just Suck.》-吉比特GameJam2023</title>
+    <url>/posts/52301/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202311010242672.jpeg" alt="img"></p>
+<h1>JUST SUCK.</h1>
+<blockquote>
+<p><strong>演示视频：<a href="https://www.bilibili.com/video/BV1aN41137tc/">https://www.bilibili.com/video/BV1aN41137tc/</a></strong></p>
+<p><strong>介绍视频：<a href="https://www.bilibili.com/video/BV1uN4y1a75f/">https://www.bilibili.com/video/BV1uN4y1a75f/</a></strong></p>
+<p><strong>项目地址：<a href="https://github.com/JBT-GameJam-23/JustSuck">https://github.com/JBT-GameJam-23/JustSuck</a></strong></p>
+</blockquote>
+<p>我在本次项目中独自担任程序，使用Unity引擎负责了全部代码的编写</p>
+<p>在本次比赛中，我们的作品获得了<strong>三等奖</strong></p>
+<h2 id="小组成员">小组成员</h2>
+<p>策划：顾宸彦、林繁森</p>
+<p>程序：<strong>伍泽华</strong></p>
+<p>美术：王嘉誉</p>
+<p>音效：马小龙Matti</p>
+<h2 id="游戏简介">游戏简介</h2>
+<p>本次GameJam以“吸收”作为主题展开，我们选择了极简的设计风格，将“吸”作为唯一的玩法，尽量减少多余画面元素的堆砌，同时辅以大量音效、动效作为玩家操作的反馈，以为玩家带来独特的游戏体验</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312182356619.png" alt="image-20231218235608482"></p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312182356792.png" alt="image-20231218235624709"></p>
+]]></content>
+      <categories>
+        <category>Projects</category>
+        <category>2023</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《SCP》-游戏创作1 week3</title>
     <url>/posts/57480/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221534305.jpg" alt="SCP"></p>
@@ -1872,152 +2018,6 @@ L &amp; = L_a + L_d + L_s \\
 <p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535994.png" alt="截图1"></p>
 <p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535175.png" alt="截图2"></p>
 <p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202305221535877.png" alt="截图3"></p>
-]]></content>
-      <categories>
-        <category>Projects</category>
-        <category>2023</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Unity-Timeline】学习笔记</title>
-    <url>/posts/15399/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312182321194.jpg" alt="Unity_Timeline"></p>
-<h1>Timeline：强大的可视化流程控制工具</h1>
-<blockquote>
-<p>官方文档：<a href="https://docs.unity3d.com/Packages/com.unity.timeline@1.8/manual/index.html">https://docs.unity3d.com/Packages/com.unity.timeline@1.8/manual/index.html</a></p>
-</blockquote>
-<hr>
-<h2 id="前言">前言</h2>
-<p><code>Timeline</code>是Unity中的一个强大的可视化工具，用于创建、编辑和控制复杂的时间线动画和剧情序列，可以轻松实现剪辑、动画、特效和音频的精确时间控制和协调</p>
-<p>而从笔者目前的了解来说，<code>Timeline</code>可以做的远不止“做剧情过程”这么简单，其本质上是一个强大的可视化时间轴控制器，我们可以通过其实现一定程度的流程控制，即从某一时刻开始以既定序列执行一系列事件，而得益于其提供了可供自定义的接口，这个“事件”的定义可以非常广泛，如可以用其实现：<code>在玩家按下开火键后立刻触发一个粒子特效，3帧后，生成子弹预制体，1秒后播放玩家动画</code>之类的效果</p>
-<p>如果只从这个角度来说，<code>Animation</code>组件也可以实现这一效果，但其只能承载一些比较简单的流程控制，并且可视化编辑体验并不算好；而<code>Timeline</code>相比来说更加强大，可供拓展的范围更广，并且可以实现一定程度的节点复用，在可视化编辑体验上来说也更加现代；同时，<code>Timeline</code>也可以很好地和原先的<code>Animation</code>系统交互</p>
-<p>之前在Unity中，若要在不借助第三方插件的前提下进行较为精确的时间轴控制，往往使用协程或难用的<code>Animation</code>，而<code>Timeline</code>可以说补足了Unity功能的一大空缺，可以说非常强大了</p>
-<hr>
-<h2 id="Timeline概念概述">Timeline概念概述</h2>
-<h3 id="运作方式：Timeline与Animation">运作方式：Timeline与Animation</h3>
-<p>在整体的运作方式上，<code>Timeline</code>与<code>Animation</code>非常相像；在使用<code>Animation</code>时，我们需要创建<code>Animation Clip</code>资源文件，并在对应物体上挂载<code>Animation</code>/<code>Animator</code>组件，通过组件驱动<code>Animation Clip</code>进行播放；而<code>Timeline</code>与其几乎一样，我们需要创建<code>Timeline</code>资源文件，并在物体上挂载<code>Playable Director</code>组件，通过其来驱动<code>Timeline</code>进行播放</p>
-<p>而二者不同的地方在于，<code>Animation</code>在设计上是与挂载了<code>Animation</code>/<code>Animator</code>组件物体高度相关的，即动画应该是属于某一物体的，一段主角身上的动画应该是属于主角的，其应该只影响主角，我们当然也可以通过一些手段让其控制其他物体，但总的来说很不方便也很不优雅；而在<code>Timeline</code>中，<code>Playable Director</code>正如其名只是一个“导演”，其只承担<code>Timeline</code>的驱动和管理，而可以不与<code>Timeline</code>所影响的物体相关，即导演在大部分情况下不会参演其导演的作品，这赋予了<code>Timeline</code>无比的自由度，你可以在其中控制场景中的一切</p>
-<h3 id="构成方式：Track-Clip">构成方式：Track - Clip</h3>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312300219644.png" alt="image-20231230021929575" style="zoom: 67%;" />
-<p>了解了<code>Timeline</code>的大体运作方式后，我们该认识一个<code>Timeline</code>的构成了；实际上，如果你了解或使用过任何视频剪辑软件，如：PR、达芬奇，你便会对<code>Timeline</code>的结构一目了然，<code>Timeline</code>的构成方式与视频剪辑软件非常相似</p>
-<p><strong>Track</strong>：</p>
-<ul>
-<li>一个<code>Timeline</code>由0~N个<code>Track</code>构成，<code>Track</code>是一个无限长的时间轴，一个<code>Timeline</code>中的所有<code>Track</code>共用一个时间轴</li>
-<li><code>Track</code>的存在允许我们方便地管理多个物体的行为，如我们希望A物体在1.0s出现、3.0s小时，B物体在2.0s出现、4.0s消失，我们便可以使用两个<code>Track</code>来实现这点</li>
-<li><code>Track</code>有不同的类型，其描述了<code>Track</code>的基本功能，Unity已经为我们提供了一些预制好的<code>Track</code>，如最基本的<code>Activation Track</code>便是控制一个物体的<code>Active</code>状态的</li>
-</ul>
-<p><strong>Clip</strong>：</p>
-<ul>
-<li>
-<p>一个<code>Track</code>由0~N个<code>Clip</code>构成，<code>Clip</code>是一个有开始时间和结束时间的区块，其存在于<code>Track</code>之上，当时间运行到对应<code>Clip</code>时，其便会执行对应行为</p>
-</li>
-<li>
-<p><code>Clip</code>允许我们对物体的状态在时间轴上进行精确的并行的控制，其与<code>Track</code>的结合可以很好地帮助我们实现想要的效果</p>
-</li>
-</ul>
-<p><strong>需要注意的是，Track和Clip本身实际上都不具有具体的功能，它们都是回调的触发者，真正的逻辑位于Behavior之上，这点在后续的自定义Track部分会详细说明</strong></p>
-<hr>
-<h2 id="各默认Track介绍">各默认Track介绍</h2>
-<h3 id="Activation-Track"><code>Activation Track</code></h3>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072301841.png" alt="image-20240107230145773"></p>
-<p><code>Activation Track</code>用于在特定时间启用或禁用游戏对象</p>
-<p>Track上可以绑定一个<code>GameObject</code>对象（这一对象最好不是Director，禁用Director将会终止Timeline的播放），一个<code>Activation Track</code>只能控制一个对象；Clip则决定了对象显隐的具体时间</p>
-<p><em><strong>需要注意的是，Clip在设计上是从属于Track的，从抽象层来说不应该访问Track上的数据（被控制对象的引用是绑定在Track上的），此处实际上使用了<code>Track Mixer</code>进行实现，在后续的自定义Track部分会详细说明</strong></em></p>
-<h3 id="Animation-Track"><code>Animation Track</code></h3>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072311002.png" alt="image-20240107231151968"></p>
-<p><code>Animation Track</code>用于播放Animator控制器上的动画片段（<code>Animation Clip</code>）</p>
-<p>Track上可以绑定一个<code>Animator</code>对象，Clip则由对象的动画片段构成；同时，Track上实现了<code>Track Mixer</code>，我们可以将两个的Clip进行重叠，实现动画的平滑过渡，并且自由地编辑过渡曲线</p>
-<h3 id="Audio-Track"><code>Audio Track</code></h3>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072320908.png" alt="image-20240107232004861"></p>
-<p><code>Audio Track</code>用于控制音频的播放</p>
-<p>Track上可以绑定一个<code>Audio Source</code>对象，该对象用于播放音频；而Clip则是具体需要播放的音频片段（<code>Audio Clip</code>）；同时，其也实现了<code>Track Mixer</code>，我们可以将两个的Clip进行重叠，实现音频的平滑过渡，并且自由地编辑过渡曲线</p>
-<h3 id="Control-Track"><code>Control Track</code></h3>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072326535.png" alt="image-20240107232611495"></p>
-<p><code>Control Track</code>允许你控制其他<code>Player Director</code>的播放，可以用来触发其他Timeline</p>
-<p>其Track上没有数据，Clip则由其他<code>Player Director</code>构成</p>
-<h3 id="Playable-Track"><code>Playable Track</code></h3>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072328418.png" alt="image-20240107232843380"></p>
-<p><code>Playable Track</code>较为特殊，其本身没有实际的逻辑，但其可以驱动自定义Clip</p>
-<p>当我们想进行一定程度的自定义，但不需要用到Track时，我们便可以只自定义Clip，并在<code>Playable Track</code>对其进行应用</p>
-<h3 id="Signal-Track"><code>Signal Track</code></h3>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072332456.png" alt="image-20240107233201429"></p>
-<p><code>Signal</code>是Timeline中内置的“事件系统”，其基于观察者模式进行搭建，如果你有使用过事件中心，那么你便能很快上手这个概念</p>
-<p>在使用它时，我们需要先右击创建后缀为<code>.signal</code>的资产文件，这相当于事件系统中的“事件”，需要注意的时，其本身不具有逻辑，其只是一个“概念”，一个逻辑的容器</p>
-<p>之后我们需要在事件作用的对象身上创建<code>Signal Receiver</code>组件，在其之上，我们便可以在<code>Inspector</code>中对需要触发的事件进行绑定，如下图所示</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072338800.png" alt="image-20240107233841768"></p>
-<p>这一组件是时间的“订阅者”，需要注意的是，<code>Signal</code>在这一过程中是可以被复用的，一个<code>Signal</code>可以被绑定给多个<code>Reveiver</code></p>
-<p>之后，我们便可以右击Track，选择<code>Add Signal Emitter</code>，当Track运行到该节点时，对应<code>Signal</code>便会被触发</p>
-<p>事实上，我们可以在任何Track上添加<code>Signal Emitter</code>，而独立出来的<code>Signal Track</code>或许是希望让<code>Signal</code>的触发更加容易管理</p>
-<p><em>Signal系统由于基于Timeline而生，在某些情况下并不那么好用，因其只支持在Inspector中进行事件的绑定，有时然而会让事情变得复杂，难以管理，或许我们可以在之后使用自定义Track功能创建自己的事件系统</em></p>
-<h3 id="Cinemachine-Track"><code>Cinemachine Track</code></h3>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401072348212.png" alt="image-20240107234802182"></p>
-<p>这并不是Timeline中自带的功能，其由<code>Cinemachine</code>插件提供</p>
-<p>其可以非常方便地通过Timeline控制<code>Cinemachine</code>中的虚拟相机，是个非常强大便捷的功能</p>
-<p><code>Cinemachine</code>不是本文的主角，故此处对其用法不过多赘述</p>
-<hr>
-<h2 id="自定义Track">自定义Track</h2>
-<h3 id="概述">概述</h3>
-<p>接下来终于来到了个人认为Timeline中最激动人心的部分：强大的自定义功能</p>
-<p>Unity为我们提供了<code>TrackAsset</code>、<code>PlayableAsset</code>与<code>PlayableBehaviour</code>三个类与一些接口，通过继承它们，我们便可以实现对于Track的完全自定义</p>
-<p><em>上面介绍过的Timeline提供的默认Track也都是通过这些类实现的，其没有被写在Unity内核中，这也意味着我们可以在项目中直接找到实现它们的C#代码，这相当于官方范例，我想这可以给我们的自定义带来很大的帮助</em></p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202401082030081.png" alt="image-20240108203042955"></p>
-<p>上图展示了一个完整Track的基本构成方式（括号中是它们背后的类）</p>
-<ul>
-<li>
-<p><code>PlayerBehaviour</code>是承载具体逻辑的基类，其具有多个回调，如<code>OnBehaviourPlay</code>（开始调用时）、<code>ProcessFrame</code>（每个逻辑帧）等；其既可以绑定在Clip上也可以由Track创建</p>
-</li>
-<li>
-<p><code>PlayableAsset</code>是Clip的基类，实现其<code>CreatePlayable</code>函数即可将一个<code>PlayerBehaviour</code>与其绑定，从而触发<code>PlayerBehaviour</code>中的回调函数</p>
-</li>
-<li>
-<p><code>TrackAsset</code>是Track的基类，其定义了一个Track的方方面面，包括Track上绑定的物体的类型、Track上Clip的类型、Track的颜色等；而实现<code>CreateTrackMixer</code>可以将一个<code>PlayerBehaviour</code>与其绑定，我们通常称其为Mixer，其可以访问整个Track上的绑定对象与其中的Clip的数据；尽管绑定在Clip上的<code>PlayerBehaviour</code>实际上也可以获取到Track上的绑定对象，但从面向对象的角度出发，和Track绑定对象相关的逻辑应该写在Mixer中，同时Mixer也负责处理Clip之间的融合逻辑，例如默认Track中的<code>Animation Track</code>与<code>Audio Track</code>便实现了对应功能</p>
-</li>
-</ul>
-<h3 id="具体实现">具体实现</h3>
-<h4 id="Track类">Track类</h4>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Timeline</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">TrackColor(0.5f, 0.5f, 0.5f)</span>]          <span class="comment">// Track颜色</span></span><br><span class="line">    [<span class="meta">TrackClipType(typeof(CustomClip))</span>]     <span class="comment">// Track上的Clip类型</span></span><br><span class="line">    [<span class="meta">TrackBindingType(typeof(GameObject))</span>]  <span class="comment">// Track上的绑定对象类型</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomTrack</span> : <span class="title">TrackAsset</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// inputCount即为Track上的Clip数量</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> Playable <span class="title">CreateTrackMixer</span>(<span class="params">PlayableGraph graph, GameObject go, <span class="built_in">int</span> inputCount</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> ScriptPlayable&lt;CustomMixer&gt;.Create(graph, inputCount);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Clip类">Clip类</h4>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Timeline</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomClip</span> : <span class="title">PlayableAsset</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> Playable <span class="title">CreatePlayable</span>(<span class="params">PlayableGraph graph, GameObject owner</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> ScriptPlayable&lt;CustomBehavior&gt;.Create(graph);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Behavior类">Behavior类</h4>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Timeline</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomBehavior</span> : <span class="title">PlayableBehaviour</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnBehaviourPlay</span>(<span class="params">Playable playable, FrameData info</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;OnBehaviourPlay&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnBehaviourPause</span>(<span class="params">Playable playable, FrameData info</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;OnBehaviourPause&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">ProcessFrame</span>(<span class="params">Playable playable, FrameData info, <span class="built_in">object</span> playerData</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;OnBehaviourProcessFrame&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Mixer类">Mixer类</h4>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Timeline</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomMixer</span> : <span class="title">PlayableBehaviour</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> GameObject _boundObject;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnBehaviourPlay</span>(<span class="params">Playable playable, FrameData info</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;OnMixerPlay&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnBehaviourPause</span>(<span class="params">Playable playable, FrameData info</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;OnMixerPause&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">ProcessFrame</span>(<span class="params">Playable playable, FrameData info, <span class="built_in">object</span> playerData</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 如果_boundObject为空则尝试获取绑定对象</span></span><br><span class="line">            _boundObject ??= playerData <span class="keyword">as</span> GameObject;</span><br><span class="line">            <span class="keyword">if</span> (_boundObject == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> inputCount = playable.GetInputCount();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; inputCount; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 获取融合权重</span></span><br><span class="line">                <span class="keyword">var</span> weight = playable.GetInputWeight(i);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 获取当前Clip</span></span><br><span class="line">                <span class="keyword">var</span> clipPlayable = (ScriptPlayable&lt;CustomBehavior&gt;)playable.GetInput(i);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 获取Clip上的Behavior</span></span><br><span class="line">                <span class="keyword">var</span> behavior = clipPlayable.GetBehaviour();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// do something......</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            Debug.Log(<span class="string">&quot;OnMixerProcessFrame&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Notes</category>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Note</tag>
-        <tag>Unity</tag>
-        <tag>Timeline</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《Just Suck.》-吉比特GameJam2023</title>
-    <url>/posts/52301/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202311010242672.jpeg" alt="img"></p>
-<h1>JUST SUCK.</h1>
-<blockquote>
-<p><strong>演示视频：<a href="https://www.bilibili.com/video/BV1aN41137tc/">https://www.bilibili.com/video/BV1aN41137tc/</a></strong></p>
-<p><strong>介绍视频：<a href="https://www.bilibili.com/video/BV1uN4y1a75f/">https://www.bilibili.com/video/BV1uN4y1a75f/</a></strong></p>
-<p><strong>项目地址：<a href="https://github.com/JBT-GameJam-23/JustSuck">https://github.com/JBT-GameJam-23/JustSuck</a></strong></p>
-</blockquote>
-<p>我在本次项目中独自担任程序，使用Unity引擎负责了全部代码的编写</p>
-<p>在本次比赛中，我们的作品获得了<strong>三等奖</strong></p>
-<h2 id="小组成员">小组成员</h2>
-<p>策划：顾宸彦、林繁森</p>
-<p>程序：<strong>伍泽华</strong></p>
-<p>美术：王嘉誉</p>
-<p>音效：马小龙Matti</p>
-<h2 id="游戏简介">游戏简介</h2>
-<p>本次GameJam以“吸收”作为主题展开，我们选择了极简的设计风格，将“吸”作为唯一的玩法，尽量减少多余画面元素的堆砌，同时辅以大量音效、动效作为玩家操作的反馈，以为玩家带来独特的游戏体验</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312182356619.png" alt="image-20231218235608482"></p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312182356792.png" alt="image-20231218235624709"></p>
 ]]></content>
       <categories>
         <category>Projects</category>
@@ -2061,6 +2061,33 @@ L &amp; = L_a + L_d + L_s \\
       </tags>
   </entry>
   <entry>
+    <title>《联机象棋》-游戏编程实训</title>
+    <url>/posts/8233/</url>
+    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202307161608249.png" alt="image-20230716150851155" style="zoom: 80%;" />
+<h1>联机象棋</h1>
+<blockquote>
+<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/C-ChineseChessWithLAN">https://github.com/hmxsqaq/C-ChineseChessWithLAN</a></p>
+</blockquote>
+<p>我在本次项目中担任程序，使用C++Socket实现了局域网p2p联机，同时完成了棋子合法性判断的逻辑</p>
+<h2 id="小组成员">小组成员</h2>
+<p>伍泽华-负责网络模块、棋子合法性判断</p>
+<p>李建豪-负责游戏前端、游戏流程</p>
+<h2 id="游戏简介">游戏简介</h2>
+<p>一款可局域网联机的中国象棋游戏</p>
+<p>局域网联机功能通过C语言Socket实现</p>
+<p>游戏前端通过EasyX图形库呈现</p>
+<p>大学生练习作品</p>
+]]></content>
+      <categories>
+        <category>Projects</category>
+        <category>2023</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《辟邪傩狮》-游戏创作1结课</title>
     <url>/posts/30933/</url>
     <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202307161452197.png" alt="image-20230716135205003" style="zoom: 67%;" />
@@ -2086,33 +2113,6 @@ L &amp; = L_a + L_d + L_s \\
       </categories>
       <tags>
         <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《联机象棋》-游戏编程实训</title>
-    <url>/posts/8233/</url>
-    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202307161608249.png" alt="image-20230716150851155" style="zoom: 80%;" />
-<h1>联机象棋</h1>
-<blockquote>
-<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/C-ChineseChessWithLAN">https://github.com/hmxsqaq/C-ChineseChessWithLAN</a></p>
-</blockquote>
-<p>我在本次项目中担任程序，使用C++Socket实现了局域网p2p联机，同时完成了棋子合法性判断的逻辑</p>
-<h2 id="小组成员">小组成员</h2>
-<p>伍泽华-负责网络模块、棋子合法性判断</p>
-<p>李建豪-负责游戏前端、游戏流程</p>
-<h2 id="游戏简介">游戏简介</h2>
-<p>一款可局域网联机的中国象棋游戏</p>
-<p>局域网联机功能通过C语言Socket实现</p>
-<p>游戏前端通过EasyX图形库呈现</p>
-<p>大学生练习作品</p>
-]]></content>
-      <categories>
-        <category>Projects</category>
-        <category>2023</category>
-      </categories>
-      <tags>
-        <tag>C/C++</tag>
         <tag>GameProject</tag>
       </tags>
   </entry>
@@ -2659,42 +2659,49 @@ L &amp; = L_a + L_d + L_s \\
       </tags>
   </entry>
   <entry>
-    <title>2048</title>
-    <url>/posts/42265/</url>
-    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251612203.png" alt="2048" style="zoom: 25%;" />
+    <title>【游戏编程模式】读书笔记一：架构、性能与游戏</title>
+    <url>/posts/7377/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301905867.jpeg" alt="img"></p>
 <blockquote>
-<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/Unity-2048-New">https://github.com/hmxsqaq/Unity-2048-New</a></p>
+<p><strong>《游戏编程模式》-Bob Nystrom</strong></p>
+<p><strong>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></strong></p>
+<p><strong>笔记目录：<a href="https://hmxs.games/posts/56336/">https://hmxs.games/posts/56336/</a></strong></p>
 </blockquote>
+<hr>
+<h1>架构、性能与游戏</h1>
+<p><strong>软件架构</strong>：架构是代码的构建模式、每个程序不论好坏都有其架构</p>
+<p><strong>好的软件架构</strong>：架构是关于改动的—评价架构设计的好坏就是评价它应对改动有多么轻松</p>
+<p><strong>处理代码改动</strong>：</p>
+<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301750097.png" alt="image-20230330175013047"></p>
+<p><strong>解耦</strong>：最小化在编写代码前需要了解的信息，最小化更改一块代码时对其他部分的影响</p>
+<p><strong>代价</strong>：抽象、模块化、设计模式和软件架构让程序的编写、拓展更有效率，让人可以行云流水的编写代码，但是需要注意的是，这也会带来更大的维护与管理成本，同时大幅提高代码的复杂度。**不要沉迷在代码中，而忘记了我们到底在写什么！**很多时候，You aren’t gonna need it！</p>
+<ul>
+<li>
+<p>抽象和解耦让扩展代码更快更容易，但除非确信需要灵活性，否则不要在这上面浪费时间。</p>
+</li>
+<li>
+<p>在整个开发周期中为性能考虑并做好设计，但是尽可能推迟那些底层的，基于假设的优化，那会锁死代码。</p>
+</li>
+<li>
+<p>快速地探索游戏的设计空间，但不要跑得太快，在身后留下烂摊子。毕竟你总得回来打扫。</p>
+</li>
+<li>
+<p>如果打算抛弃这段代码，就不要尝试将其写完美。摇滚明星将旅店房间弄得一团糟，因为他们知道明天就走人了。</p>
+</li>
+<li>
+<p>但最重要的是，<strong>如果你想要做出让人享受的东西，那就享受做它的过程。</strong></p>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>Projects</category>
-        <category>经典小游戏复刻</category>
+        <category>Notes</category>
+        <category>Design Pattern</category>
+        <category>《Game Programming Patterns》</category>
       </categories>
       <tags>
-        <tag>C#</tag>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FlappyBird</title>
-    <url>/posts/16350/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251606418.png" alt="FlappyBird"></p>
-<blockquote>
-<p><strong>项目地址：</strong></p>
-<p>Unity: <a href="https://github.com/hmxsqaq/Unity-FlappyBird">https://github.com/hmxsqaq/Unity-FlappyBird</a></p>
-<p>Pygame: <a href="https://github.com/hmxsqaq/Pygame-FlappyBird">https://github.com/hmxsqaq/Pygame-FlappyBird</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Projects</category>
-        <category>经典小游戏复刻</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-        <tag>Unity</tag>
-        <tag>GameProject</tag>
-        <tag>Python</tag>
+        <tag>Note</tag>
+        <tag>《游戏编程模式》</tag>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
@@ -3005,52 +3012,6 @@ L &amp; = L_a + L_d + L_s \\
       </tags>
   </entry>
   <entry>
-    <title>【游戏编程模式】读书笔记一：架构、性能与游戏</title>
-    <url>/posts/7377/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301905867.jpeg" alt="img"></p>
-<blockquote>
-<p><strong>《游戏编程模式》-Bob Nystrom</strong></p>
-<p><strong>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></strong></p>
-<p><strong>笔记目录：<a href="https://hmxs.games/posts/56336/">https://hmxs.games/posts/56336/</a></strong></p>
-</blockquote>
-<hr>
-<h1>架构、性能与游戏</h1>
-<p><strong>软件架构</strong>：架构是代码的构建模式、每个程序不论好坏都有其架构</p>
-<p><strong>好的软件架构</strong>：架构是关于改动的—评价架构设计的好坏就是评价它应对改动有多么轻松</p>
-<p><strong>处理代码改动</strong>：</p>
-<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301750097.png" alt="image-20230330175013047"></p>
-<p><strong>解耦</strong>：最小化在编写代码前需要了解的信息，最小化更改一块代码时对其他部分的影响</p>
-<p><strong>代价</strong>：抽象、模块化、设计模式和软件架构让程序的编写、拓展更有效率，让人可以行云流水的编写代码，但是需要注意的是，这也会带来更大的维护与管理成本，同时大幅提高代码的复杂度。**不要沉迷在代码中，而忘记了我们到底在写什么！**很多时候，You aren’t gonna need it！</p>
-<ul>
-<li>
-<p>抽象和解耦让扩展代码更快更容易，但除非确信需要灵活性，否则不要在这上面浪费时间。</p>
-</li>
-<li>
-<p>在整个开发周期中为性能考虑并做好设计，但是尽可能推迟那些底层的，基于假设的优化，那会锁死代码。</p>
-</li>
-<li>
-<p>快速地探索游戏的设计空间，但不要跑得太快，在身后留下烂摊子。毕竟你总得回来打扫。</p>
-</li>
-<li>
-<p>如果打算抛弃这段代码，就不要尝试将其写完美。摇滚明星将旅店房间弄得一团糟，因为他们知道明天就走人了。</p>
-</li>
-<li>
-<p>但最重要的是，<strong>如果你想要做出让人享受的东西，那就享受做它的过程。</strong></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Notes</category>
-        <category>Design Pattern</category>
-        <category>《Game Programming Patterns》</category>
-      </categories>
-      <tags>
-        <tag>Note</tag>
-        <tag>《游戏编程模式》</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【游戏编程模式】读书笔记二：命令模式</title>
     <url>/posts/7569/</url>
     <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303301905867.jpeg" alt="img"></p>
@@ -3104,64 +3065,6 @@ L &amp; = L_a + L_d + L_s \\
 <p>在调用命令的脚本中，通过Unity提供的List<T>来存储指令，通过一个int变量_commandHead表示List的指针，指向当前命令，通过对commandHead的改变便可以灵活调用指令</p>
 <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">InputHandler</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ICommand&gt; _commands = <span class="keyword">new</span>();<span class="comment">// 储存命令的List</span></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">int</span> _commandHead = <span class="number">-1</span>;<span class="comment">// 命令指针</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Vector2 pos;<span class="comment">// 模拟物体移动</span></span><br><span class="line">    <span class="keyword">private</span> ICommand _currentCommand;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        _currentCommand = InputCommand();</span><br><span class="line">        <span class="keyword">if</span> (_currentCommand != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 执行命令</span></span><br><span class="line">            _commandHead += <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (_commands.Count &lt;= _commandHead)</span><br><span class="line">                _commands.Add(_currentCommand);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                _commands[_commandHead] = _currentCommand;</span><br><span class="line">            _commands[_commandHead].Execute();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (Input.GetKeyDown(KeyCode.Z))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 撤销命令</span></span><br><span class="line">            <span class="keyword">if</span> (_commandHead &gt;= <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                _commands[_commandHead].Undo();</span><br><span class="line">                _commandHead -= <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 接收输入，返回对应命令</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ICommand <span class="title">InputCommand</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (Input.GetKeyDown(KeyCode.A)) <span class="keyword">return</span> <span class="keyword">new</span> JumpCommand();</span><br><span class="line">        <span class="keyword">if</span> (Input.GetKeyDown(KeyCode.D))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> WalkCommand(gameObject, Vector2.one);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
-      <categories>
-        <category>Notes</category>
-        <category>Design Pattern</category>
-        <category>《Game Programming Patterns》</category>
-      </categories>
-      <tags>
-        <tag>Note</tag>
-        <tag>《游戏编程模式》</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【游戏编程模式】读书笔记三：享元模式、观察者模式</title>
-    <url>/posts/56656/</url>
-    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304032232057.jpeg" alt="img"></p>
-<blockquote>
-<p><strong>《游戏编程模式》-Bob Nystrom</strong></p>
-<p><strong>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></strong></p>
-<p><strong>笔记目录：<a href="https://hmxs.games/posts/56336/">https://hmxs.games/posts/56336/</a></strong></p>
-</blockquote>
-<hr>
-<h1>享元模式</h1>
-<h2 id="基本定义与概念">基本定义与概念</h2>
-<p>享元模式(FlyweightPattern)是以效率为核心的设计模式，当我们有大量类似对象需要进行实例化时，如果直接一个一个类的进行创建，那其将占用大量的内存空间。而享元模式将其对象的数据分为两部分—共享部分(如材质、模型)与其他部分(如大小、坐标)分别储存，共享部分只声明一片固定空间，所有对象持有对该空间的引用，这样生成对象时便只需要关心其他部分的数据即可。</p>
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304032355080.png" alt="一行树，每棵都有自己的网格、纹理、树叶，调节参数和位置朝向。" style="zoom: 67%;" />
-<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304032355211.png" alt="一行树，每个都有自己的参数和位置朝向，指向另一个有网格、纹理、树叶的树模型。" style="zoom:67%;" />
-<h3 id="应用场景">应用场景</h3>
-<ul>
-<li>有大量相同相似对象需要实例化</li>
-<li>这些对象存在数据可以共享</li>
-</ul>
-<h3 id="优点">优点</h3>
-<ul>
-<li>节省内存开销，提高效率</li>
-<li>在大量创建实例时更方便管理</li>
-</ul>
-<h3 id="缺点">缺点</h3>
-<ul>
-<li>如果需要实例化的对象不够多，享元模式的引入反而会增加代码管理成本</li>
-<li>创建对象的过程可能更加繁琐</li>
-</ul>
-<h2 id="Unity简单实现">Unity简单实现</h2>
-<p>Unity中的预制体、材质球等本身便是应用享元模式进行开发的，如多个物体共用一个材质球等</p>
-<p>享元的核心其实便是共享一部分不变的数据来节省空间，在Unity中通过ScriptableObject,静态类等都可以实现共享数据这一功能，同时其与建造者模式、工厂模式都有着不错的相性</p>
-<p>以下为一些简单的实现：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">FlyweightPattern</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 共享数据类(使用Struct应该也行)</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 在具体对象中持有该类的引用即可</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FlyweightClass</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 共享数据</span></span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> Hp;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">float</span> Speed;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构造函数</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">FlyweightClass</span>(<span class="params"><span class="built_in">int</span> hp, <span class="built_in">float</span> speed</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Hp = hp;</span><br><span class="line">            Speed = speed;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 共享数据SO</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 在菜单中右键创建SO文件或使用ScriptableObject.CreateInstance方法创建SO实例</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 在具体对象中持有SO文件的引用即可</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">CreateAssetMenu(fileName = <span class="string">&quot;Data&quot;</span>,menuName = <span class="string">&quot;SO/Flyweight&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FlyweightSO</span> : <span class="title">ScriptableObject</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> hp;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">float</span> speed;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h1>观察者模式</h1>
-<h2 id="基本定义与概念-2">基本定义与概念</h2>
-<p>观察者模式(ObserverPattern)是一种可以将代码的调用与对于调用的响应分离的设计模式，这是一种极重要的设计模式，C#中的event系统便是基于观察者模式实现的。在观察者模式中，观察者拥有具体的需要执行的代码，被观察者则仅需要负责发出通知，观察者监听到了对应的通知就会执行对应的代码。当我们编写被观察者的其他代码时，便无需关心奇怪的耦合问题，只需要专注于被观察者本身，在需要触发对应事件的时候发出通知即可。</p>
-<h3 id="应用场景-2">应用场景</h3>
-<ul>
-<li>当一个事件会触发一个或多个分属于不同系统的行为时</li>
-<li>当程序耦合严重时，观察者模式可以解除观察者与被观察者之间的依赖</li>
-</ul>
-<h3 id="Unity简单实现-2">Unity简单实现</h3>
-<p>*此处我直接实现了事件中心，这也是观察者模式的一种体现，引入了事件中心类作为第三方管理者统一订阅与触发事件</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">ObserverPattern</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">EventCenter</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Dictionary&lt;<span class="built_in">string</span>, Action&gt; Events = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, Action&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddListener</span>(<span class="params"><span class="built_in">string</span> key, Action action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Events.Add(key,action);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key] += action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RemoveListener</span>(<span class="params"><span class="built_in">string</span> key, Action action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogError(<span class="string">$&quot;EventCenter:can&#x27;t find <span class="subst">&#123;key&#125;</span> when remove&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key] -= action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Trigger</span>(<span class="params"><span class="built_in">string</span> key</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogError(<span class="string">$&quot;EventCenter:can&#x27;t find <span class="subst">&#123;key&#125;</span> when trigger&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key]();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Notes</category>
         <category>Design Pattern</category>
@@ -3260,6 +3163,64 @@ L &amp; = L_a + L_d + L_s \\
 <h2 id="下推状态机">下推状态机</h2>
 <p>通过状态栈来管理状态，把新状态推入栈，当前状态为栈顶的状态，当我们不需要该状态时出栈即可，这样便可以实现记忆状态的目的。</p>
 ]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Design Pattern</category>
+        <category>《Game Programming Patterns》</category>
+      </categories>
+      <tags>
+        <tag>Note</tag>
+        <tag>《游戏编程模式》</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【游戏编程模式】读书笔记三：享元模式、观察者模式</title>
+    <url>/posts/56656/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304032232057.jpeg" alt="img"></p>
+<blockquote>
+<p><strong>《游戏编程模式》-Bob Nystrom</strong></p>
+<p><strong>书籍汉化版网址：<a href="https://gpp.tkchu.me/">https://gpp.tkchu.me/</a></strong></p>
+<p><strong>笔记目录：<a href="https://hmxs.games/posts/56336/">https://hmxs.games/posts/56336/</a></strong></p>
+</blockquote>
+<hr>
+<h1>享元模式</h1>
+<h2 id="基本定义与概念">基本定义与概念</h2>
+<p>享元模式(FlyweightPattern)是以效率为核心的设计模式，当我们有大量类似对象需要进行实例化时，如果直接一个一个类的进行创建，那其将占用大量的内存空间。而享元模式将其对象的数据分为两部分—共享部分(如材质、模型)与其他部分(如大小、坐标)分别储存，共享部分只声明一片固定空间，所有对象持有对该空间的引用，这样生成对象时便只需要关心其他部分的数据即可。</p>
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304032355080.png" alt="一行树，每棵都有自己的网格、纹理、树叶，调节参数和位置朝向。" style="zoom: 67%;" />
+<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202304032355211.png" alt="一行树，每个都有自己的参数和位置朝向，指向另一个有网格、纹理、树叶的树模型。" style="zoom:67%;" />
+<h3 id="应用场景">应用场景</h3>
+<ul>
+<li>有大量相同相似对象需要实例化</li>
+<li>这些对象存在数据可以共享</li>
+</ul>
+<h3 id="优点">优点</h3>
+<ul>
+<li>节省内存开销，提高效率</li>
+<li>在大量创建实例时更方便管理</li>
+</ul>
+<h3 id="缺点">缺点</h3>
+<ul>
+<li>如果需要实例化的对象不够多，享元模式的引入反而会增加代码管理成本</li>
+<li>创建对象的过程可能更加繁琐</li>
+</ul>
+<h2 id="Unity简单实现">Unity简单实现</h2>
+<p>Unity中的预制体、材质球等本身便是应用享元模式进行开发的，如多个物体共用一个材质球等</p>
+<p>享元的核心其实便是共享一部分不变的数据来节省空间，在Unity中通过ScriptableObject,静态类等都可以实现共享数据这一功能，同时其与建造者模式、工厂模式都有着不错的相性</p>
+<p>以下为一些简单的实现：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">FlyweightPattern</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 共享数据类(使用Struct应该也行)</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 在具体对象中持有该类的引用即可</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FlyweightClass</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 共享数据</span></span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> Hp;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">float</span> Speed;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构造函数</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">FlyweightClass</span>(<span class="params"><span class="built_in">int</span> hp, <span class="built_in">float</span> speed</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Hp = hp;</span><br><span class="line">            Speed = speed;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 共享数据SO</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 在菜单中右键创建SO文件或使用ScriptableObject.CreateInstance方法创建SO实例</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 在具体对象中持有SO文件的引用即可</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">CreateAssetMenu(fileName = <span class="string">&quot;Data&quot;</span>,menuName = <span class="string">&quot;SO/Flyweight&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">FlyweightSO</span> : <span class="title">ScriptableObject</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> hp;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">float</span> speed;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1>观察者模式</h1>
+<h2 id="基本定义与概念-2">基本定义与概念</h2>
+<p>观察者模式(ObserverPattern)是一种可以将代码的调用与对于调用的响应分离的设计模式，这是一种极重要的设计模式，C#中的event系统便是基于观察者模式实现的。在观察者模式中，观察者拥有具体的需要执行的代码，被观察者则仅需要负责发出通知，观察者监听到了对应的通知就会执行对应的代码。当我们编写被观察者的其他代码时，便无需关心奇怪的耦合问题，只需要专注于被观察者本身，在需要触发对应事件的时候发出通知即可。</p>
+<h3 id="应用场景-2">应用场景</h3>
+<ul>
+<li>当一个事件会触发一个或多个分属于不同系统的行为时</li>
+<li>当程序耦合严重时，观察者模式可以解除观察者与被观察者之间的依赖</li>
+</ul>
+<h3 id="Unity简单实现-2">Unity简单实现</h3>
+<p>*此处我直接实现了事件中心，这也是观察者模式的一种体现，引入了事件中心类作为第三方管理者统一订阅与触发事件</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">ObserverPattern</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">EventCenter</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Dictionary&lt;<span class="built_in">string</span>, Action&gt; Events = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>, Action&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddListener</span>(<span class="params"><span class="built_in">string</span> key, Action action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Events.Add(key,action);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key] += action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RemoveListener</span>(<span class="params"><span class="built_in">string</span> key, Action action</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogError(<span class="string">$&quot;EventCenter:can&#x27;t find <span class="subst">&#123;key&#125;</span> when remove&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key] -= action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Trigger</span>(<span class="params"><span class="built_in">string</span> key</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!Events.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                Debug.LogError(<span class="string">$&quot;EventCenter:can&#x27;t find <span class="subst">&#123;key&#125;</span> when trigger&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            Events[key]();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Notes</category>
         <category>Design Pattern</category>
@@ -4554,6 +4515,55 @@ L &amp; = L_a + L_d + L_s \\
       </tags>
   </entry>
   <entry>
+    <title>2048</title>
+    <url>/posts/42265/</url>
+    <content><![CDATA[<img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251612203.png" alt="2048" style="zoom: 25%;" />
+<blockquote>
+<p><strong>项目地址</strong>：<a href="https://github.com/hmxsqaq/Unity-2048-New">https://github.com/hmxsqaq/Unity-2048-New</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Projects</category>
+        <category>经典小游戏复刻</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FlappyBird</title>
+    <url>/posts/16350/</url>
+    <content><![CDATA[<p><img src="https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202303251606418.png" alt="FlappyBird"></p>
+<blockquote>
+<p><strong>项目地址：</strong></p>
+<p>Unity: <a href="https://github.com/hmxsqaq/Unity-FlappyBird">https://github.com/hmxsqaq/Unity-FlappyBird</a></p>
+<p>Pygame: <a href="https://github.com/hmxsqaq/Pygame-FlappyBird">https://github.com/hmxsqaq/Pygame-FlappyBird</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Projects</category>
+        <category>经典小游戏复刻</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>Unity</tag>
+        <tag>GameProject</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>标签</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>友链</title>
+    <url>/link/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>分类</title>
     <url>/categories/index.html</url>
     <content><![CDATA[]]></content>
@@ -4691,9 +4701,9 @@ L &amp; = L_a + L_d + L_s \\
 ]]></content>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[]]></content>
+    <title></title>
+    <url>/css/custom_loading.css</url>
+    <content><![CDATA[.loading-img{background:url(https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312251233199.jpeg) no-repeat center center;background-size:cover}]]></content>
   </entry>
   <entry>
     <title></title>
@@ -4701,23 +4711,13 @@ L &amp; = L_a + L_d + L_s \\
     <content><![CDATA[#web_bg{filter:blur(3px) brightness(70%)}#footer{background:0 0!important}#page-header{background:0 0!important}#footer::before{background:0 0!important}#page-header::before{background:0 0!important}[data-theme=dark] #footer::before{background:0 0!important}[data-theme=dark] #page-header::before{background:0 0!important}]]></content>
   </entry>
   <entry>
-    <title>友链</title>
-    <url>/link/index.html</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title></title>
-    <url>/css/custom_loading.css</url>
-    <content><![CDATA[.loading-img{background:url(https://hmxs-1315810738.cos.ap-shanghai.myqcloud.com/img/202312251233199.jpeg) no-repeat center center;background-size:cover}]]></content>
+    <url>/css/progress_bar.css</url>
+    <content><![CDATA[.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none;z-index:2000;position:fixed;margin:auto;top:10px;left:0;right:0;height:8px;border-radius:8px;width:4rem;background:#eaecf2;border:1px #e3e8f7;overflow:hidden}.pace-inactive .pace-progress{opacity:0;transition:.3s ease-in}.pace .pace-progress{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);max-width:200px;position:absolute;z-index:2000;display:block;top:0;right:100%;height:100%;width:100%;background:linear-gradient(-45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);animation:gradient 1.5s ease infinite;background-size:200%}.pace.pace-inactive{opacity:0;transition:.3s;top:-8px}@keyframes gradient{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}]]></content>
   </entry>
   <entry>
     <title></title>
     <url>/css/font.css</url>
     <content><![CDATA[@font-face{font-family:mononoki;font-display:swap;src:url('../fonts/mononoki-Regular.ttf') format("truetype")}@font-face{font-family:LXGWWenKaiScreen;font-display:swap;src:url('../fonts/LXGWWenKaiScreen.ttf') format("truetype")}]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/css/progress_bar.css</url>
-    <content><![CDATA[.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none;z-index:2000;position:fixed;margin:auto;top:10px;left:0;right:0;height:8px;border-radius:8px;width:4rem;background:#eaecf2;border:1px #e3e8f7;overflow:hidden}.pace-inactive .pace-progress{opacity:0;transition:.3s ease-in}.pace .pace-progress{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);max-width:200px;position:absolute;z-index:2000;display:block;top:0;right:100%;height:100%;width:100%;background:linear-gradient(-45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);animation:gradient 1.5s ease infinite;background-size:200%}.pace.pace-inactive{opacity:0;transition:.3s;top:-8px}@keyframes gradient{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}]]></content>
   </entry>
 </search>
